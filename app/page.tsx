@@ -312,7 +312,7 @@ export default function HomePage() {
                               >
                                    <div className="relative z-10">
                                         <Image
-                                             src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80"
+                                             src="https://plus.unsplash.com/premium_photo-1685086785636-2a1a0e5b591f?auto=format&fit=crop&w=600&q=80"
                                              alt="Students learning to code at Bingo Academy"
                                              width={600}
                                              height={500}
