@@ -17,9 +17,10 @@ export default function Footer() {
                                    />
                               </div>
                               <p className="text-gray-400 mb-8 leading-relaxed">
-                                   Empowering the next generation of programmers
-                                   and innovators through quality coding
-                                   education.
+                                   Empowering organizations with comprehensive
+                                   training solutions and cutting-edge
+                                   technology education. Transform your team
+                                   with expert-led programs.
                               </p>
                               <div className="flex space-x-4">
                                    {[
@@ -56,7 +57,7 @@ export default function Footer() {
                                    title: "Quick Links",
                                    links: [
                                         {
-                                             name: "All Courses",
+                                             name: "All Training Programs",
                                              href: "/courses",
                                         },
                                         { name: "About Us", href: "/about" },
@@ -66,27 +67,27 @@ export default function Footer() {
                                    ],
                               },
                               {
-                                   title: "Courses",
+                                   title: "Training Programs",
                                    links: [
-                                        {
-                                             name: "Scratch Programming",
-                                             href: "/courses?category=Scratch",
-                                        },
-                                        {
-                                             name: "Python",
-                                             href: "/courses?category=Python",
-                                        },
                                         {
                                              name: "Web Development",
                                              href: "/courses?category=Web Development",
                                         },
                                         {
-                                             name: "Robotics",
-                                             href: "/courses?category=Robotics",
+                                             name: "Python & Data Science",
+                                             href: "/courses?category=Python & Data Science",
                                         },
                                         {
                                              name: "AI & Machine Learning",
-                                             href: "/courses?category=AI",
+                                             href: "/courses?category=AI & Machine Learning",
+                                        },
+                                        {
+                                             name: "Mobile Development",
+                                             href: "/courses?category=Mobile Development",
+                                        },
+                                        {
+                                             name: "Cloud & DevOps",
+                                             href: "/courses?category=Cloud & DevOps",
                                         },
                                    ],
                               },
@@ -129,6 +130,7 @@ export default function Footer() {
                                    </p>
                                    <p>📞 (555) 123-4567</p>
                                    <p>✉️ info@bingoacademy.com</p>
+                                   <p>✉️ training@bingoacademy.com</p>
                                    <p className="leading-relaxed">
                                         🕒 Mon-Fri: 9AM-6PM
                                         <br />

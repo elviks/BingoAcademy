@@ -27,6 +27,9 @@ import {
      Zap,
      Rocket,
      Brain,
+     Building,
+     GraduationCap,
+     Briefcase,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -36,135 +39,140 @@ import Footer from "@/components/footer";
 const events = [
      {
           id: 1,
-          title: "Summer Coding Camp 2024",
+          title: "AI & Machine Learning Corporate Bootcamp",
           description:
-               "Intensive 2-week coding bootcamp for kids aged 10-16. Learn Python, web development, and build amazing projects!",
+               "Intensive 2-week training program for organizations. Transform your team with cutting-edge AI and ML skills for real-world applications.",
           date: "2024-07-15",
           endDate: "2024-07-26",
-          time: "9:00 AM - 4:00 PM",
-          location: "Bingo Academy Campus",
-          type: "Camp",
-          price: "$599",
-          capacity: 30,
-          registered: 18,
-          image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80", // kids coding camp
-          featured: true,
-          tags: ["Python", "Web Development", "Summer", "Kids"],
-          ageGroup: "10-16",
-          instructor: "Sarah Johnson & Team",
-     },
-     {
-          id: 2,
-          title: "AI & Machine Learning Workshop",
-          description:
-               "Hands-on workshop introducing teens to artificial intelligence and machine learning concepts with practical projects.",
-          date: "2024-02-10",
-          time: "10:00 AM - 3:00 PM",
-          location: "Online & Campus",
-          type: "Workshop",
-          price: "$89",
+          time: "9:00 AM - 5:00 PM",
+          location: "Bingo Academy Training Center",
+          type: "Corporate Bootcamp",
+          price: "Custom Pricing",
           capacity: 25,
           registered: 12,
           image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80", // ai workshop
+          featured: true,
+          tags: ["AI", "Machine Learning", "Corporate", "Advanced"],
+          organizationType: "Corporations",
+          instructor: "Dr. Sarah Johnson & Team",
+     },
+     {
+          id: 2,
+          title: "Data Science for Business Leaders",
+          description:
+               "Executive workshop introducing business leaders to data science concepts and strategic decision-making with data-driven insights.",
+          date: "2024-02-10",
+          time: "10:00 AM - 4:00 PM",
+          location: "Online & In-Person",
+          type: "Executive Workshop",
+          price: "Custom Pricing",
+          capacity: 20,
+          registered: 8,
+          image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80", // business leaders
           featured: false,
-          tags: ["AI", "Machine Learning", "Workshop", "Teens"],
-          ageGroup: "14-18",
+          tags: ["Data Science", "Leadership", "Strategy", "Business"],
+          organizationType: "Corporations",
           instructor: "Dr. Lisa Rodriguez",
      },
      {
           id: 3,
-          title: "Robotics Competition 2024",
+          title: "Cybersecurity Training Summit 2024",
           description:
-               "Annual robotics competition where teams build and program robots to complete exciting challenges. Prizes for winners!",
+               "Comprehensive cybersecurity training for IT teams and security professionals. Hands-on workshops and real-world scenarios.",
           date: "2024-03-22",
-          time: "9:00 AM - 5:00 PM",
+          time: "9:00 AM - 6:00 PM",
           location: "Tech Convention Center",
-          type: "Competition",
-          price: "$45",
-          capacity: 50,
-          registered: 35,
-          image: "https://images.unsplash.com/photo-1631378297854-185cff6b0986?auto=format&fit=crop&w=600&q=80", // robotics
+          type: "Training Summit",
+          price: "Custom Pricing",
+          capacity: 40,
+          registered: 28,
+          image: "https://images.unsplash.com/photo-1631378297854-185cff6b0986?auto=format&fit=crop&w=600&q=80", // cybersecurity
           featured: true,
-          tags: ["Robotics", "Competition", "Arduino", "Teams"],
-          ageGroup: "12-18",
+          tags: ["Cybersecurity", "IT Training", "Security", "Professional"],
+          organizationType: "All Organizations",
           instructor: "Alex Thompson",
      },
      {
           id: 4,
-          title: "Scratch Game Development Hackathon",
+          title: "Cloud Computing & DevOps Workshop",
           description:
-               "24-hour hackathon for young programmers to create amazing games using Scratch. Food, prizes, and fun included!",
+               "2-day intensive workshop covering cloud platforms, DevOps practices, and infrastructure automation for development teams.",
           date: "2024-04-05",
           endDate: "2024-04-06",
-          time: "6:00 PM - 6:00 PM",
-          location: "Bingo Academy Campus",
-          type: "Hackathon",
-          price: "$35",
-          capacity: 40,
-          registered: 28,
-          image: "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80", // scratch hackathon
+          time: "9:00 AM - 5:00 PM",
+          location: "Bingo Academy Training Center",
+          type: "Technical Workshop",
+          price: "Custom Pricing",
+          capacity: 30,
+          registered: 18,
+          image: "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80", // cloud computing
           featured: false,
-          tags: ["Scratch", "Game Development", "Hackathon", "Creative"],
-          ageGroup: "8-14",
+          tags: ["Cloud Computing", "DevOps", "Infrastructure", "Automation"],
+          organizationType: "Corporations",
           instructor: "Mike Chen & Team",
      },
      {
           id: 5,
-          title: "Web Development Masterclass",
+          title: "Digital Transformation Masterclass",
           description:
-               "Advanced web development session covering React, Node.js, and modern web technologies for serious young developers.",
+               "Advanced session covering digital transformation strategies, modern technologies, and organizational change management.",
           date: "2024-02-28",
           time: "1:00 PM - 6:00 PM",
           location: "Online",
           type: "Masterclass",
-          price: "$129",
-          capacity: 20,
-          registered: 8,
-          image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80", // web dev
+          price: "Custom Pricing",
+          capacity: 25,
+          registered: 15,
+          image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80", // digital transformation
           featured: false,
-          tags: ["Web Development", "React", "Advanced", "Online"],
-          ageGroup: "16+",
+          tags: [
+               "Digital Transformation",
+               "Strategy",
+               "Change Management",
+               "Technology",
+          ],
+          organizationType: "All Organizations",
           instructor: "Emma Davis",
      },
      {
           id: 6,
-          title: "Parent-Child Coding Day",
+          title: "University Faculty Development Program",
           description:
-               "Special event where parents and children learn to code together. Perfect bonding activity with take-home projects!",
+               "Specialized training for university faculty to integrate modern programming and technology concepts into their curriculum.",
           date: "2024-03-15",
-          time: "10:00 AM - 2:00 PM",
-          location: "Bingo Academy Campus",
-          type: "Family Event",
-          price: "$79",
-          capacity: 15,
-          registered: 9,
-          image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80", // parent child coding
+          time: "10:00 AM - 4:00 PM",
+          location: "Bingo Academy Training Center",
+          type: "Faculty Training",
+          price: "Custom Pricing",
+          capacity: 20,
+          registered: 12,
+          image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80", // faculty training
           featured: false,
-          tags: ["Family", "Beginner", "Bonding", "Fun"],
-          ageGroup: "6+",
+          tags: ["Education", "Faculty", "Curriculum", "Academic"],
+          organizationType: "Universities",
           instructor: "David Kim",
      },
 ];
 
 const eventTypes = [
      "All",
-     "Camp",
-     "Workshop",
-     "Competition",
-     "Hackathon",
+     "Corporate Bootcamp",
+     "Executive Workshop",
+     "Training Summit",
+     "Technical Workshop",
      "Masterclass",
-     "Family Event",
+     "Faculty Training",
 ];
 
 export default function EventsPage() {
      const [selectedType, setSelectedType] = useState("All");
      const [registrationData, setRegistrationData] = useState({
-          participantName: "",
-          parentName: "",
+          organizationName: "",
+          contactName: "",
           email: "",
           phone: "",
-          age: "",
-          experience: "",
+          organizationType: "",
+          participantCount: "",
           specialRequests: "",
      });
      const [selectedEvent, setSelectedEvent] = useState<number | null>(null);
@@ -192,40 +200,40 @@ export default function EventsPage() {
      const handleRegistrationSubmit = (e: React.FormEvent) => {
           e.preventDefault();
           console.log(
-               "Registration data:",
+               "Event registration data:",
                registrationData,
                "Event ID:",
                selectedEvent
           );
           alert(
-               "Registration submitted successfully! We will contact you with payment details."
+               "Registration submitted successfully! We will contact you with a customized proposal."
           );
           setSelectedEvent(null);
           setRegistrationData({
-               participantName: "",
-               parentName: "",
+               organizationName: "",
+               contactName: "",
                email: "",
                phone: "",
-               age: "",
-               experience: "",
+               organizationType: "",
+               participantCount: "",
                specialRequests: "",
           });
      };
 
      const getEventIcon = (type: string) => {
           switch (type) {
-               case "Camp":
+               case "Corporate Bootcamp":
                     return Rocket;
-               case "Workshop":
+               case "Executive Workshop":
                     return Brain;
-               case "Competition":
+               case "Training Summit":
                     return Trophy;
-               case "Hackathon":
+               case "Technical Workshop":
                     return Zap;
                case "Masterclass":
                     return Star;
-               case "Family Event":
-                    return Users;
+               case "Faculty Training":
+                    return GraduationCap;
                default:
                     return Calendar;
           }
@@ -241,14 +249,14 @@ export default function EventsPage() {
                          <div className="flex items-center justify-center mb-4">
                               <Calendar className="w-12 h-12 mr-4" />
                               <h1 className="text-5xl font-bold">
-                                   Events & Workshops
+                                   Training Events & Workshops
                               </h1>
                          </div>
                          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                              Join our exciting coding events, workshops,
-                              competitions, and camps. Connect with fellow young
-                              programmers and take your skills to the next
-                              level!
+                              Join our professional training events, workshops,
+                              and bootcamps designed for organizations.
+                              Transform your team's capabilities with expert-led
+                              sessions.
                          </p>
 
                          <div className="flex justify-center space-x-8 text-center">
@@ -260,10 +268,10 @@ export default function EventsPage() {
                               </div>
                               <div>
                                    <div className="text-3xl font-bold">
-                                        500+
+                                        200+
                                    </div>
                                    <div className="opacity-90">
-                                        Participants
+                                        Organizations Served
                                    </div>
                               </div>
                               <div>
@@ -346,7 +354,7 @@ export default function EventsPage() {
                                                        )}
                                                   </div>
                                                   <Badge className="absolute top-4 right-4 bg-white/90 text-gray-800">
-                                                       Ages {event.ageGroup}
+                                                       {event.organizationType}
                                                   </Badge>
                                              </div>
 
@@ -458,8 +466,8 @@ export default function EventsPage() {
                                                   >
                                                        <Ticket className="w-4 h-4 mr-2" />
                                                        {spotsLeft === 0
-                                                            ? "Sold Out"
-                                                            : "Register Now"}
+                                                            ? "Fully Booked"
+                                                            : "Request Registration"}
                                                   </Button>
                                              </CardContent>
                                         </Card>
@@ -474,8 +482,8 @@ export default function EventsPage() {
                                         No upcoming events
                                    </h3>
                                    <p className="text-gray-600 mb-6">
-                                        Check back soon for new exciting events
-                                        and workshops!
+                                        Check back soon for new professional
+                                        training events and workshops!
                                    </p>
                               </div>
                          )}
@@ -541,7 +549,7 @@ export default function EventsPage() {
                                                        </div>
                                                        <div className="text-xs text-gray-600">
                                                             {event.registered}{" "}
-                                                            participants
+                                                            organizations
                                                        </div>
                                                   </CardContent>
                                              </Card>
@@ -573,17 +581,17 @@ export default function EventsPage() {
                                         className="space-y-4"
                                    >
                                         <div>
-                                             <Label htmlFor="participantName">
-                                                  Participant Name
+                                             <Label htmlFor="organizationName">
+                                                  Organization Name
                                              </Label>
                                              <Input
-                                                  id="participantName"
+                                                  id="organizationName"
                                                   value={
-                                                       registrationData.participantName
+                                                       registrationData.organizationName
                                                   }
                                                   onChange={(e) =>
                                                        handleInputChange(
-                                                            "participantName",
+                                                            "organizationName",
                                                             e.target.value
                                                        )
                                                   }
@@ -592,33 +600,17 @@ export default function EventsPage() {
                                         </div>
 
                                         <div>
-                                             <Label htmlFor="age">Age</Label>
-                                             <Input
-                                                  id="age"
-                                                  type="number"
-                                                  value={registrationData.age}
-                                                  onChange={(e) =>
-                                                       handleInputChange(
-                                                            "age",
-                                                            e.target.value
-                                                       )
-                                                  }
-                                                  required
-                                             />
-                                        </div>
-
-                                        <div>
-                                             <Label htmlFor="parentName">
-                                                  Parent/Guardian Name
+                                             <Label htmlFor="contactName">
+                                                  Contact Person Name
                                              </Label>
                                              <Input
-                                                  id="parentName"
+                                                  id="contactName"
                                                   value={
-                                                       registrationData.parentName
+                                                       registrationData.contactName
                                                   }
                                                   onChange={(e) =>
                                                        handleInputChange(
-                                                            "parentName",
+                                                            "contactName",
                                                             e.target.value
                                                        )
                                                   }
@@ -663,27 +655,50 @@ export default function EventsPage() {
                                         </div>
 
                                         <div>
-                                             <Label htmlFor="experience">
-                                                  Programming Experience
+                                             <Label htmlFor="organizationType">
+                                                  Organization Type
                                              </Label>
                                              <Input
-                                                  id="experience"
+                                                  id="organizationType"
                                                   value={
-                                                       registrationData.experience
+                                                       registrationData.organizationType
                                                   }
                                                   onChange={(e) =>
                                                        handleInputChange(
-                                                            "experience",
+                                                            "organizationType",
                                                             e.target.value
                                                        )
                                                   }
-                                                  placeholder="e.g., Beginner, Some Scratch, etc."
+                                                  placeholder="e.g., Corporation, University, School"
+                                                  required
+                                             />
+                                        </div>
+
+                                        <div>
+                                             <Label htmlFor="participantCount">
+                                                  Number of Participants
+                                             </Label>
+                                             <Input
+                                                  id="participantCount"
+                                                  type="number"
+                                                  value={
+                                                       registrationData.participantCount
+                                                  }
+                                                  onChange={(e) =>
+                                                       handleInputChange(
+                                                            "participantCount",
+                                                            e.target.value
+                                                       )
+                                                  }
+                                                  placeholder="Estimated number of participants"
+                                                  required
                                              />
                                         </div>
 
                                         <div>
                                              <Label htmlFor="specialRequests">
-                                                  Special Requests (Optional)
+                                                  Special Requirements
+                                                  (Optional)
                                              </Label>
                                              <Textarea
                                                   id="specialRequests"
@@ -696,7 +711,7 @@ export default function EventsPage() {
                                                             e.target.value
                                                        )
                                                   }
-                                                  placeholder="Any dietary restrictions, accessibility needs, or questions..."
+                                                  placeholder="Any specific requirements, customization needs, or questions..."
                                                   rows={3}
                                              />
                                         </div>
@@ -716,7 +731,7 @@ export default function EventsPage() {
                                                   type="submit"
                                                   className="flex-1 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600"
                                              >
-                                                  Register
+                                                  Request Registration
                                              </Button>
                                         </div>
                                    </form>
@@ -729,12 +744,13 @@ export default function EventsPage() {
                <section className="py-16 bg-gradient-to-r from-orange-600 to-orange-500 text-white">
                     <div className="container mx-auto px-4 text-center">
                          <h2 className="text-4xl font-bold mb-4">
-                              Don't Miss Out on Our Events!
+                              Transform Your Organization with Expert Training!
                          </h2>
                          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                              Join our community of young programmers and
-                              participate in exciting coding events,
-                              competitions, and workshops throughout the year.
+                              Join our community of organizations and
+                              participate in professional training events,
+                              workshops, and bootcamps designed to elevate your
+                              team's capabilities.
                          </p>
                          <div className="flex flex-col sm:flex-row gap-4 justify-center">
                               <Button

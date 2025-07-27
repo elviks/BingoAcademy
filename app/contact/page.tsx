@@ -32,6 +32,10 @@ import {
      Calendar,
      Users,
      HelpCircle,
+     Building,
+     GraduationCap,
+     Briefcase,
+     Globe,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -40,13 +44,17 @@ import Footer from "@/components/footer";
 
 export default function ContactPage() {
      const [contactData, setContactData] = useState({
-          name: "",
+          organizationName: "",
+          contactName: "",
           email: "",
           phone: "",
+          organizationType: "",
           subject: "",
           message: "",
           inquiryType: "",
           preferredContact: "",
+          participantCount: "",
+          timeline: "",
      });
 
      const handleInputChange = (field: string, value: string) => {
@@ -60,16 +68,20 @@ export default function ContactPage() {
           e.preventDefault();
           console.log("Contact form submitted:", contactData);
           alert(
-               "Thank you for your message! We will get back to you within 24 hours."
+               "Thank you for your inquiry! We will get back to you within 24 hours with a customized training proposal."
           );
           setContactData({
-               name: "",
+               organizationName: "",
+               contactName: "",
                email: "",
                phone: "",
+               organizationType: "",
                subject: "",
                message: "",
                inquiryType: "",
                preferredContact: "",
+               participantCount: "",
+               timeline: "",
           });
      };
 
@@ -87,9 +99,10 @@ export default function ContactPage() {
                               </h1>
                          </div>
                          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                              Have questions about our courses? Want to schedule
-                              a visit? We're here to help! Reach out to us and
-                              we'll get back to you as soon as possible.
+                              Ready to transform your organization with expert
+                              training? Have questions about our programs? We're
+                              here to help! Reach out to us and we'll get back
+                              to you with a customized solution.
                          </p>
 
                          <div className="flex justify-center space-x-8 text-center">
@@ -108,11 +121,9 @@ export default function ContactPage() {
                                    <div className="opacity-90">Per Week</div>
                               </div>
                               <div>
-                                   <div className="text-3xl font-bold">
-                                        100%
-                                   </div>
+                                   <div className="text-3xl font-bold">98%</div>
                                    <div className="opacity-90">
-                                        Satisfaction
+                                        Client Satisfaction
                                    </div>
                               </div>
                          </div>
@@ -127,11 +138,13 @@ export default function ContactPage() {
                                    <CardHeader>
                                         <CardTitle className="text-3xl text-gray-900 flex items-center">
                                              <Send className="w-8 h-8 mr-3 text-orange-600" />
-                                             Send us a Message
+                                             Request Training Proposal
                                         </CardTitle>
                                         <CardDescription className="text-lg">
                                              Fill out the form below and we'll
-                                             get back to you within 24 hours.
+                                             get back to you within 24 hours
+                                             with a customized training
+                                             proposal.
                                         </CardDescription>
                                    </CardHeader>
                                    <CardContent>
@@ -141,17 +154,37 @@ export default function ContactPage() {
                                         >
                                              <div className="grid md:grid-cols-2 gap-6">
                                                   <div>
-                                                       <Label htmlFor="name">
-                                                            Full Name *
+                                                       <Label htmlFor="organizationName">
+                                                            Organization Name *
                                                        </Label>
                                                        <Input
-                                                            id="name"
+                                                            id="organizationName"
                                                             value={
-                                                                 contactData.name
+                                                                 contactData.organizationName
                                                             }
                                                             onChange={(e) =>
                                                                  handleInputChange(
-                                                                      "name",
+                                                                      "organizationName",
+                                                                      e.target
+                                                                           .value
+                                                                 )
+                                                            }
+                                                            placeholder="Your organization name"
+                                                            required
+                                                       />
+                                                  </div>
+                                                  <div>
+                                                       <Label htmlFor="contactName">
+                                                            Contact Person *
+                                                       </Label>
+                                                       <Input
+                                                            id="contactName"
+                                                            value={
+                                                                 contactData.contactName
+                                                            }
+                                                            onChange={(e) =>
+                                                                 handleInputChange(
+                                                                      "contactName",
                                                                       e.target
                                                                            .value
                                                                  )
@@ -160,6 +193,9 @@ export default function ContactPage() {
                                                             required
                                                        />
                                                   </div>
+                                             </div>
+
+                                             <div className="grid md:grid-cols-2 gap-6">
                                                   <div>
                                                        <Label htmlFor="email">
                                                             Email Address *
@@ -177,13 +213,10 @@ export default function ContactPage() {
                                                                            .value
                                                                  )
                                                             }
-                                                            placeholder="your.email@example.com"
+                                                            placeholder="your.email@organization.com"
                                                             required
                                                        />
                                                   </div>
-                                             </div>
-
-                                             <div className="grid md:grid-cols-2 gap-6">
                                                   <div>
                                                        <Label htmlFor="phone">
                                                             Phone Number
@@ -203,6 +236,52 @@ export default function ContactPage() {
                                                             }
                                                             placeholder="(555) 123-4567"
                                                        />
+                                                  </div>
+                                             </div>
+
+                                             <div className="grid md:grid-cols-2 gap-6">
+                                                  <div>
+                                                       <Label htmlFor="organizationType">
+                                                            Organization Type *
+                                                       </Label>
+                                                       <Select
+                                                            value={
+                                                                 contactData.organizationType
+                                                            }
+                                                            onValueChange={(
+                                                                 value
+                                                            ) =>
+                                                                 handleInputChange(
+                                                                      "organizationType",
+                                                                      value
+                                                                 )
+                                                            }
+                                                       >
+                                                            <SelectTrigger>
+                                                                 <SelectValue placeholder="Select organization type" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                 <SelectItem value="university">
+                                                                      University/College
+                                                                 </SelectItem>
+                                                                 <SelectItem value="school">
+                                                                      School/Academy
+                                                                 </SelectItem>
+                                                                 <SelectItem value="corporation">
+                                                                      Corporation
+                                                                 </SelectItem>
+                                                                 <SelectItem value="government">
+                                                                      Government
+                                                                      Agency
+                                                                 </SelectItem>
+                                                                 <SelectItem value="nonprofit">
+                                                                      Non-Profit
+                                                                 </SelectItem>
+                                                                 <SelectItem value="other">
+                                                                      Other
+                                                                 </SelectItem>
+                                                            </SelectContent>
+                                                       </Select>
                                                   </div>
                                                   <div>
                                                        <Label htmlFor="inquiryType">
@@ -225,30 +304,121 @@ export default function ContactPage() {
                                                                  <SelectValue placeholder="Select inquiry type" />
                                                             </SelectTrigger>
                                                             <SelectContent>
-                                                                 <SelectItem value="course-info">
-                                                                      Course
-                                                                      Information
+                                                                 <SelectItem value="training-proposal">
+                                                                      Training
+                                                                      Proposal
                                                                  </SelectItem>
-                                                                 <SelectItem value="enrollment">
-                                                                      Enrollment
+                                                                 <SelectItem value="custom-program">
+                                                                      Custom
+                                                                      Program
                                                                  </SelectItem>
                                                                  <SelectItem value="pricing">
                                                                       Pricing &
-                                                                      Payment
+                                                                      Budget
                                                                  </SelectItem>
                                                                  <SelectItem value="schedule">
                                                                       Schedule &
                                                                       Availability
                                                                  </SelectItem>
-                                                                 <SelectItem value="technical">
-                                                                      Technical
-                                                                      Support
-                                                                 </SelectItem>
                                                                  <SelectItem value="partnership">
                                                                       Partnership
                                                                  </SelectItem>
+                                                                 <SelectItem value="consultation">
+                                                                      Consultation
+                                                                 </SelectItem>
                                                                  <SelectItem value="other">
                                                                       Other
+                                                                 </SelectItem>
+                                                            </SelectContent>
+                                                       </Select>
+                                                  </div>
+                                             </div>
+
+                                             <div className="grid md:grid-cols-2 gap-6">
+                                                  <div>
+                                                       <Label htmlFor="participantCount">
+                                                            Number of
+                                                            Participants
+                                                       </Label>
+                                                       <Select
+                                                            value={
+                                                                 contactData.participantCount
+                                                            }
+                                                            onValueChange={(
+                                                                 value
+                                                            ) =>
+                                                                 handleInputChange(
+                                                                      "participantCount",
+                                                                      value
+                                                                 )
+                                                            }
+                                                       >
+                                                            <SelectTrigger>
+                                                                 <SelectValue placeholder="Select participant count" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                 <SelectItem value="1-10">
+                                                                      1-10
+                                                                      participants
+                                                                 </SelectItem>
+                                                                 <SelectItem value="11-25">
+                                                                      11-25
+                                                                      participants
+                                                                 </SelectItem>
+                                                                 <SelectItem value="26-50">
+                                                                      26-50
+                                                                      participants
+                                                                 </SelectItem>
+                                                                 <SelectItem value="51-100">
+                                                                      51-100
+                                                                      participants
+                                                                 </SelectItem>
+                                                                 <SelectItem value="100+">
+                                                                      100+
+                                                                      participants
+                                                                 </SelectItem>
+                                                            </SelectContent>
+                                                       </Select>
+                                                  </div>
+                                                  <div>
+                                                       <Label htmlFor="timeline">
+                                                            Preferred Timeline
+                                                       </Label>
+                                                       <Select
+                                                            value={
+                                                                 contactData.timeline
+                                                            }
+                                                            onValueChange={(
+                                                                 value
+                                                            ) =>
+                                                                 handleInputChange(
+                                                                      "timeline",
+                                                                      value
+                                                                 )
+                                                            }
+                                                       >
+                                                            <SelectTrigger>
+                                                                 <SelectValue placeholder="Select timeline" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                 <SelectItem value="asap">
+                                                                      As soon as
+                                                                      possible
+                                                                 </SelectItem>
+                                                                 <SelectItem value="1-month">
+                                                                      Within 1
+                                                                      month
+                                                                 </SelectItem>
+                                                                 <SelectItem value="3-months">
+                                                                      Within 3
+                                                                      months
+                                                                 </SelectItem>
+                                                                 <SelectItem value="6-months">
+                                                                      Within 6
+                                                                      months
+                                                                 </SelectItem>
+                                                                 <SelectItem value="flexible">
+                                                                      Flexible
                                                                  </SelectItem>
                                                             </SelectContent>
                                                        </Select>
@@ -300,8 +470,8 @@ export default function ContactPage() {
                                                             <SelectItem value="phone">
                                                                  Phone Call
                                                             </SelectItem>
-                                                            <SelectItem value="text">
-                                                                 Text Message
+                                                            <SelectItem value="video">
+                                                                 Video Call
                                                             </SelectItem>
                                                             <SelectItem value="any">
                                                                  Any Method
@@ -325,7 +495,7 @@ export default function ContactPage() {
                                                                  e.target.value
                                                             )
                                                        }
-                                                       placeholder="Please provide details about your inquiry, including your child's age, programming experience, and any specific questions you have..."
+                                                       placeholder="Please provide details about your training needs, including specific skills you want to develop, current technology stack, and any other requirements..."
                                                        rows={6}
                                                        required
                                                   />
@@ -337,7 +507,7 @@ export default function ContactPage() {
                                                   className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-lg py-6"
                                              >
                                                   <Send className="w-5 h-5 mr-2" />
-                                                  Send Message
+                                                  Send Inquiry
                                              </Button>
                                         </form>
                                    </CardContent>
@@ -403,8 +573,8 @@ export default function ContactPage() {
                                                        General:
                                                        info@bingoacademy.com
                                                        <br />
-                                                       Enrollment:
-                                                       enroll@bingoacademy.com
+                                                       Training:
+                                                       training@bingoacademy.com
                                                   </p>
                                              </div>
                                         </div>
@@ -447,28 +617,67 @@ export default function ContactPage() {
                                              variant="outline"
                                         >
                                              <Calendar className="w-5 h-5 mr-3" />
-                                             Schedule a Campus Visit
+                                             Schedule Consultation Call
                                         </Button>
                                         <Button
                                              className="w-full justify-start bg-transparent"
                                              variant="outline"
                                         >
                                              <Users className="w-5 h-5 mr-3" />
-                                             Book a Free Trial Class
+                                             Request Training Demo
                                         </Button>
                                         <Button
                                              className="w-full justify-start bg-transparent"
                                              variant="outline"
                                         >
                                              <HelpCircle className="w-5 h-5 mr-3" />
-                                             View FAQ
+                                             View Case Studies
                                         </Button>
                                         <Link href="/courses">
                                              <Button className="w-full justify-start bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600">
                                                   <Code className="w-5 h-5 mr-3" />
-                                                  Browse Courses
+                                                  Browse Training Programs
                                              </Button>
                                         </Link>
+                                   </CardContent>
+                              </Card>
+
+                              {/* Organization Types */}
+                              <Card className="shadow-xl border-0">
+                                   <CardHeader>
+                                        <CardTitle className="text-2xl text-gray-900">
+                                             We Serve
+                                        </CardTitle>
+                                        <CardDescription>
+                                             Training solutions for all types of
+                                             organizations
+                                        </CardDescription>
+                                   </CardHeader>
+                                   <CardContent className="space-y-4">
+                                        <div className="flex items-center space-x-3">
+                                             <GraduationCap className="w-5 h-5 text-orange-600" />
+                                             <span className="text-sm">
+                                                  Universities & Colleges
+                                             </span>
+                                        </div>
+                                        <div className="flex items-center space-x-3">
+                                             <Building className="w-5 h-5 text-orange-600" />
+                                             <span className="text-sm">
+                                                  Schools & Academies
+                                             </span>
+                                        </div>
+                                        <div className="flex items-center space-x-3">
+                                             <Briefcase className="w-5 h-5 text-orange-600" />
+                                             <span className="text-sm">
+                                                  Corporations
+                                             </span>
+                                        </div>
+                                        <div className="flex items-center space-x-3">
+                                             <Globe className="w-5 h-5 text-orange-600" />
+                                             <span className="text-sm">
+                                                  Government Agencies
+                                             </span>
+                                        </div>
                                    </CardContent>
                               </Card>
 
@@ -521,7 +730,7 @@ export default function ContactPage() {
                               </h2>
                               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                                    Quick answers to common questions about our
-                                   programs and enrollment process.
+                                   training programs and services.
                               </p>
                          </div>
 
@@ -529,32 +738,33 @@ export default function ContactPage() {
                               {[
                                    {
                                         question:
-                                             "What age groups do you teach?",
-                                        answer: "We offer courses for students aged 6-18, with age-appropriate curricula designed for different developmental stages.",
+                                             "What types of organizations do you work with?",
+                                        answer: "We work with universities, colleges, schools, corporations, government agencies, and non-profit organizations. Our training programs are customized for each organization's specific needs.",
                                    },
                                    {
                                         question:
-                                             "Do students need prior programming experience?",
-                                        answer: "No prior experience is required! We have beginner-friendly courses that start from the very basics.",
-                                   },
-                                   {
-                                        question: "What is your class size?",
-                                        answer: "We maintain small class sizes with a maximum of 8 students per instructor to ensure personalized attention.",
+                                             "Do you offer customized training programs?",
+                                        answer: "Yes! We specialize in creating customized training programs tailored to your organization's specific requirements, technology stack, and learning objectives.",
                                    },
                                    {
                                         question:
-                                             "Do you offer online classes?",
-                                        answer: "Yes! We offer both in-person and online classes, as well as hybrid options to suit different preferences.",
+                                             "What is your typical class size?",
+                                        answer: "We offer flexible class sizes ranging from 10-50 participants, depending on your organization's needs and the training program requirements.",
                                    },
                                    {
                                         question:
-                                             "What programming languages do you teach?",
-                                        answer: "We teach Scratch, Python, JavaScript, HTML/CSS, and introduce concepts in AI/ML and robotics programming.",
+                                             "Do you offer online training options?",
+                                        answer: "Yes! We offer in-person, online, and hybrid training options to accommodate your organization's schedule and preferences.",
                                    },
                                    {
                                         question:
-                                             "Do you provide certificates?",
-                                        answer: "Yes, students receive certificates upon successful completion of each course, which can be added to their portfolio.",
+                                             "What technologies and skills do you train in?",
+                                        answer: "We offer training in web development, Python programming, data science, AI/ML, mobile development, cloud computing, cybersecurity, and more.",
+                                   },
+                                   {
+                                        question:
+                                             "Do you provide post-training support?",
+                                        answer: "Yes, we provide comprehensive post-training support including follow-up sessions, resource materials, and ongoing consultation to ensure successful implementation.",
                                    },
                               ].map((faq, index) => (
                                    <Card
@@ -581,12 +791,12 @@ export default function ContactPage() {
                <section className="py-16 bg-gradient-to-r from-orange-600 to-orange-500 text-white">
                     <div className="container mx-auto px-4 text-center">
                          <h2 className="text-4xl font-bold mb-4">
-                              Ready to Get Started?
+                              Ready to Transform Your Organization?
                          </h2>
                          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                              Don't wait! Join thousands of students who are
-                              already learning to code with Bingo Academy. Your
-                              coding journey starts with a simple message.
+                              Don't wait! Partner with Bingo Academy and empower
+                              your team with cutting-edge technology training
+                              that drives real results.
                          </p>
                          <div className="flex flex-col sm:flex-row gap-4 justify-center">
                               <Button
@@ -594,7 +804,7 @@ export default function ContactPage() {
                                    className="bg-white text-orange-600 hover:bg-gray-100 text-lg px-8 py-6"
                               >
                                    <Calendar className="w-5 h-5 mr-2" />
-                                   Schedule Free Trial
+                                   Schedule Consultation
                               </Button>
                               <Button
                                    size="lg"

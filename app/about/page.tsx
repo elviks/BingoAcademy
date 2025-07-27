@@ -22,6 +22,10 @@ import {
      Lightbulb,
      Globe,
      Shield,
+     Building,
+     GraduationCap,
+     Briefcase,
+     Zap,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -31,90 +35,143 @@ import Footer from "@/components/footer";
 const teamMembers = [
      {
           name: "Roshan KC",
-          role: "Founder & Lead Instructor",
-          bio: "Software Engineer with 6+ years of experience in web, cloud and mobile app development.",
+          role: "Founder & Lead Training Director",
+          bio: "Software Engineer with 6+ years of experience in web, cloud and mobile app development. Expert in designing corporate training programs.",
           image: "/images/roshan.jpeg",
-          specialties: ["AWS", "AI/ML", "Web", "Mobile"],
+          specialties: [
+               "Corporate Training",
+               "AWS",
+               "AI/ML",
+               "Web Development",
+          ],
      },
      {
           name: "Vaskar Parajuli",
-          role: "Senior Instructor",
-          bio: "Full-stack developer with 4+ years of experience in web development and mobile app development.",
+          role: "Senior Trainer",
+          bio: "Full-stack developer with 4+ years of experience in web development and mobile app development. Specializes in organizational training delivery.",
           image: "/images/vashkar.jpeg",
-          specialties: ["React", "Next.js", "Node.js", "React Native"],
+          specialties: ["React", "Next.js", "Node.js", "Training Delivery"],
      },
      {
           name: "Elvik Sharma",
-          role: "Senior Instructor",
-          bio: "Software Developer with 3+ years of experience in web development and mobile app development.",
+          role: "Senior Trainer",
+          bio: "Software Developer with 3+ years of experience in web development and mobile app development. Focuses on curriculum development and program management.",
           image: "/images/elvik.png",
-          specialties: ["Next.js", "Express.js", "React Native"],
+          specialties: [
+               "Next.js",
+               "Express.js",
+               "Curriculum Design",
+               "Program Management",
+          ],
      },
 ];
 
 const values = [
      {
           icon: Heart,
-          title: "Passion for Learning",
+          title: "Client-Centric Approach",
           description:
-               "We believe learning should be fun, engaging, and inspiring. Every student deserves to feel excited about their educational journey.",
+               "We prioritize understanding your organization's unique needs and goals to deliver training solutions that drive real results.",
      },
      {
           icon: Users,
-          title: "Inclusive Community",
+          title: "Expert-Led Training",
           description:
-               "We welcome students of all backgrounds, abilities, and experience levels. Diversity makes us stronger and more creative.",
+               "Our instructors are industry professionals with extensive experience in both technology and corporate training delivery.",
      },
      {
           icon: Target,
-          title: "Excellence in Education",
+          title: "Measurable Outcomes",
           description:
-               "We maintain the highest standards in our curriculum, instruction, and student support to ensure the best learning outcomes.",
+               "We focus on delivering training programs that produce measurable improvements in skills, productivity, and organizational performance.",
      },
      {
           icon: Lightbulb,
-          title: "Innovation & Creativity",
+          title: "Innovation & Best Practices",
           description:
-               "We encourage creative thinking, problem-solving, and innovation in everything we do, preparing students for the future.",
+               "We stay current with industry trends and incorporate cutting-edge technologies and methodologies into our training programs.",
      },
      {
           icon: Shield,
-          title: "Safe Learning Environment",
+          title: "Quality Assurance",
           description:
-               "We provide a supportive, safe, and nurturing environment where students can take risks and learn from mistakes.",
+               "We maintain rigorous quality standards in our curriculum, delivery methods, and post-training support to ensure optimal results.",
      },
      {
           icon: Globe,
-          title: "Global Perspective",
+          title: "Flexible Solutions",
           description:
-               "We prepare students to be global citizens and leaders in technology, understanding the worldwide impact of their work.",
+               "We offer in-person, online, and hybrid training options to accommodate your organization's schedule and preferences.",
      },
 ];
 
 const achievements = [
      {
+          icon: Building,
+          number: "200+",
+          label: "Organizations Served",
+          description: "Schools, colleges, universities, and corporations",
+     },
+     {
           icon: Users,
-          number: "500+",
-          label: "Students Taught",
-          description: "Happy learners from ages 6 to 18",
+          number: "5,000+",
+          label: "Professionals Trained",
+          description: "Employees and students across various industries",
      },
      {
           icon: Award,
-          number: "300+",
-          label: "Certificates Issued",
-          description: "Recognized achievements in programming",
-     },
-     {
-          icon: Trophy,
-          number: "50+",
-          label: "Competition Winners",
-          description: "Students who won coding competitions",
+          number: "15+",
+          label: "Training Programs",
+          description: "Comprehensive curriculum offerings",
      },
      {
           icon: Star,
           number: "4.9/5",
-          label: "Average Rating",
-          description: "From student and parent reviews",
+          label: "Client Satisfaction",
+          description: "Average rating from organizational clients",
+     },
+];
+
+const services = [
+     {
+          icon: GraduationCap,
+          title: "Academic Institutions",
+          description:
+               "Enhance computer science curricula with industry-relevant training programs",
+          features: [
+               "Curriculum Integration",
+               "Faculty Development",
+               "Student Certification",
+          ],
+     },
+     {
+          icon: Building,
+          title: "Corporate Training",
+          description:
+               "Upskill your workforce with cutting-edge technology training",
+          features: ["Custom Programs", "Team Building", "ROI Measurement"],
+     },
+     {
+          icon: Briefcase,
+          title: "Government Agencies",
+          description:
+               "Modernize teams with specialized technology training programs",
+          features: [
+               "Compliance Training",
+               "Security Focus",
+               "Modernization Support",
+          ],
+     },
+     {
+          icon: Zap,
+          title: "Bootcamp Programs",
+          description:
+               "Intensive training programs for rapid skill development",
+          features: [
+               "Accelerated Learning",
+               "Project-Based",
+               "Career Transition",
+          ],
      },
 ];
 
@@ -132,18 +189,20 @@ export default function AboutPage() {
                                         About Bingo Academy
                                    </Badge>
                                    <h1 className="text-5xl font-bold mb-6">
-                                        Empowering the Next Generation of{" "}
+                                        Empowering Organizations Through{" "}
                                         <span className="text-yellow-300">
-                                             Innovators
+                                             Expert Training
                                         </span>
                                    </h1>
                                    <p className="text-xl leading-relaxed mb-8 opacity-90">
                                         Founded in 2020, Bingo Academy has been
-                                        at the forefront of coding education for
-                                        young minds. We believe that every child
-                                        has the potential to become a creator,
-                                        innovator, and problem-solver through
-                                        the power of programming.
+                                        at the forefront of organizational
+                                        training and professional development.
+                                        We believe that every organization
+                                        deserves access to cutting-edge
+                                        technology education that drives real
+                                        results and empowers teams to succeed in
+                                        the digital age.
                                    </p>
                                    <div className="flex flex-col sm:flex-row gap-4">
                                         <Button
@@ -165,18 +224,18 @@ export default function AboutPage() {
 
                               <div className="relative">
                                    <Image
-                                        src="https://plus.unsplash.com/premium_photo-1661769644647-f645cc26910d?auto=format&fit=crop&w=600&q=80"
-                                        alt="Students learning at Bingo Academy"
+                                        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+                                        alt="Professional training session at Bingo Academy"
                                         width={600}
                                         height={500}
                                         className="rounded-2xl shadow-2xl"
                                    />
                                    <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-xl">
                                         <div className="text-3xl font-bold text-orange-600">
-                                             500+
+                                             200+
                                         </div>
                                         <div className="text-gray-600">
-                                             Happy Students
+                                             Organizations Served
                                         </div>
                                    </div>
                               </div>
@@ -194,7 +253,7 @@ export default function AboutPage() {
                               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                                    We're driven by a clear purpose and guided by
                                    an ambitious vision for the future of
-                                   education.
+                                   organizational training and development.
                               </p>
                          </div>
 
@@ -210,14 +269,15 @@ export default function AboutPage() {
                                    </CardHeader>
                                    <CardContent className="text-center">
                                         <p className="text-lg text-blue-800 leading-relaxed">
-                                             To make coding education
-                                             accessible, engaging, and effective
-                                             for students of all ages and
-                                             backgrounds. We strive to nurture
-                                             computational thinking, creativity,
-                                             and problem-solving skills that
-                                             will serve our students throughout
-                                             their lives.
+                                             To empower organizations with
+                                             comprehensive, high-quality
+                                             training solutions that drive
+                                             innovation, productivity, and
+                                             competitive advantage. We strive to
+                                             deliver cutting-edge technology
+                                             education that transforms teams and
+                                             enables organizations to thrive in
+                                             the digital economy.
                                         </p>
                                    </CardContent>
                               </Card>
@@ -233,13 +293,15 @@ export default function AboutPage() {
                                    </CardHeader>
                                    <CardContent className="text-center">
                                         <p className="text-lg text-green-800 leading-relaxed">
-                                             To be the leading platform for
-                                             youth coding education globally,
-                                             creating a generation of confident,
-                                             creative, and capable young
-                                             programmers who will shape the
-                                             future of technology and solve the
-                                             world's most pressing challenges.
+                                             To be the leading provider of
+                                             organizational training solutions
+                                             globally, recognized for our
+                                             innovative approach, measurable
+                                             outcomes, and commitment to
+                                             excellence. We envision a world
+                                             where every organization has access
+                                             to world-class technology
+                                             education.
                                         </p>
                                    </CardContent>
                               </Card>
@@ -247,8 +309,67 @@ export default function AboutPage() {
                     </div>
                </section>
 
-               {/* Our Values */}
+               {/* Our Services */}
                <section className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
+                    <div className="container mx-auto px-4">
+                         <div className="text-center mb-16">
+                              <Badge className="bg-orange-100 text-orange-800 hover:bg-orange-50 mb-4">
+                                   Our Services
+                              </Badge>
+                              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                                   Comprehensive Training Solutions
+                              </h2>
+                              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                                   We offer a wide range of training services
+                                   designed to meet the diverse needs of
+                                   different organizations.
+                              </p>
+                         </div>
+
+                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                              {services.map((service, index) => (
+                                   <Card
+                                        key={index}
+                                        className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg"
+                                   >
+                                        <CardHeader className="text-center">
+                                             <div className="w-16 h-16 bg-gradient-to-r from-orange-600 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                                                  <service.icon className="w-8 h-8 text-white" />
+                                             </div>
+                                             <CardTitle className="text-xl group-hover:text-orange-600 transition-colors">
+                                                  {service.title}
+                                             </CardTitle>
+                                        </CardHeader>
+                                        <CardContent className="text-center">
+                                             <p className="text-gray-600 leading-relaxed mb-4">
+                                                  {service.description}
+                                             </p>
+                                             <div className="space-y-2">
+                                                  {service.features.map(
+                                                       (
+                                                            feature,
+                                                            featureIndex
+                                                       ) => (
+                                                            <div
+                                                                 key={
+                                                                      featureIndex
+                                                                 }
+                                                                 className="text-sm text-orange-600 font-medium"
+                                                            >
+                                                                 • {feature}
+                                                            </div>
+                                                       )
+                                                  )}
+                                             </div>
+                                        </CardContent>
+                                   </Card>
+                              ))}
+                         </div>
+                    </div>
+               </section>
+
+               {/* Our Values */}
+               <section className="py-20 bg-white">
                     <div className="container mx-auto px-4">
                          <div className="text-center mb-16">
                               <Badge className="bg-orange-100 text-orange-800 hover:bg-orange-50 mb-4">
@@ -259,7 +380,7 @@ export default function AboutPage() {
                               </h2>
                               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                                    Our values guide everything we do, from
-                                   curriculum design to student interaction.
+                                   program design to client interaction.
                               </p>
                          </div>
 
@@ -289,18 +410,18 @@ export default function AboutPage() {
                </section>
 
                {/* Achievements */}
-               <section className="py-20 bg-white">
+               <section className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
                     <div className="container mx-auto px-4">
                          <div className="text-center mb-16">
                               <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-200 mb-4">
-                                   Our Achievements
+                                   Our Impact
                               </Badge>
                               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                                   Proud of Our Impact
+                                   Proud of Our Results
                               </h2>
                               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                                    Numbers that reflect our commitment to
-                                   excellence and student success.
+                                   excellence and client success.
                               </p>
                          </div>
 
@@ -331,19 +452,21 @@ export default function AboutPage() {
                </section>
 
                {/* Meet Our Team */}
-               <section className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
+               <section className="py-20 bg-white">
                     <div className="container mx-auto px-4">
                          <div className="text-center mb-16">
                               <Badge className="bg-orange-100 text-orange-800 hover:bg-orange-50 mb-4">
                                    Our Expert Team
                               </Badge>
                               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                                   Meet the Educators Behind Bingo Academy
+                                   Meet the Training Experts Behind Bingo
+                                   Academy
                               </h2>
                               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                                   Our passionate team of educators and industry
-                                   experts are dedicated to providing the best
-                                   learning experience for every student.
+                                   Our passionate team of training professionals
+                                   and industry experts are dedicated to
+                                   delivering exceptional learning experiences
+                                   for your organization.
                               </p>
                          </div>
 
@@ -414,7 +537,7 @@ export default function AboutPage() {
                </section>
 
                {/* Why Choose Us */}
-               <section className="py-20 bg-white">
+               <section className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
                     <div className="container mx-auto px-4">
                          <div className="grid lg:grid-cols-2 gap-12 items-center">
                               <div>
@@ -425,38 +548,38 @@ export default function AboutPage() {
                                         What Makes Us Different
                                    </h2>
                                    <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                                        We're not just another coding school.
-                                        We're a community of learners,
-                                        educators, and innovators committed to
-                                        transforming how young people learn
-                                        technology.
+                                        We're not just another training
+                                        provider. We're a partner in your
+                                        organization's success, committed to
+                                        delivering measurable results and
+                                        lasting impact.
                                    </p>
 
                                    <div className="space-y-6">
                                         {[
                                              {
                                                   icon: CheckCircle,
-                                                  title: "Personalized Learning Paths",
+                                                  title: "Customized Solutions",
                                                   description:
-                                                       "Every student gets a customized learning experience based on their interests, pace, and goals.",
+                                                       "Every training program is tailored to your organization's specific needs, goals, and industry requirements.",
                                              },
                                              {
                                                   icon: Users,
-                                                  title: "Small Class Sizes",
+                                                  title: "Expert Instructors",
                                                   description:
-                                                       "Maximum 8 students per class ensures individual attention and meaningful interaction.",
+                                                       "Industry professionals with extensive experience in both technology and corporate training delivery.",
                                              },
                                              {
                                                   icon: Trophy,
-                                                  title: "Project-Based Learning",
+                                                  title: "Measurable Results",
                                                   description:
-                                                       "Students build real projects they're proud of, not just complete exercises.",
+                                                       "We focus on delivering training that produces measurable improvements in skills and organizational performance.",
                                              },
                                              {
                                                   icon: Heart,
-                                                  title: "Supportive Community",
+                                                  title: "Ongoing Support",
                                                   description:
-                                                       "A welcoming environment where students support each other and celebrate successes together.",
+                                                       "Comprehensive post-training support and resources to ensure long-term success and implementation.",
                                              },
                                         ].map((feature, index) => (
                                              <div
@@ -484,14 +607,14 @@ export default function AboutPage() {
                               <div className="relative">
                                    <Image
                                         src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80"
-                                        alt="Students collaborating"
+                                        alt="Team collaboration and training"
                                         width={500}
                                         height={500}
                                         className="rounded-2xl shadow-xl"
                                    />
                                    <div className="absolute -top-6 -right-6 bg-gradient-to-r from-orange-600 to-orange-500 rounded-2xl p-6 text-white shadow-xl">
                                         <div className="text-2xl font-bold">
-                                             95%
+                                             98%
                                         </div>
                                         <div className="text-sm opacity-90">
                                              Success Rate
@@ -506,12 +629,12 @@ export default function AboutPage() {
                <section className="py-20 bg-gradient-to-r from-orange-600 to-orange-500 text-white">
                     <div className="container mx-auto px-4 text-center">
                          <h2 className="text-4xl font-bold mb-4">
-                              Ready to Join Our Community?
+                              Ready to Transform Your Organization?
                          </h2>
                          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                              Become part of the Bingo Academy family and start
-                              your child's journey into the exciting world of
-                              programming.
+                              Partner with Bingo Academy and empower your team
+                              with cutting-edge technology training that drives
+                              real results.
                          </p>
                          <div className="flex flex-col sm:flex-row gap-4 justify-center">
                               <Link href="/courses">
@@ -520,7 +643,7 @@ export default function AboutPage() {
                                         className="bg-white text-orange-600 hover:bg-gray-100 text-lg px-8 py-6"
                                    >
                                         <BookOpen className="w-5 h-5 mr-2" />
-                                        Explore Courses
+                                        View Training Programs
                                    </Button>
                               </Link>
                               <Link href="/contact">
@@ -529,7 +652,7 @@ export default function AboutPage() {
                                         variant="outline"
                                         className="border-2 border-white text-white hover:bg-white hover:text-orange-600 text-lg px-8 py-6 bg-transparent"
                                    >
-                                        Schedule a Visit
+                                        Request Custom Quote
                                    </Button>
                               </Link>
                          </div>

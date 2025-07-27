@@ -30,236 +30,200 @@ import {
      Calendar,
      User,
      Sparkles,
+     Building,
+     GraduationCap,
+     Briefcase,
+     Globe,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
-const allCourses = [
+const allTrainingPrograms = [
      {
           id: 1,
-          title: "Scratch Programming for Kids",
+          slug: "web-development",
+          title: "Modern Web Development & Full-Stack Engineering",
           description:
-               "Visual programming language perfect for beginners aged 8-12. Learn to create games, animations, and interactive stories with drag-and-drop coding blocks.",
-          duration: "8 weeks",
-          level: "Beginner",
-          price: "$199",
-          originalPrice: "$249",
-          rating: 4.9,
-          students: 150,
-          image: "https://plus.unsplash.com/premium_photo-1663100142323-01690ffa273b?auto=format&fit=crop&w=600&q=80", // kids coding
-          category: "Scratch",
-          ageGroup: "8-12",
+               "Comprehensive training program for organizations to build modern, scalable web applications using cutting-edge technologies and best practices.",
+          duration: "10 weeks",
+          level: "Beginner to Advanced",
+          price: "Custom Pricing",
+          originalPrice: null,
+          rating: 4.6,
+          participants: "15-25",
+          image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
+          category: "Web Development",
+          organizationType: "All Organizations",
           features: [
-               "Visual Programming",
-               "Game Creation",
-               "Animation",
-               "Storytelling",
+               "Full-Stack Development",
+               "Modern Frameworks",
+               "Real Projects",
+               "Industry Best Practices",
           ],
-          instructor: "Sarah Johnson",
-          nextStart: "March 15, 2024",
+          instructor: "David Kim",
+          nextStart: "Flexible Scheduling",
+          format: "In-Person/Online/Hybrid",
      },
      {
           id: 2,
-          title: "Python Fundamentals",
+          slug: "python-data-science",
+          title: "Python & Data Science Bootcamp",
           description:
-               "Learn the basics of Python programming with hands-on projects. Perfect for beginners who want to start with text-based coding and build real applications.",
-          duration: "12 weeks",
-          level: "Beginner",
-          price: "$299",
-          originalPrice: "$399",
-          rating: 4.8,
-          students: 200,
-          image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80", // python code
-          category: "Python",
-          ageGroup: "12+",
+               "Comprehensive training program for organizations to develop Python programming and data science capabilities. Perfect for teams looking to build data-driven solutions.",
+          duration: "8 weeks",
+          level: "Beginner to Intermediate",
+          price: "Custom Pricing",
+          originalPrice: null,
+          rating: 4.9,
+          participants: "15-25",
+          image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
+          category: "Python & Data Science",
+          organizationType: "All Organizations",
           features: [
-               "Variables & Data Types",
-               "Functions",
-               "Loops",
-               "Real Projects",
+               "Data Analysis",
+               "Machine Learning",
+               "Automation",
+               "Business Intelligence",
           ],
-          instructor: "Mike Chen",
-          nextStart: "March 20, 2024",
+          instructor: "Dr. Sarah Johnson",
+          nextStart: "Flexible Scheduling",
+          format: "In-Person/Online/Hybrid",
      },
      {
           id: 3,
-          title: "Advanced Python Programming",
+          slug: "ai-machine-learning",
+          title: "AI & Machine Learning Masterclass",
           description:
-               "Take your Python skills to the next level with object-oriented programming, data structures, algorithms, and advanced project development.",
-          duration: "14 weeks",
-          level: "Intermediate",
-          price: "$399",
-          originalPrice: "$499",
-          rating: 4.9,
-          students: 120,
-          image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80", // advanced python
-          category: "Python",
-          ageGroup: "14+",
-          features: [
-               "OOP",
-               "Data Structures",
-               "Algorithms",
-               "Advanced Projects",
-          ],
-          instructor: "Dr. Lisa Rodriguez",
-          nextStart: "April 1, 2024",
-     },
-     {
-          id: 4,
-          title: "Web Development Bootcamp",
-          description:
-               "HTML, CSS, JavaScript, and React - build real websites and web applications from scratch. Create responsive, modern web experiences.",
-          duration: "16 weeks",
-          level: "Intermediate",
-          price: "$499",
-          originalPrice: "$649",
-          rating: 4.7,
-          students: 180,
-          image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80", // web dev
-          category: "Web Development",
-          ageGroup: "14+",
-          features: ["HTML/CSS", "JavaScript", "React", "Portfolio Projects"],
-          instructor: "Emma Davis",
-          nextStart: "March 25, 2024",
-     },
-     {
-          id: 5,
-          title: "Robotics & Arduino",
-          description:
-               "Build and program robots using Arduino microcontrollers. Learn electronics, sensors, and automation while creating amazing robotic projects.",
+               "Advanced training program for organizations to implement cutting-edge AI and machine learning solutions. Transform your business with intelligent automation and predictive analytics.",
           duration: "10 weeks",
-          level: "Intermediate",
-          price: "$399",
-          originalPrice: "$499",
+          level: "Intermediate to Advanced",
+          price: "Custom Pricing",
+          originalPrice: null,
           rating: 4.8,
-          students: 90,
-          image: "https://images.unsplash.com/photo-1631378297854-185cff6b0986?auto=format&fit=crop&w=600&q=80", // robotics
-          category: "Robotics",
-          ageGroup: "12+",
-          features: [
-               "Arduino Programming",
-               "Sensors",
-               "Motors",
-               "Robot Building",
-          ],
-          instructor: "Alex Thompson",
-          nextStart: "April 5, 2024",
-     },
-     {
-          id: 6,
-          title: "AI & Machine Learning for Teens",
-          description:
-               "Introduction to artificial intelligence and machine learning concepts with practical Python projects. Explore the future of technology.",
-          duration: "12 weeks",
-          level: "Advanced",
-          price: "$599",
-          originalPrice: "$749",
-          rating: 4.9,
-          students: 75,
-          image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80", // AI/ML
-          category: "AI",
-          ageGroup: "16+",
+          participants: "10-20",
+          image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80",
+          category: "AI & Machine Learning",
+          organizationType: "Corporations & Universities",
           features: [
                "ML Algorithms",
                "Neural Networks",
-               "Data Analysis",
-               "AI Projects",
+               "Practical Applications",
+               "AI Strategy",
           ],
-          instructor: "Dr. James Wilson",
-          nextStart: "April 10, 2024",
+          instructor: "Dr. Michael Chen",
+          nextStart: "Flexible Scheduling",
+          format: "In-Person/Online/Hybrid",
      },
      {
-          id: 7,
-          title: "Game Development with Unity",
+          id: 4,
+          slug: "cloud-devops",
+          title: "Cloud Computing & DevOps Bootcamp",
           description:
-               "Create 2D and 3D games using Unity game engine and C# programming language. Bring your game ideas to life with professional tools.",
-          duration: "14 weeks",
+               "Comprehensive training program for organizations to master cloud platforms and DevOps practices. Build scalable, reliable, and efficient infrastructure.",
+          duration: "6 weeks",
           level: "Intermediate",
-          price: "$449",
-          originalPrice: "$599",
-          rating: 4.6,
-          students: 110,
-          image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80", // game dev
-          category: "Game Development",
-          ageGroup: "14+",
+          price: "Custom Pricing",
+          originalPrice: null,
+          rating: 4.7,
+          participants: "12-20",
+          image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
+          category: "Cloud & DevOps",
+          organizationType: "All Organizations",
           features: [
-               "Unity Engine",
-               "C# Programming",
-               "2D/3D Games",
-               "Game Physics",
+               "AWS/Azure/GCP",
+               "CI/CD Pipelines",
+               "Infrastructure as Code",
+               "Monitoring & Security",
           ],
-          instructor: "Ryan Martinez",
-          nextStart: "March 30, 2024",
+          instructor: "Emma Davis",
+          nextStart: "Flexible Scheduling",
+          format: "In-Person/Online/Hybrid",
      },
      {
-          id: 8,
-          title: "Mobile App Development",
+          id: 5,
+          slug: "cybersecurity",
+          title: "Cybersecurity & Information Security",
           description:
-               "Build mobile apps for iOS and Android using React Native. Learn to create cross-platform applications that work on all devices.",
-          duration: "16 weeks",
-          level: "Advanced",
-          price: "$549",
-          originalPrice: "$699",
-          rating: 4.7,
-          students: 85,
-          image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80", // mobile apps
-          category: "Mobile Development",
-          ageGroup: "16+",
+               "Comprehensive cybersecurity training program for organizations to protect against evolving threats and ensure data security compliance.",
+          duration: "8 weeks",
+          level: "Intermediate",
+          price: "Custom Pricing",
+          originalPrice: null,
+          rating: 4.9,
+          participants: "10-15",
+          image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=600&q=80",
+          category: "Cybersecurity",
+          organizationType: "All Organizations",
           features: [
-               "React Native",
-               "Cross-platform",
-               "App Store",
-               "Mobile UI/UX",
+               "Threat Detection",
+               "Security Best Practices",
+               "Incident Response",
+               "Compliance Training",
           ],
-          instructor: "Sofia Kim",
-          nextStart: "April 15, 2024",
+          instructor: "Alex Thompson",
+          nextStart: "Flexible Scheduling",
+          format: "In-Person/Online/Hybrid",
      },
 ];
 
 const categories = [
      "All",
-     "Scratch",
-     "Python",
      "Web Development",
-     "Robotics",
-     "AI",
-     "Game Development",
+     "Python & Data Science",
      "Mobile Development",
+     "AI & Machine Learning",
+     "Game Development",
+     "Cloud & DevOps",
+     "Cybersecurity",
 ];
-const levels = ["All", "Beginner", "Intermediate", "Advanced"];
-const ageGroups = ["All", "8-12", "12+", "14+", "16+"];
+
+const levels = [
+     "All",
+     "All Levels",
+     "Beginner to Intermediate",
+     "Intermediate",
+     "Intermediate to Advanced",
+];
+
+const organizationTypes = [
+     "All Organizations",
+     "Schools & Universities",
+     "Corporations",
+     "Government Agencies",
+];
 
 export default function CoursesPage() {
      const [searchTerm, setSearchTerm] = useState("");
      const [selectedCategory, setSelectedCategory] = useState("All");
      const [selectedLevel, setSelectedLevel] = useState("All");
-     const [selectedAgeGroup, setSelectedAgeGroup] = useState("All");
+     const [selectedOrganizationType, setSelectedOrganizationType] =
+          useState("All Organizations");
 
-     const filteredCourses = allCourses.filter((course) => {
+     const filteredPrograms = allTrainingPrograms.filter((program) => {
           const matchesSearch =
-               course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-               course.description
+               program.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+               program.description
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase()) ||
-               course.features.some((feature) =>
+               program.features.some((feature) =>
                     feature.toLowerCase().includes(searchTerm.toLowerCase())
                );
           const matchesCategory =
                selectedCategory === "All" ||
-               course.category === selectedCategory;
+               program.category === selectedCategory;
           const matchesLevel =
-               selectedLevel === "All" || course.level === selectedLevel;
-          const matchesAgeGroup =
-               selectedAgeGroup === "All" ||
-               course.ageGroup === selectedAgeGroup;
+               selectedLevel === "All" || program.level === selectedLevel;
+          const matchesOrganizationType =
+               selectedOrganizationType === "All Organizations" ||
+               program.organizationType === selectedOrganizationType;
 
           return (
                matchesSearch &&
                matchesCategory &&
                matchesLevel &&
-               matchesAgeGroup
+               matchesOrganizationType
           );
      });
 
@@ -279,14 +243,14 @@ export default function CoursesPage() {
                     <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
                          <BookOpen className="w-16 h-16 mx-auto mb-6 animate-bounce" />
                          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in">
-                              Explore Our Courses
+                              Training Programs for Organizations
                          </h1>
                          <p className="text-xl mb-12 opacity-90 max-w-4xl mx-auto leading-relaxed animate-fade-in-delay">
-                              From visual programming with Scratch to advanced
-                              AI and machine learning, find the perfect course
-                              to start or advance your coding journey. Expert
-                              instructors, hands-on projects, and a supportive
-                              community await you.
+                              From web development to AI and machine learning,
+                              find the perfect training program to transform
+                              your organization. Expert instructors, customized
+                              curriculum, and flexible delivery options await
+                              you.
                          </p>
                          <div className="flex justify-center space-x-8 lg:space-x-16 text-center">
                               <div
@@ -295,7 +259,7 @@ export default function CoursesPage() {
                               >
                                    <div className="text-3xl font-bold">8+</div>
                                    <div className="opacity-90">
-                                        Courses Available
+                                        Training Programs
                                    </div>
                               </div>
                               <div
@@ -303,19 +267,19 @@ export default function CoursesPage() {
                                    style={{ animationDelay: "0.2s" }}
                               >
                                    <div className="text-3xl font-bold">
-                                        500+
+                                        5,000+
                                    </div>
                                    <div className="opacity-90">
-                                        Students Enrolled
+                                        Professionals Trained
                                    </div>
                               </div>
                               <div
                                    className="animate-fade-in-up"
                                    style={{ animationDelay: "0.3s" }}
                               >
-                                   <div className="text-3xl font-bold">95%</div>
+                                   <div className="text-3xl font-bold">98%</div>
                                    <div className="opacity-90">
-                                        Completion Rate
+                                        Success Rate
                                    </div>
                               </div>
                          </div>
@@ -329,7 +293,7 @@ export default function CoursesPage() {
                               <div className="flex-1 relative">
                                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                                    <Input
-                                        placeholder="Search courses, topics, or technologies..."
+                                        placeholder="Search training programs, technologies, or skills..."
                                         value={searchTerm}
                                         onChange={(e) =>
                                              setSearchTerm(e.target.value)
@@ -362,7 +326,7 @@ export default function CoursesPage() {
                                         value={selectedLevel}
                                         onValueChange={setSelectedLevel}
                                    >
-                                        <SelectTrigger className="w-40 py-6 rounded-xl border-orange-200">
+                                        <SelectTrigger className="w-48 py-6 rounded-xl border-orange-200">
                                              <SelectValue placeholder="Level" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -378,19 +342,21 @@ export default function CoursesPage() {
                                    </Select>
 
                                    <Select
-                                        value={selectedAgeGroup}
-                                        onValueChange={setSelectedAgeGroup}
+                                        value={selectedOrganizationType}
+                                        onValueChange={
+                                             setSelectedOrganizationType
+                                        }
                                    >
-                                        <SelectTrigger className="w-32 py-6 rounded-xl border-orange-200">
-                                             <SelectValue placeholder="Age" />
+                                        <SelectTrigger className="w-56 py-6 rounded-xl border-orange-200">
+                                             <SelectValue placeholder="Organization Type" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                             {ageGroups.map((age) => (
+                                             {organizationTypes.map((type) => (
                                                   <SelectItem
-                                                       key={age}
-                                                       value={age}
+                                                       key={type}
+                                                       value={type}
                                                   >
-                                                       {age}
+                                                       {type}
                                                   </SelectItem>
                                              ))}
                                         </SelectContent>
@@ -400,27 +366,27 @@ export default function CoursesPage() {
                     </div>
                </section>
 
-               {/* Courses Grid */}
+               {/* Training Programs Grid */}
                <section className="py-20">
                     <div className="container mx-auto px-4 sm:px-6">
                          <div className="mb-12 text-center">
                               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                                   {filteredCourses.length} Course
-                                   {filteredCourses.length !== 1
+                                   {filteredPrograms.length} Training Program
+                                   {filteredPrograms.length !== 1
                                         ? "s"
                                         : ""}{" "}
                                    Found
                               </h2>
                               <p className="text-lg text-gray-600">
                                    Choose from our comprehensive selection of
-                                   programming courses
+                                   organizational training programs
                               </p>
                          </div>
 
                          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                              {filteredCourses.map((course, index) => (
+                              {filteredPrograms.map((program, index) => (
                                    <Card
-                                        key={course.id}
+                                        key={program.id}
                                         className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white rounded-2xl overflow-hidden"
                                         style={{
                                              animationDelay: `${index * 100}ms`,
@@ -431,36 +397,22 @@ export default function CoursesPage() {
                                         <div className="relative overflow-hidden">
                                              <Image
                                                   src={
-                                                       course.image ||
+                                                       program.image ||
                                                        "/placeholder.svg"
                                                   }
-                                                  alt={course.title}
+                                                  alt={program.title}
                                                   width={300}
                                                   height={200}
                                                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                                              />
                                              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                              <Badge className="absolute top-4 left-4 bg-white/90 text-gray-800 shadow-sm backdrop-blur-sm">
-                                                  {course.category}
+                                                  {program.category}
                                              </Badge>
                                              <Badge className="absolute top-4 right-4 bg-orange-600 text-white shadow-sm">
-                                                  {course.ageGroup}
+                                                  {program.participants}{" "}
+                                                  participants
                                              </Badge>
-                                             {course.originalPrice && (
-                                                  <div className="absolute bottom-4 left-4 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                                                       Save $
-                                                       {Number.parseInt(
-                                                            course.originalPrice.slice(
-                                                                 1
-                                                            )
-                                                       ) -
-                                                            Number.parseInt(
-                                                                 course.price.slice(
-                                                                      1
-                                                                 )
-                                                            )}
-                                                  </div>
-                                             )}
                                         </div>
 
                                         <CardHeader className="pb-4">
@@ -468,35 +420,31 @@ export default function CoursesPage() {
                                                   <Badge
                                                        variant="secondary"
                                                        className={`text-xs ${
-                                                            course.level ===
-                                                            "Beginner"
+                                                            program.level ===
+                                                            "All Levels"
                                                                  ? "bg-green-100 text-green-800"
-                                                                 : course.level ===
-                                                                   "Intermediate"
+                                                                 : program.level ===
+                                                                   "Beginner to Intermediate"
                                                                  ? "bg-yellow-100 text-yellow-800"
                                                                  : "bg-red-100 text-red-800"
                                                        }`}
                                                   >
-                                                       {course.level}
+                                                       {program.level}
                                                   </Badge>
                                                   <div className="text-right">
-                                                       <span className="text-2xl font-bold text-orange-600">
-                                                            {course.price}
+                                                       <span className="text-lg font-bold text-orange-600">
+                                                            {program.price}
                                                        </span>
-                                                       {course.originalPrice && (
-                                                            <div className="text-sm text-gray-500 line-through">
-                                                                 {
-                                                                      course.originalPrice
-                                                                 }
-                                                            </div>
-                                                       )}
+                                                       <div className="text-sm text-gray-500">
+                                                            {program.format}
+                                                       </div>
                                                   </div>
                                              </div>
                                              <CardTitle className="text-xl group-hover:text-orange-600 transition-colors duration-300 line-clamp-2 leading-tight">
-                                                  {course.title}
+                                                  {program.title}
                                              </CardTitle>
                                              <CardDescription className="text-gray-600 line-clamp-3 leading-relaxed">
-                                                  {course.description}
+                                                  {program.description}
                                              </CardDescription>
                                         </CardHeader>
 
@@ -504,11 +452,11 @@ export default function CoursesPage() {
                                              <div className="flex items-center justify-between mb-4 text-sm text-gray-500">
                                                   <div className="flex items-center">
                                                        <Clock className="w-4 h-4 mr-2" />
-                                                       {course.duration}
+                                                       {program.duration}
                                                   </div>
                                                   <div className="flex items-center">
                                                        <Users className="w-4 h-4 mr-2" />
-                                                       {course.students}
+                                                       {program.participants}
                                                   </div>
                                              </div>
 
@@ -521,7 +469,7 @@ export default function CoursesPage() {
                                                                       className={`w-4 h-4 ${
                                                                            i <
                                                                            Math.floor(
-                                                                                course.rating
+                                                                                program.rating
                                                                            )
                                                                                 ? "text-yellow-400 fill-current"
                                                                                 : "text-gray-300"
@@ -531,7 +479,7 @@ export default function CoursesPage() {
                                                        )}
                                                   </div>
                                                   <span className="text-sm text-gray-600 font-medium">
-                                                       ({course.rating})
+                                                       ({program.rating})
                                                   </span>
                                              </div>
 
@@ -539,21 +487,28 @@ export default function CoursesPage() {
                                                   <div className="flex items-center text-sm text-gray-600 mb-2">
                                                        <User className="w-4 h-4 mr-2" />
                                                        <span>
-                                                            {course.instructor}
+                                                            {program.instructor}
                                                        </span>
                                                   </div>
                                                   <div className="flex items-center text-sm text-gray-600">
                                                        <Calendar className="w-4 h-4 mr-2" />
                                                        <span>
-                                                            Starts{" "}
-                                                            {course.nextStart}
+                                                            {program.nextStart}
+                                                       </span>
+                                                  </div>
+                                                  <div className="flex items-center text-sm text-gray-600 mt-1">
+                                                       <Building className="w-4 h-4 mr-2" />
+                                                       <span>
+                                                            {
+                                                                 program.organizationType
+                                                            }
                                                        </span>
                                                   </div>
                                              </div>
 
                                              <div className="mb-6">
                                                   <div className="flex flex-wrap gap-2">
-                                                       {course.features
+                                                       {program.features
                                                             .slice(0, 2)
                                                             .map(
                                                                  (
@@ -573,14 +528,14 @@ export default function CoursesPage() {
                                                                       </Badge>
                                                                  )
                                                             )}
-                                                       {course.features.length >
-                                                            2 && (
+                                                       {program.features
+                                                            .length > 2 && (
                                                             <Badge
                                                                  variant="outline"
                                                                  className="text-xs border-orange-200 text-orange-700"
                                                             >
                                                                  +
-                                                                 {course
+                                                                 {program
                                                                       .features
                                                                       .length -
                                                                       2}{" "}
@@ -592,20 +547,20 @@ export default function CoursesPage() {
 
                                              <div className="space-y-3">
                                                   <Link
-                                                       href={`/courses/${course.id}`}
+                                                       href={`/courses/${program.slug}`}
                                                   >
                                                        <Button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all duration-300 hover:scale-105 shadow-md rounded-xl">
                                                             <BookOpen className="w-4 h-4 mr-2" />
                                                             View Details
                                                        </Button>
                                                   </Link>
-                                                  <Link href="/trial">
+                                                  <Link href="/contact">
                                                        <Button
                                                             variant="outline"
                                                             className="w-full bg-transparent hover:bg-orange-50 transition-all duration-300 border-orange-200 text-orange-700 hover:text-orange-800 rounded-xl"
                                                        >
                                                             <Play className="w-4 h-4 mr-2" />
-                                                            Free Trial
+                                                            Request Quote
                                                        </Button>
                                                   </Link>
                                              </div>
@@ -614,22 +569,24 @@ export default function CoursesPage() {
                               ))}
                          </div>
 
-                         {filteredCourses.length === 0 && (
+                         {filteredPrograms.length === 0 && (
                               <div className="text-center py-20">
                                    <div className="text-6xl mb-6">🔍</div>
                                    <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                                        No courses found
+                                        No training programs found
                                    </h3>
                                    <p className="text-lg text-gray-600 mb-8">
                                         Try adjusting your search criteria or
-                                        browse all courses
+                                        browse all training programs
                                    </p>
                                    <Button
                                         onClick={() => {
                                              setSearchTerm("");
                                              setSelectedCategory("All");
                                              setSelectedLevel("All");
-                                             setSelectedAgeGroup("All");
+                                             setSelectedOrganizationType(
+                                                  "All Organizations"
+                                             );
                                         }}
                                         className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 px-8 py-6 text-lg transition-all duration-300 hover:scale-105 rounded-xl"
                                    >
@@ -645,22 +602,22 @@ export default function CoursesPage() {
                     <div className="absolute inset-0 bg-black/5"></div>
                     <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
                          <h2 className="text-4xl font-bold mb-6">
-                              Ready to Start Your Coding Journey?
+                              Ready to Transform Your Organization?
                          </h2>
                          <p className="text-xl mb-12 opacity-90 max-w-3xl mx-auto leading-relaxed">
-                              Join thousands of students who have already
-                              started learning to code with Bingo Academy. Get
-                              personalized guidance and hands-on experience with
-                              our expert instructors.
+                              Partner with Bingo Academy and empower your team
+                              with cutting-edge technology training. Get
+                              personalized guidance and customized solutions
+                              with our expert training consultants.
                          </p>
                          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                              <Link href="/enrollment">
+                              <Link href="/contact">
                                    <Button
                                         size="lg"
                                         className="bg-white text-orange-600 hover:bg-gray-100 text-lg px-8 py-6 transition-all duration-300 hover:scale-105 shadow-lg rounded-xl"
                                    >
                                         <Award className="w-5 h-5 mr-2" />
-                                        Enroll Now
+                                        Request Custom Quote
                                    </Button>
                               </Link>
                               <Link href="/contact">

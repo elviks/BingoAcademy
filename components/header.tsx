@@ -25,7 +25,10 @@ export default function Header() {
                          <div className="hidden lg:flex items-center space-x-8">
                               {[
                                    { name: "Home", href: "/" },
-                                   { name: "Courses", href: "/courses" },
+                                   {
+                                        name: "Training Programs",
+                                        href: "/courses",
+                                   },
                                    { name: "About", href: "/about" },
                                    { name: "Blog", href: "/blog" },
                                    { name: "Events", href: "/events" },
@@ -52,9 +55,9 @@ export default function Header() {
                               })}
                          </div>
 
-                         <Link href="/enrollment">
+                         <Link href="/contact">
                               <Button className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 shadow-lg hover:shadow-orange-200 transition-all duration-300 hover:scale-105 px-6 py-2 focus-ring">
-                                   Enroll Now
+                                   Request Quote
                               </Button>
                          </Link>
                     </nav>

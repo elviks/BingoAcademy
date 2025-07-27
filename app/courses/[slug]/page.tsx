@@ -1,687 +1,1517 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
-  Code,
-  Clock,
-  Users,
-  Star,
-  Play,
-  CheckCircle,
-  DollarSign,
-  User,
-  ArrowLeft,
-  Download,
-  Share2,
-} from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+     Card,
+     CardContent,
+     CardDescription,
+     CardHeader,
+     CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+     Select,
+     SelectContent,
+     SelectItem,
+     SelectTrigger,
+     SelectValue,
+} from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+     Code,
+     Clock,
+     Users,
+     Star,
+     Play,
+     CheckCircle,
+     DollarSign,
+     User,
+     ArrowLeft,
+     Download,
+     Share2,
+     Building,
+     GraduationCap,
+     Briefcase,
+     Target,
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import Header from "@/components/header";
 
-// Mock course data - in a real app, this would come from an API
-const courseData = {
-  id: 1,
-  title: "Python Fundamentals",
-  description:
-    "Learn the basics of Python programming with hands-on projects. Perfect for beginners who want to start with text-based coding.",
-  longDescription:
-    "This comprehensive Python course is designed for beginners who want to learn programming from scratch. You'll start with the basics of Python syntax and gradually work your way up to building real projects. Our hands-on approach ensures you'll be writing code from day one, with plenty of exercises and projects to reinforce your learning.",
-  duration: "12 weeks",
-  level: "Beginner",
-  price: "$299",
-  originalPrice: "$399",
-  rating: 4.8,
-  students: 200,
-  image: "/placeholder.svg?height=400&width=600",
-  category: "Python",
-  ageGroup: "12+",
-  instructor: {
-    name: "Dr. Sarah Johnson",
-    bio: "Senior Software Engineer with 10+ years of experience in Python development and education.",
-    image: "/placeholder.svg?height=80&width=80",
-  },
-  features: [
-    "12 weeks of comprehensive content",
-    "24/7 access to course materials",
-    "Live coding sessions",
-    "Personal project portfolio",
-    "Certificate of completion",
-    "Career guidance and support",
-  ],
-  curriculum: [
-    {
-      week: 1,
-      title: "Introduction to Python",
-      topics: ["Python installation", "IDE setup", "Basic syntax", "Variables and data types"],
-    },
-    {
-      week: 2,
-      title: "Control Structures",
-      topics: ["If statements", "Loops", "Boolean logic", "Practice exercises"],
-    },
-    {
-      week: 3,
-      title: "Functions and Modules",
-      topics: ["Defining functions", "Parameters and arguments", "Return values", "Importing modules"],
-    },
-    {
-      week: 4,
-      title: "Data Structures",
-      topics: ["Lists", "Dictionaries", "Tuples", "Sets"],
-    },
-    {
-      week: 5,
-      title: "File Handling",
-      topics: ["Reading files", "Writing files", "CSV processing", "Error handling"],
-    },
-    {
-      week: 6,
-      title: "Object-Oriented Programming",
-      topics: ["Classes and objects", "Inheritance", "Encapsulation", "Polymorphism"],
-    },
-  ],
-  prerequisites: ["Basic computer skills", "No prior programming experience required", "Enthusiasm to learn!"],
-  outcomes: [
-    "Write Python programs confidently",
-    "Understand programming fundamentals",
-    "Build real-world projects",
-    "Prepare for advanced courses",
-    "Develop problem-solving skills",
-  ],
-}
+// Mock training program data - in a real app, this would come from an API
+const trainingProgramsData = {
+     "python-data-science": {
+          id: 1,
+          title: "Python & Data Science Bootcamp",
+          description:
+               "Comprehensive training program for organizations to develop Python programming and data science capabilities. Perfect for teams looking to build data-driven solutions.",
+          longDescription:
+               "This intensive training program is designed for organizations that want to equip their teams with Python programming and data science skills. The program covers everything from basic Python syntax to advanced data analysis, machine learning, and real-world project implementation. Our expert-led approach ensures practical, hands-on learning that can be immediately applied in your organization's projects.",
+          duration: "8 weeks",
+          level: "Beginner to Intermediate",
+          price: "Custom Pricing",
+          originalPrice: null,
+          rating: 4.9,
+          organizationsServed: 45,
+          image: "/placeholder.svg?height=400&width=600",
+          category: "Python & Data Science",
+          organizationType: "All Organizations",
+          participants: "15-25 professionals",
+          format: "Hybrid (Online + In-Person)",
+          instructor: {
+               name: "Dr. Sarah Johnson",
+               bio: "Senior Data Scientist and Training Director with 12+ years of experience in Python development, data science, and organizational training.",
+               image: "/placeholder.svg?height=80&width=80",
+          },
+          features: [
+               "8 weeks of comprehensive training",
+               "Customized curriculum for your organization",
+               "Hands-on project development",
+               "Industry expert instructors",
+               "Certificate of completion",
+               "Post-training support and consultation",
+               "Flexible scheduling options",
+               "Real-world case studies",
+          ],
+          curriculum: [
+               {
+                    week: 1,
+                    title: "Python Fundamentals for Business",
+                    topics: [
+                         "Python setup and environment",
+                         "Basic syntax and data types",
+                         "Control structures",
+                         "Functions and modules",
+                    ],
+               },
+               {
+                    week: 2,
+                    title: "Data Manipulation & Analysis",
+                    topics: [
+                         "Pandas for data analysis",
+                         "NumPy for numerical computing",
+                         "Data cleaning and preprocessing",
+                         "Exploratory data analysis",
+                    ],
+               },
+               {
+                    week: 3,
+                    title: "Data Visualization",
+                    topics: [
+                         "Matplotlib and Seaborn",
+                         "Interactive visualizations",
+                         "Dashboard creation",
+                         "Storytelling with data",
+                    ],
+               },
+               {
+                    week: 4,
+                    title: "Statistical Analysis",
+                    topics: [
+                         "Descriptive statistics",
+                         "Hypothesis testing",
+                         "Correlation analysis",
+                         "Statistical modeling",
+                    ],
+               },
+               {
+                    week: 5,
+                    title: "Machine Learning Basics",
+                    topics: [
+                         "Supervised learning",
+                         "Classification algorithms",
+                         "Regression models",
+                         "Model evaluation",
+                    ],
+               },
+               {
+                    week: 6,
+                    title: "Advanced ML & AI",
+                    topics: [
+                         "Unsupervised learning",
+                         "Neural networks",
+                         "Deep learning basics",
+                         "AI applications",
+                    ],
+               },
+               {
+                    week: 7,
+                    title: "Real-World Projects",
+                    topics: [
+                         "Project planning",
+                         "Data pipeline development",
+                         "Model deployment",
+                         "Performance optimization",
+                    ],
+               },
+               {
+                    week: 8,
+                    title: "Implementation & Strategy",
+                    topics: [
+                         "Organizational integration",
+                         "Best practices",
+                         "Team collaboration",
+                         "Future roadmap planning",
+                    ],
+               },
+          ],
+          prerequisites: [
+               "Basic computer literacy",
+               "No prior programming experience required",
+               "Team commitment to learning",
+               "Organizational support for implementation",
+          ],
+          outcomes: [
+               "Develop Python programming expertise across your team",
+               "Build data-driven decision-making capabilities",
+               "Implement machine learning solutions for business problems",
+               "Create automated data processing pipelines",
+               "Establish data science best practices in your organization",
+               "Prepare for advanced AI and ML initiatives",
+          ],
+          targetOrganizations: [
+               "Corporations",
+               "Universities",
+               "Government Agencies",
+               "Non-Profit Organizations",
+          ],
+          deliveryOptions: [
+               "In-Person Training",
+               "Online Sessions",
+               "Hybrid Approach",
+               "Custom Schedule",
+          ],
+     },
+     "ai-machine-learning": {
+          id: 2,
+          title: "AI & Machine Learning Masterclass",
+          description:
+               "Advanced training program for organizations to implement cutting-edge AI and machine learning solutions. Transform your business with intelligent automation and predictive analytics.",
+          longDescription:
+               "This comprehensive AI and machine learning training program is designed for organizations ready to embrace the future of technology. From neural networks to natural language processing, our expert-led program covers the most advanced AI technologies and their practical business applications.",
+          duration: "10 weeks",
+          level: "Intermediate to Advanced",
+          price: "Custom Pricing",
+          originalPrice: null,
+          rating: 4.8,
+          organizationsServed: 32,
+          image: "/placeholder.svg?height=400&width=600",
+          category: "AI & Machine Learning",
+          organizationType: "Corporations & Universities",
+          participants: "10-20 professionals",
+          format: "Hybrid (Online + In-Person)",
+          instructor: {
+               name: "Dr. Michael Chen",
+               bio: "AI Research Director and Machine Learning Expert with 15+ years of experience in artificial intelligence, deep learning, and enterprise AI solutions.",
+               image: "/placeholder.svg?height=80&width=80",
+          },
+          features: [
+               "10 weeks of intensive AI training",
+               "Customized AI strategy development",
+               "Hands-on deep learning projects",
+               "Industry-leading AI experts",
+               "Certificate of completion",
+               "Post-training AI consultation",
+               "Flexible scheduling options",
+               "Real-world AI case studies",
+          ],
+          curriculum: [
+               {
+                    week: 1,
+                    title: "AI Fundamentals & Strategy",
+                    topics: [
+                         "AI landscape and business applications",
+                         "Machine learning vs deep learning",
+                         "AI strategy development",
+                         "Ethical AI considerations",
+                    ],
+               },
+               {
+                    week: 2,
+                    title: "Advanced Machine Learning",
+                    topics: [
+                         "Supervised learning algorithms",
+                         "Unsupervised learning techniques",
+                         "Model optimization and tuning",
+                         "Performance evaluation metrics",
+                    ],
+               },
+               {
+                    week: 3,
+                    title: "Neural Networks & Deep Learning",
+                    topics: [
+                         "Neural network architectures",
+                         "Backpropagation and optimization",
+                         "Convolutional Neural Networks (CNN)",
+                         "Recurrent Neural Networks (RNN)",
+                    ],
+               },
+               {
+                    week: 4,
+                    title: "Natural Language Processing",
+                    topics: [
+                         "Text preprocessing and analysis",
+                         "Sentiment analysis",
+                         "Language models and transformers",
+                         "Chatbot development",
+                    ],
+               },
+               {
+                    week: 5,
+                    title: "Computer Vision",
+                    topics: [
+                         "Image processing fundamentals",
+                         "Object detection and recognition",
+                         "Image segmentation",
+                         "Video analysis",
+                    ],
+               },
+               {
+                    week: 6,
+                    title: "AI for Business Applications",
+                    topics: [
+                         "Predictive analytics",
+                         "Recommendation systems",
+                         "Anomaly detection",
+                         "Process automation",
+                    ],
+               },
+               {
+                    week: 7,
+                    title: "AI Deployment & MLOps",
+                    topics: [
+                         "Model deployment strategies",
+                         "MLOps best practices",
+                         "Model monitoring and maintenance",
+                         "Scalability considerations",
+                    ],
+               },
+               {
+                    week: 8,
+                    title: "Advanced AI Technologies",
+                    topics: [
+                         "Generative AI and GANs",
+                         "Reinforcement learning",
+                         "Edge AI and IoT",
+                         "AI ethics and governance",
+                    ],
+               },
+               {
+                    week: 9,
+                    title: "AI Project Implementation",
+                    topics: [
+                         "AI project planning and scoping",
+                         "Team collaboration and workflows",
+                         "Risk assessment and mitigation",
+                         "Success metrics and KPIs",
+                    ],
+               },
+               {
+                    week: 10,
+                    title: "Future of AI & Strategy",
+                    topics: [
+                         "Emerging AI technologies",
+                         "AI roadmap development",
+                         "Competitive advantage strategies",
+                         "Long-term AI vision",
+                    ],
+               },
+          ],
+          prerequisites: [
+               "Basic programming knowledge (Python preferred)",
+               "Understanding of statistics and mathematics",
+               "Organizational commitment to AI transformation",
+               "Dedicated team for AI implementation",
+          ],
+          outcomes: [
+               "Implement advanced AI and ML solutions in your organization",
+               "Develop custom AI models for business problems",
+               "Build scalable AI infrastructure and workflows",
+               "Create AI-driven business strategies and roadmaps",
+               "Establish AI governance and ethical frameworks",
+               "Lead AI transformation initiatives",
+          ],
+          targetOrganizations: [
+               "Corporations",
+               "Universities",
+               "Technology Companies",
+               "Research Institutions",
+          ],
+          deliveryOptions: [
+               "In-Person Training",
+               "Online Sessions",
+               "Hybrid Approach",
+               "Custom Schedule",
+          ],
+     },
+     "cloud-devops": {
+          id: 3,
+          title: "Cloud Computing & DevOps Bootcamp",
+          description:
+               "Comprehensive training program for organizations to master cloud platforms and DevOps practices. Build scalable, reliable, and efficient infrastructure.",
+          longDescription:
+               "This intensive cloud computing and DevOps training program equips organizations with the skills to build, deploy, and maintain modern cloud-native applications. From AWS and Azure to Kubernetes and CI/CD pipelines, our program covers everything needed for successful cloud transformation.",
+          duration: "6 weeks",
+          level: "Intermediate",
+          price: "Custom Pricing",
+          originalPrice: null,
+          rating: 4.7,
+          organizationsServed: 38,
+          image: "/placeholder.svg?height=400&width=600",
+          category: "Cloud & DevOps",
+          organizationType: "All Organizations",
+          participants: "12-20 professionals",
+          format: "Hybrid (Online + In-Person)",
+          instructor: {
+               name: "Emma Davis",
+               bio: "Cloud Architecture Expert and DevOps Engineer with 10+ years of experience in cloud platforms, containerization, and infrastructure automation.",
+               image: "/placeholder.svg?height=80&width=80",
+          },
+          features: [
+               "6 weeks of comprehensive cloud training",
+               "Multi-cloud platform coverage",
+               "Hands-on infrastructure projects",
+               "Industry expert instructors",
+               "Certificate of completion",
+               "Post-training cloud consultation",
+               "Flexible scheduling options",
+               "Real-world cloud case studies",
+          ],
+          curriculum: [
+               {
+                    week: 1,
+                    title: "Cloud Fundamentals & Strategy",
+                    topics: [
+                         "Cloud computing models (IaaS, PaaS, SaaS)",
+                         "Cloud service providers overview",
+                         "Cloud migration strategies",
+                         "Cost optimization and governance",
+                    ],
+               },
+               {
+                    week: 2,
+                    title: "AWS & Azure Deep Dive",
+                    topics: [
+                         "Core AWS services and architecture",
+                         "Azure services and integration",
+                         "Multi-cloud strategies",
+                         "Security and compliance",
+                    ],
+               },
+               {
+                    week: 3,
+                    title: "Containerization & Orchestration",
+                    topics: [
+                         "Docker containerization",
+                         "Kubernetes orchestration",
+                         "Container security",
+                         "Microservices architecture",
+                    ],
+               },
+               {
+                    week: 4,
+                    title: "DevOps Practices & Tools",
+                    topics: [
+                         "CI/CD pipeline development",
+                         "Infrastructure as Code (IaC)",
+                         "Configuration management",
+                         "Monitoring and logging",
+                    ],
+               },
+               {
+                    week: 5,
+                    title: "Advanced Cloud Services",
+                    topics: [
+                         "Serverless computing",
+                         "Cloud-native databases",
+                         "API management",
+                         "Edge computing",
+                    ],
+               },
+               {
+                    week: 6,
+                    title: "Cloud Security & Operations",
+                    topics: [
+                         "Cloud security best practices",
+                         "Identity and access management",
+                         "Disaster recovery planning",
+                         "Performance optimization",
+                    ],
+               },
+          ],
+          prerequisites: [
+               "Basic IT infrastructure knowledge",
+               "Understanding of networking concepts",
+               "Organizational cloud strategy alignment",
+               "Technical team availability",
+          ],
+          outcomes: [
+               "Design and implement cloud-native architectures",
+               "Build automated CI/CD pipelines",
+               "Manage containerized applications with Kubernetes",
+               "Implement cloud security and compliance measures",
+               "Optimize cloud costs and performance",
+               "Establish DevOps culture and practices",
+          ],
+          targetOrganizations: [
+               "Corporations",
+               "Technology Companies",
+               "Government Agencies",
+               "Educational Institutions",
+          ],
+          deliveryOptions: [
+               "In-Person Training",
+               "Online Sessions",
+               "Hybrid Approach",
+               "Custom Schedule",
+          ],
+     },
+     cybersecurity: {
+          id: 4,
+          title: "Cybersecurity & Information Security",
+          description:
+               "Comprehensive cybersecurity training program for organizations to protect against evolving threats and ensure data security compliance.",
+          longDescription:
+               "This intensive cybersecurity training program prepares organizations to defend against modern cyber threats while ensuring compliance with security regulations. From threat detection to incident response, our program covers all aspects of organizational cybersecurity.",
+          duration: "8 weeks",
+          level: "Intermediate",
+          price: "Custom Pricing",
+          originalPrice: null,
+          rating: 4.9,
+          organizationsServed: 28,
+          image: "/placeholder.svg?height=400&width=600",
+          category: "Cybersecurity",
+          organizationType: "All Organizations",
+          participants: "10-15 professionals",
+          format: "Hybrid (Online + In-Person)",
+          instructor: {
+               name: "Alex Thompson",
+               bio: "Cybersecurity Expert and Information Security Consultant with 12+ years of experience in threat intelligence, incident response, and security architecture.",
+               image: "/placeholder.svg?height=80&width=80",
+          },
+          features: [
+               "8 weeks of comprehensive security training",
+               "Threat simulation and response",
+               "Hands-on security projects",
+               "Industry expert instructors",
+               "Certificate of completion",
+               "Post-training security consultation",
+               "Flexible scheduling options",
+               "Real-world security case studies",
+          ],
+          curriculum: [
+               {
+                    week: 1,
+                    title: "Cybersecurity Fundamentals",
+                    topics: [
+                         "Security principles and frameworks",
+                         "Threat landscape analysis",
+                         "Risk assessment methodologies",
+                         "Security governance",
+                    ],
+               },
+               {
+                    week: 2,
+                    title: "Network Security",
+                    topics: [
+                         "Network architecture security",
+                         "Firewall configuration",
+                         "Intrusion detection systems",
+                         "VPN and remote access security",
+                    ],
+               },
+               {
+                    week: 3,
+                    title: "Application Security",
+                    topics: [
+                         "Secure coding practices",
+                         "Web application security",
+                         "API security",
+                         "Mobile application security",
+                    ],
+               },
+               {
+                    week: 4,
+                    title: "Cloud Security",
+                    topics: [
+                         "Cloud security models",
+                         "Identity and access management",
+                         "Data protection in the cloud",
+                         "Cloud compliance requirements",
+                    ],
+               },
+               {
+                    week: 5,
+                    title: "Threat Detection & Response",
+                    topics: [
+                         "Security monitoring tools",
+                         "Incident detection and analysis",
+                         "Threat hunting techniques",
+                         "Incident response procedures",
+                    ],
+               },
+               {
+                    week: 6,
+                    title: "Data Protection & Privacy",
+                    topics: [
+                         "Data classification and handling",
+                         "Encryption technologies",
+                         "Privacy regulations (GDPR, CCPA)",
+                         "Data breach response",
+                    ],
+               },
+               {
+                    week: 7,
+                    title: "Security Operations",
+                    topics: [
+                         "Security operations center (SOC)",
+                         "Vulnerability management",
+                         "Penetration testing",
+                         "Security awareness training",
+                    ],
+               },
+               {
+                    week: 8,
+                    title: "Compliance & Governance",
+                    topics: [
+                         "Security compliance frameworks",
+                         "Audit preparation and response",
+                         "Security policy development",
+                         "Business continuity planning",
+                    ],
+               },
+          ],
+          prerequisites: [
+               "Basic IT infrastructure knowledge",
+               "Understanding of networking concepts",
+               "Organizational security commitment",
+               "Compliance requirements awareness",
+          ],
+          outcomes: [
+               "Implement comprehensive cybersecurity frameworks",
+               "Detect and respond to security threats",
+               "Ensure compliance with security regulations",
+               "Develop security policies and procedures",
+               "Conduct security assessments and audits",
+               "Build security-aware organizational culture",
+          ],
+          targetOrganizations: [
+               "Corporations",
+               "Government Agencies",
+               "Healthcare Organizations",
+               "Financial Institutions",
+          ],
+          deliveryOptions: [
+               "In-Person Training",
+               "Online Sessions",
+               "Hybrid Approach",
+               "Custom Schedule",
+          ],
+     },
+     "web-development": {
+          id: 5,
+          title: "Modern Web Development & Full-Stack Engineering",
+          description:
+               "Comprehensive training program for organizations to build modern, scalable web applications using cutting-edge technologies and best practices.",
+          longDescription:
+               "This intensive web development training program covers the full spectrum of modern web technologies, from frontend frameworks to backend services and deployment strategies. Our program prepares teams to build robust, scalable web applications that meet today's business demands.",
+          duration: "10 weeks",
+          level: "Beginner to Advanced",
+          price: "Custom Pricing",
+          originalPrice: null,
+          rating: 4.6,
+          organizationsServed: 42,
+          image: "/placeholder.svg?height=400&width=600",
+          category: "Web Development",
+          organizationType: "All Organizations",
+          participants: "15-25 professionals",
+          format: "Hybrid (Online + In-Person)",
+          instructor: {
+               name: "David Kim",
+               bio: "Full-Stack Development Expert and Technical Lead with 10+ years of experience in modern web technologies, architecture design, and team leadership.",
+               image: "/placeholder.svg?height=80&width=80",
+          },
+          features: [
+               "10 weeks of comprehensive web development training",
+               "Full-stack technology coverage",
+               "Hands-on project development",
+               "Industry expert instructors",
+               "Certificate of completion",
+               "Post-training development consultation",
+               "Flexible scheduling options",
+               "Real-world web development case studies",
+          ],
+          curriculum: [
+               {
+                    week: 1,
+                    title: "Web Development Fundamentals",
+                    topics: [
+                         "HTML5 and CSS3 advanced features",
+                         "JavaScript ES6+ and modern syntax",
+                         "Responsive design principles",
+                         "Web accessibility standards",
+                    ],
+               },
+               {
+                    week: 2,
+                    title: "Frontend Frameworks",
+                    topics: [
+                         "React.js fundamentals and hooks",
+                         "Vue.js and Angular basics",
+                         "State management (Redux, Vuex)",
+                         "Component architecture",
+                    ],
+               },
+               {
+                    week: 3,
+                    title: "Backend Development",
+                    topics: [
+                         "Node.js and Express.js",
+                         "Python with Django/Flask",
+                         "Database design and modeling",
+                         "RESTful API development",
+                    ],
+               },
+               {
+                    week: 4,
+                    title: "Database & Data Management",
+                    topics: [
+                         "SQL and NoSQL databases",
+                         "Database optimization",
+                         "Data modeling and relationships",
+                         "Caching strategies",
+                    ],
+               },
+               {
+                    week: 5,
+                    title: "Modern Frontend Technologies",
+                    topics: [
+                         "TypeScript and type safety",
+                         "CSS frameworks and preprocessors",
+                         "Build tools and bundlers",
+                         "Progressive Web Apps (PWA)",
+                    ],
+               },
+               {
+                    week: 6,
+                    title: "API Development & Integration",
+                    topics: [
+                         "GraphQL API development",
+                         "API authentication and security",
+                         "Third-party API integration",
+                         "API testing and documentation",
+                    ],
+               },
+               {
+                    week: 7,
+                    title: "DevOps for Web Applications",
+                    topics: [
+                         "Docker containerization",
+                         "CI/CD for web applications",
+                         "Cloud deployment strategies",
+                         "Performance monitoring",
+                    ],
+               },
+               {
+                    week: 8,
+                    title: "Advanced Web Technologies",
+                    topics: [
+                         "Server-side rendering (SSR)",
+                         "Static site generation (SSG)",
+                         "WebAssembly (WASM)",
+                         "Real-time applications",
+                    ],
+               },
+               {
+                    week: 9,
+                    title: "Testing & Quality Assurance",
+                    topics: [
+                         "Unit testing and integration testing",
+                         "End-to-end testing",
+                         "Code quality and linting",
+                         "Performance testing",
+                    ],
+               },
+               {
+                    week: 10,
+                    title: "Deployment & Maintenance",
+                    topics: [
+                         "Production deployment strategies",
+                         "Monitoring and logging",
+                         "Security best practices",
+                         "Maintenance and updates",
+                    ],
+               },
+          ],
+          prerequisites: [
+               "Basic programming knowledge",
+               "Understanding of web technologies",
+               "Organizational commitment to web development",
+               "Team collaboration skills",
+          ],
+          outcomes: [
+               "Build modern, responsive web applications",
+               "Develop full-stack web solutions",
+               "Implement scalable web architectures",
+               "Deploy and maintain web applications",
+               "Follow web development best practices",
+               "Lead web development projects",
+          ],
+          targetOrganizations: [
+               "Corporations",
+               "Technology Companies",
+               "Digital Agencies",
+               "Educational Institutions",
+          ],
+          deliveryOptions: [
+               "In-Person Training",
+               "Online Sessions",
+               "Hybrid Approach",
+               "Custom Schedule",
+          ],
+     },
+};
 
-export default function CourseDetailPage() {
-  const [enrollmentData, setEnrollmentData] = useState({
-    studentName: "",
-    parentName: "",
-    email: "",
-    phone: "",
-    age: "",
-    experience: "",
-    classType: "",
-    startDate: "",
-    specialRequests: "",
-  })
+export default function TrainingProgramDetailPage({
+     params,
+}: {
+     params: { slug: string };
+}) {
+     const [inquiryData, setInquiryData] = useState({
+          organizationName: "",
+          organizationType: "",
+          contactName: "",
+          contactEmail: "",
+          contactPhone: "",
+          participantCount: "",
+          timeline: "",
+          budget: "",
+          currentTechStack: "",
+          trainingGoals: "",
+          specialRequirements: "",
+     });
 
-  const handleInputChange = (field: string, value: string) => {
-    setEnrollmentData((prev) => ({
-      ...prev,
-      [field]: value,
-    }))
-  }
+     // Get the training program data based on the slug
+     const trainingProgramData =
+          trainingProgramsData[
+               params.slug as keyof typeof trainingProgramsData
+          ];
 
-  const handleEnrollmentSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Enrollment data:", enrollmentData)
-    alert("Enrollment submitted successfully! We will contact you soon.")
-  }
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <nav className="flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-orange-600 to-orange-500 rounded-lg flex items-center justify-center">
-                <Code className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">
-                Bingo Academy
-              </span>
-            </Link>
-
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-gray-700 hover:text-orange-600 transition-colors">
-                Home
-              </Link>
-              <Link href="/courses" className="text-orange-600 font-semibold">
-                Courses
-              </Link>
-              <Link href="/about" className="text-gray-700 hover:text-orange-600 transition-colors">
-                About
-              </Link>
-              <Link href="/blog" className="text-gray-700 hover:text-orange-600 transition-colors">
-                Blog
-              </Link>
-              <Link href="/events" className="text-gray-700 hover:text-orange-600 transition-colors">
-                Events
-              </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-orange-600 transition-colors">
-                Contact
-              </Link>
-            </div>
-
-            <Button className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600">
-              Enroll Now
-            </Button>
-          </nav>
-        </div>
-      </header>
-
-      {/* Breadcrumb */}
-      <div className="bg-white border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center space-x-2 text-sm">
-            <Link href="/" className="text-gray-500 hover:text-orange-600">
-              Home
-            </Link>
-            <span className="text-gray-400">/</span>
-            <Link href="/courses" className="text-gray-500 hover:text-orange-600">
-              Courses
-            </Link>
-            <span className="text-gray-400">/</span>
-            <span className="text-gray-900">{courseData.title}</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Course Header */}
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <div className="flex items-center mb-4">
-                <Link href="/courses" className="flex items-center text-orange-600 hover:text-orange-600 mr-4">
-                  <ArrowLeft className="w-4 h-4 mr-1" />
-                  Back to Courses
-                </Link>
-                <Badge className="bg-orange-100 text-orange-800">{courseData.category}</Badge>
-              </div>
-
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">{courseData.title}</h1>
-
-              <p className="text-xl text-gray-600 mb-6">{courseData.description}</p>
-
-              <div className="flex flex-wrap items-center gap-6 mb-6">
-                <div className="flex items-center">
-                  <div className="flex items-center mr-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-5 h-5 ${i < Math.floor(courseData.rating) ? "text-yellow-400 fill-current" : "text-gray-300"}`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-gray-600">
-                    ({courseData.rating}) • {courseData.students} students
-                  </span>
-                </div>
-                <div className="flex items-center text-gray-600">
-                  <Clock className="w-5 h-5 mr-2" />
-                  {courseData.duration}
-                </div>
-                <div className="flex items-center text-gray-600">
-                  <Users className="w-5 h-5 mr-2" />
-                  {courseData.level}
-                </div>
-                <Badge variant="outline" className="text-orange-600 border-orange-600">
-                  Ages {courseData.ageGroup}
-                </Badge>
-              </div>
-
-              <div className="flex items-center space-x-4">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600"
-                >
-                  <Play className="w-5 h-5 mr-2" />
-                  Enroll Now
-                </Button>
-                <Button size="lg" variant="outline">
-                  <Share2 className="w-5 h-5 mr-2" />
-                  Share Course
-                </Button>
-              </div>
-            </div>
-
-            {/* Course Image */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              <Image
-                src={courseData.image || "/placeholder.svg"}
-                alt={courseData.title}
-                width={600}
-                height={400}
-                className="w-full h-80 object-cover"
-              />
-            </div>
-
-            {/* Course Tabs */}
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <Tabs defaultValue="overview" className="w-full">
-                <TabsList className="grid w-full grid-cols-4">
-                  <TabsTrigger value="overview">Overview</TabsTrigger>
-                  <TabsTrigger value="curriculum">Curriculum</TabsTrigger>
-                  <TabsTrigger value="instructor">Instructor</TabsTrigger>
-                  <TabsTrigger value="reviews">Reviews</TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="overview" className="mt-6 space-y-6">
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Course Overview</h3>
-                    <p className="text-gray-600 leading-relaxed mb-6">{courseData.longDescription}</p>
-                  </div>
-
-                  <div>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-4">What You'll Learn</h4>
-                    <div className="grid md:grid-cols-2 gap-3">
-                      {courseData.outcomes.map((outcome, index) => (
-                        <div key={index} className="flex items-start space-x-3">
-                          <CheckCircle className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{outcome}</span>
-                        </div>
-                      ))}
+     // If the program doesn't exist, you could redirect or show an error
+     if (!trainingProgramData) {
+          return (
+               <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center">
+                    <div className="text-center">
+                         <h1 className="text-2xl font-bold text-gray-900 mb-4">
+                              Training Program Not Found
+                         </h1>
+                         <p className="text-gray-600 mb-6">
+                              The training program you're looking for doesn't
+                              exist.
+                         </p>
+                         <Link href="/courses">
+                              <Button className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600">
+                                   Browse All Training Programs
+                              </Button>
+                         </Link>
                     </div>
-                  </div>
+               </div>
+          );
+     }
 
-                  <div>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-4">Prerequisites</h4>
-                    <ul className="space-y-2">
-                      {courseData.prerequisites.map((prereq, index) => (
-                        <li key={index} className="flex items-start space-x-3">
-                          <div className="w-2 h-2 bg-orange-600 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-700">{prereq}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </TabsContent>
+     const handleInputChange = (field: string, value: string) => {
+          setInquiryData((prev) => ({
+               ...prev,
+               [field]: value,
+          }));
+     };
 
-                <TabsContent value="curriculum" className="mt-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Course Curriculum</h3>
-                  <div className="space-y-4">
-                    {courseData.curriculum.map((week, index) => (
-                      <Card key={index} className="border-l-4 border-orange-600">
-                        <CardHeader>
-                          <CardTitle className="flex items-center">
-                            <span className="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">
-                              {week.week}
-                            </span>
-                            {week.title}
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <ul className="grid md:grid-cols-2 gap-2">
-                            {week.topics.map((topic, topicIndex) => (
-                              <li key={topicIndex} className="flex items-center space-x-2">
-                                <CheckCircle className="w-4 h-4 text-orange-600" />
-                                <span className="text-gray-700">{topic}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </TabsContent>
+     const handleInquirySubmit = (e: React.FormEvent) => {
+          e.preventDefault();
+          console.log("Training inquiry data:", inquiryData);
+          alert(
+               "Training inquiry submitted successfully! We will contact you with a customized proposal within 2-3 business days."
+          );
+     };
 
-                <TabsContent value="instructor" className="mt-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Meet Your Instructor</h3>
-                  <Card>
-                    <CardContent className="p-6">
-                      <div className="flex items-start space-x-6">
-                        <Image
-                          src={courseData.instructor.image || "/placeholder.svg"}
-                          alt={courseData.instructor.name}
-                          width={80}
-                          height={80}
-                          className="rounded-full"
-                        />
-                        <div className="flex-1">
-                          <h4 className="text-xl font-semibold text-gray-900 mb-2">{courseData.instructor.name}</h4>
-                          <p className="text-gray-600 leading-relaxed">{courseData.instructor.bio}</p>
-                          <div className="flex items-center mt-4 space-x-4">
-                            <div className="flex items-center">
-                              <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
-                              <span className="text-sm text-gray-600">4.9 Instructor Rating</span>
-                            </div>
-                            <div className="flex items-center">
-                              <Users className="w-4 h-4 text-gray-400 mr-1" />
-                              <span className="text-sm text-gray-600">500+ Students Taught</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
+     return (
+          <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+               <Header />
 
-                <TabsContent value="reviews" className="mt-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Student Reviews</h3>
-                  <div className="space-y-6">
-                    {[
-                      {
-                        name: "Alex Chen",
-                        rating: 5,
-                        comment:
-                          "Excellent course! The instructor explains everything clearly and the projects are really engaging.",
-                        date: "2 weeks ago",
-                      },
-                      {
-                        name: "Maria Rodriguez",
-                        rating: 5,
-                        comment:
-                          "My daughter loves this course. She's learned so much and is excited about programming now!",
-                        date: "1 month ago",
-                      },
-                      {
-                        name: "David Kim",
-                        rating: 4,
-                        comment: "Great content and well-structured. Would recommend to anyone starting with Python.",
-                        date: "1 month ago",
-                      },
-                    ].map((review, index) => (
-                      <Card key={index}>
-                        <CardContent className="p-6">
-                          <div className="flex items-start justify-between mb-4">
-                            <div>
-                              <h5 className="font-semibold text-gray-900">{review.name}</h5>
-                              <div className="flex items-center mt-1">
-                                {[...Array(5)].map((_, i) => (
-                                  <Star
-                                    key={i}
-                                    className={`w-4 h-4 ${i < review.rating ? "text-yellow-400 fill-current" : "text-gray-300"}`}
-                                  />
-                                ))}
+               {/* Breadcrumb */}
+               <div className="bg-white border-b">
+                    <div className="container mx-auto px-4 py-4">
+                         <div className="flex items-center space-x-2 text-sm">
+                              <Link
+                                   href="/"
+                                   className="text-gray-500 hover:text-orange-600"
+                              >
+                                   Home
+                              </Link>
+                              <span className="text-gray-400">/</span>
+                              <Link
+                                   href="/courses"
+                                   className="text-gray-500 hover:text-orange-600"
+                              >
+                                   Training Programs
+                              </Link>
+                              <span className="text-gray-400">/</span>
+                              <span className="text-gray-900">
+                                   {trainingProgramData.title}
+                              </span>
+                         </div>
+                    </div>
+               </div>
+
+               <div className="container mx-auto px-4 py-8">
+                    <div className="grid lg:grid-cols-3 gap-8">
+                         {/* Main Content */}
+                         <div className="lg:col-span-2 space-y-8">
+                              {/* Program Header */}
+                              <div className="bg-white rounded-2xl shadow-lg p-8">
+                                   <div className="flex items-center mb-4">
+                                        <Link
+                                             href="/courses"
+                                             className="flex items-center text-orange-600 hover:text-orange-600 mr-4"
+                                        >
+                                             <ArrowLeft className="w-4 h-4 mr-1" />
+                                             Back to Training Programs
+                                        </Link>
+                                        <Badge className="bg-orange-100 text-orange-800">
+                                             {trainingProgramData.category}
+                                        </Badge>
+                                   </div>
+
+                                   <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                                        {trainingProgramData.title}
+                                   </h1>
+
+                                   <p className="text-xl text-gray-600 mb-6">
+                                        {trainingProgramData.description}
+                                   </p>
+
+                                   <div className="flex flex-wrap items-center gap-6 mb-6">
+                                        <div className="flex items-center">
+                                             <div className="flex items-center mr-2">
+                                                  {[...Array(5)].map((_, i) => (
+                                                       <Star
+                                                            key={i}
+                                                            className={`w-5 h-5 ${
+                                                                 i <
+                                                                 Math.floor(
+                                                                      trainingProgramData.rating
+                                                                 )
+                                                                      ? "text-yellow-400 fill-current"
+                                                                      : "text-gray-300"
+                                                            }`}
+                                                       />
+                                                  ))}
+                                             </div>
+                                             <span className="text-gray-600">
+                                                  ({trainingProgramData.rating})
+                                                  •{" "}
+                                                  {
+                                                       trainingProgramData.organizationsServed
+                                                  }{" "}
+                                                  organizations served
+                                             </span>
+                                        </div>
+                                        <div className="flex items-center text-gray-600">
+                                             <Clock className="w-5 h-5 mr-2" />
+                                             {trainingProgramData.duration}
+                                        </div>
+                                        <div className="flex items-center text-gray-600">
+                                             <Users className="w-5 h-5 mr-2" />
+                                             {trainingProgramData.level}
+                                        </div>
+                                        <Badge
+                                             variant="outline"
+                                             className="text-orange-600 border-orange-600"
+                                        >
+                                             {
+                                                  trainingProgramData.organizationType
+                                             }
+                                        </Badge>
+                                   </div>
+
+                                   <div className="flex items-center space-x-4">
+                                        <Button
+                                             size="lg"
+                                             className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600"
+                                        >
+                                             <Play className="w-5 h-5 mr-2" />
+                                             Request Custom Quote
+                                        </Button>
+                                        <Button size="lg" variant="outline">
+                                             <Share2 className="w-5 h-5 mr-2" />
+                                             Share Program
+                                        </Button>
+                                   </div>
                               </div>
-                            </div>
-                            <span className="text-sm text-gray-500">{review.date}</span>
-                          </div>
-                          <p className="text-gray-700">{review.comment}</p>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </TabsContent>
-              </Tabs>
-            </div>
-          </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Pricing Card */}
-            <Card className="sticky top-24">
-              <CardHeader>
-                <div className="text-center">
-                  <div className="flex items-center justify-center space-x-2 mb-2">
-                    <span className="text-3xl font-bold text-orange-600">{courseData.price}</span>
-                    <span className="text-lg text-gray-500 line-through">{courseData.originalPrice}</span>
-                  </div>
-                  <Badge className="bg-orange-100 text-orange-800">25% Off Limited Time</Badge>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  {courseData.features.map((feature, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <CheckCircle className="w-5 h-5 text-orange-600 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
+                              {/* Program Image */}
+                              <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+                                   <Image
+                                        src={
+                                             trainingProgramData.image ||
+                                             "/placeholder.svg"
+                                        }
+                                        alt={trainingProgramData.title}
+                                        width={600}
+                                        height={400}
+                                        className="w-full h-80 object-cover"
+                                   />
+                              </div>
+
+                              {/* Program Tabs */}
+                              <div className="bg-white rounded-2xl shadow-lg p-8">
+                                   <Tabs
+                                        defaultValue="overview"
+                                        className="w-full"
+                                   >
+                                        <TabsList className="grid w-full grid-cols-4">
+                                             <TabsTrigger value="overview">
+                                                  Overview
+                                             </TabsTrigger>
+                                             <TabsTrigger value="curriculum">
+                                                  Curriculum
+                                             </TabsTrigger>
+                                             <TabsTrigger value="instructor">
+                                                  Instructor
+                                             </TabsTrigger>
+                                             <TabsTrigger value="reviews">
+                                                  Reviews
+                                             </TabsTrigger>
+                                        </TabsList>
+
+                                        <TabsContent
+                                             value="overview"
+                                             className="mt-6 space-y-6"
+                                        >
+                                             <div>
+                                                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                                                       Program Overview
+                                                  </h3>
+                                                  <p className="text-gray-600 leading-relaxed mb-6">
+                                                       {
+                                                            trainingProgramData.longDescription
+                                                       }
+                                                  </p>
+                                             </div>
+
+                                             <div>
+                                                  <h4 className="text-xl font-semibold text-gray-900 mb-4">
+                                                       What Your Organization
+                                                       Will Achieve
+                                                  </h4>
+                                                  <div className="grid md:grid-cols-2 gap-3">
+                                                       {trainingProgramData.outcomes.map(
+                                                            (
+                                                                 outcome,
+                                                                 index
+                                                            ) => (
+                                                                 <div
+                                                                      key={
+                                                                           index
+                                                                      }
+                                                                      className="flex items-start space-x-3"
+                                                                 >
+                                                                      <CheckCircle className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
+                                                                      <span className="text-gray-700">
+                                                                           {
+                                                                                outcome
+                                                                           }
+                                                                      </span>
+                                                                 </div>
+                                                            )
+                                                       )}
+                                                  </div>
+                                             </div>
+
+                                             <div>
+                                                  <h4 className="text-xl font-semibold text-gray-900 mb-4">
+                                                       Prerequisites
+                                                  </h4>
+                                                  <ul className="space-y-2">
+                                                       {trainingProgramData.prerequisites.map(
+                                                            (prereq, index) => (
+                                                                 <li
+                                                                      key={
+                                                                           index
+                                                                      }
+                                                                      className="flex items-start space-x-3"
+                                                                 >
+                                                                      <div className="w-2 h-2 bg-orange-600 rounded-full mt-2 flex-shrink-0"></div>
+                                                                      <span className="text-gray-700">
+                                                                           {
+                                                                                prereq
+                                                                           }
+                                                                      </span>
+                                                                 </li>
+                                                            )
+                                                       )}
+                                                  </ul>
+                                             </div>
+
+                                             <div>
+                                                  <h4 className="text-xl font-semibold text-gray-900 mb-4">
+                                                       Target Organizations
+                                                  </h4>
+                                                  <div className="flex flex-wrap gap-2">
+                                                       {trainingProgramData.targetOrganizations.map(
+                                                            (org, index) => (
+                                                                 <Badge
+                                                                      key={
+                                                                           index
+                                                                      }
+                                                                      variant="outline"
+                                                                      className="text-orange-600 border-orange-600"
+                                                                 >
+                                                                      {org}
+                                                                 </Badge>
+                                                            )
+                                                       )}
+                                                  </div>
+                                             </div>
+
+                                             <div>
+                                                  <h4 className="text-xl font-semibold text-gray-900 mb-4">
+                                                       Delivery Options
+                                                  </h4>
+                                                  <div className="grid md:grid-cols-2 gap-3">
+                                                       {trainingProgramData.deliveryOptions.map(
+                                                            (option, index) => (
+                                                                 <div
+                                                                      key={
+                                                                           index
+                                                                      }
+                                                                      className="flex items-center space-x-3"
+                                                                 >
+                                                                      <Target className="w-5 h-5 text-orange-600 flex-shrink-0" />
+                                                                      <span className="text-gray-700">
+                                                                           {
+                                                                                option
+                                                                           }
+                                                                      </span>
+                                                                 </div>
+                                                            )
+                                                       )}
+                                                  </div>
+                                             </div>
+                                        </TabsContent>
+
+                                        <TabsContent
+                                             value="curriculum"
+                                             className="mt-6"
+                                        >
+                                             <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                                                  Training Curriculum
+                                             </h3>
+                                             <div className="space-y-4">
+                                                  {trainingProgramData.curriculum.map(
+                                                       (week, index) => (
+                                                            <Card
+                                                                 key={index}
+                                                                 className="border-l-4 border-orange-600"
+                                                            >
+                                                                 <CardHeader>
+                                                                      <CardTitle className="flex items-center">
+                                                                           <span className="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">
+                                                                                {
+                                                                                     week.week
+                                                                                }
+                                                                           </span>
+                                                                           {
+                                                                                week.title
+                                                                           }
+                                                                      </CardTitle>
+                                                                 </CardHeader>
+                                                                 <CardContent>
+                                                                      <ul className="grid md:grid-cols-2 gap-2">
+                                                                           {week.topics.map(
+                                                                                (
+                                                                                     topic,
+                                                                                     topicIndex
+                                                                                ) => (
+                                                                                     <li
+                                                                                          key={
+                                                                                               topicIndex
+                                                                                          }
+                                                                                          className="flex items-center space-x-2"
+                                                                                     >
+                                                                                          <CheckCircle className="w-4 h-4 text-orange-600" />
+                                                                                          <span className="text-gray-700">
+                                                                                               {
+                                                                                                    topic
+                                                                                               }
+                                                                                          </span>
+                                                                                     </li>
+                                                                                )
+                                                                           )}
+                                                                      </ul>
+                                                                 </CardContent>
+                                                            </Card>
+                                                       )
+                                                  )}
+                                             </div>
+                                        </TabsContent>
+
+                                        <TabsContent
+                                             value="instructor"
+                                             className="mt-6"
+                                        >
+                                             <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                                                  Meet Your Training Expert
+                                             </h3>
+                                             <Card>
+                                                  <CardContent className="p-6">
+                                                       <div className="flex items-start space-x-6">
+                                                            <Image
+                                                                 src={
+                                                                      trainingProgramData
+                                                                           .instructor
+                                                                           .image ||
+                                                                      "/placeholder.svg"
+                                                                 }
+                                                                 alt={
+                                                                      trainingProgramData
+                                                                           .instructor
+                                                                           .name
+                                                                 }
+                                                                 width={80}
+                                                                 height={80}
+                                                                 className="rounded-full"
+                                                            />
+                                                            <div className="flex-1">
+                                                                 <h4 className="text-xl font-semibold text-gray-900 mb-2">
+                                                                      {
+                                                                           trainingProgramData
+                                                                                .instructor
+                                                                                .name
+                                                                      }
+                                                                 </h4>
+                                                                 <p className="text-gray-600 leading-relaxed">
+                                                                      {
+                                                                           trainingProgramData
+                                                                                .instructor
+                                                                                .bio
+                                                                      }
+                                                                 </p>
+                                                                 <div className="flex items-center mt-4 space-x-4">
+                                                                      <div className="flex items-center">
+                                                                           <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
+                                                                           <span className="text-sm text-gray-600">
+                                                                                4.9
+                                                                                Instructor
+                                                                                Rating
+                                                                           </span>
+                                                                      </div>
+                                                                      <div className="flex items-center">
+                                                                           <Building className="w-4 h-4 text-gray-400 mr-1" />
+                                                                           <span className="text-sm text-gray-600">
+                                                                                200+
+                                                                                Organizations
+                                                                                Trained
+                                                                           </span>
+                                                                      </div>
+                                                                 </div>
+                                                            </div>
+                                                       </div>
+                                                  </CardContent>
+                                             </Card>
+                                        </TabsContent>
+
+                                        <TabsContent
+                                             value="reviews"
+                                             className="mt-6"
+                                        >
+                                             <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                                                  Client Reviews
+                                             </h3>
+                                             <div className="space-y-6">
+                                                  {[
+                                                       {
+                                                            name: "TechCorp Solutions",
+                                                            contact: "Sarah Johnson, CTO",
+                                                            rating: 5,
+                                                            comment: "Excellent training program! Our team gained valuable Python and data science skills that we've immediately applied to our projects. The customized approach made all the difference.",
+                                                            date: "2 weeks ago",
+                                                       },
+                                                       {
+                                                            name: "State University",
+                                                            contact: "Dr. Michael Chen, Dean of Computer Science",
+                                                            rating: 5,
+                                                            comment: "The training transformed our faculty's capabilities. We've integrated the curriculum into our courses and our students are benefiting immensely.",
+                                                            date: "1 month ago",
+                                                       },
+                                                       {
+                                                            name: "InnovateCorp",
+                                                            contact: "David Kim, VP of Engineering",
+                                                            rating: 4,
+                                                            comment: "Great content and well-structured. Our development team is now much more confident with data science projects.",
+                                                            date: "1 month ago",
+                                                       },
+                                                  ].map((review, index) => (
+                                                       <Card key={index}>
+                                                            <CardContent className="p-6">
+                                                                 <div className="flex items-start justify-between mb-4">
+                                                                      <div>
+                                                                           <h5 className="font-semibold text-gray-900">
+                                                                                {
+                                                                                     review.name
+                                                                                }
+                                                                           </h5>
+                                                                           <p className="text-sm text-gray-600">
+                                                                                {
+                                                                                     review.contact
+                                                                                }
+                                                                           </p>
+                                                                           <div className="flex items-center mt-1">
+                                                                                {[
+                                                                                     ...Array(
+                                                                                          5
+                                                                                     ),
+                                                                                ].map(
+                                                                                     (
+                                                                                          _,
+                                                                                          i
+                                                                                     ) => (
+                                                                                          <Star
+                                                                                               key={
+                                                                                                    i
+                                                                                               }
+                                                                                               className={`w-4 h-4 ${
+                                                                                                    i <
+                                                                                                    review.rating
+                                                                                                         ? "text-yellow-400 fill-current"
+                                                                                                         : "text-gray-300"
+                                                                                               }`}
+                                                                                          />
+                                                                                     )
+                                                                                )}
+                                                                           </div>
+                                                                      </div>
+                                                                      <span className="text-sm text-gray-500">
+                                                                           {
+                                                                                review.date
+                                                                           }
+                                                                      </span>
+                                                                 </div>
+                                                                 <p className="text-gray-700">
+                                                                      {
+                                                                           review.comment
+                                                                      }
+                                                                 </p>
+                                                            </CardContent>
+                                                       </Card>
+                                                  ))}
+                                             </div>
+                                        </TabsContent>
+                                   </Tabs>
+                              </div>
+                         </div>
+
+                         {/* Sidebar */}
+                         <div className="space-y-6">
+                              {/* Pricing Card */}
+                              <Card className="sticky top-24">
+                                   <CardHeader>
+                                        <div className="text-center">
+                                             <div className="flex items-center justify-center space-x-2 mb-2">
+                                                  <span className="text-3xl font-bold text-orange-600">
+                                                       {
+                                                            trainingProgramData.price
+                                                       }
+                                                  </span>
+                                             </div>
+                                             <Badge className="bg-orange-100 text-orange-800">
+                                                  Customized for Your
+                                                  Organization
+                                             </Badge>
+                                        </div>
+                                   </CardHeader>
+                                   <CardContent className="space-y-4">
+                                        <div className="space-y-3">
+                                             {trainingProgramData.features.map(
+                                                  (feature, index) => (
+                                                       <div
+                                                            key={index}
+                                                            className="flex items-center space-x-3"
+                                                       >
+                                                            <CheckCircle className="w-5 h-5 text-orange-600 flex-shrink-0" />
+                                                            <span className="text-gray-700">
+                                                                 {feature}
+                                                            </span>
+                                                       </div>
+                                                  )
+                                             )}
+                                        </div>
+
+                                        <div className="space-y-3 pt-4 border-t">
+                                             <Button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-lg py-6">
+                                                  <DollarSign className="w-5 h-5 mr-2" />
+                                                  Request Custom Quote
+                                             </Button>
+                                             <Button
+                                                  variant="outline"
+                                                  className="w-full bg-transparent"
+                                             >
+                                                  <Download className="w-4 h-4 mr-2" />
+                                                  Download Program Brochure
+                                             </Button>
+                                        </div>
+                                   </CardContent>
+                              </Card>
+                         </div>
                     </div>
-                  ))}
-                </div>
+               </div>
 
-                <div className="space-y-3 pt-4 border-t">
-                  <Button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-lg py-6">
-                    <DollarSign className="w-5 h-5 mr-2" />
-                    Enroll Now
-                  </Button>
-                  <Button variant="outline" className="w-full bg-transparent">
-                    <Download className="w-4 h-4 mr-2" />
-                    Download Syllabus
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+               {/* Footer */}
+               <footer className="bg-gray-900 text-white py-16 mt-16">
+                    <div className="container mx-auto px-4">
+                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                              <div>
+                                   <Link
+                                        href="/"
+                                        className="flex items-center space-x-2 mb-6"
+                                   >
+                                        <div className="w-10 h-10 bg-gradient-to-r from-orange-600 to-orange-500 rounded-lg flex items-center justify-center">
+                                             <Code className="w-6 h-6 text-white" />
+                                        </div>
+                                        <span className="text-2xl font-bold">
+                                             Bingo Academy
+                                        </span>
+                                   </Link>
+                                   <p className="text-gray-400 mb-6">
+                                        Empowering organizations through expert
+                                        training and professional development in
+                                        cutting-edge technologies.
+                                   </p>
+                              </div>
 
-            {/* Enrollment Form */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <User className="w-5 h-5 mr-2" />
-                  Quick Enrollment
-                </CardTitle>
-                <CardDescription>Fill out this form to secure your spot in the course</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleEnrollmentSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="studentName">Student Name</Label>
-                      <Input
-                        id="studentName"
-                        value={enrollmentData.studentName}
-                        onChange={(e) => handleInputChange("studentName", e.target.value)}
-                        required
-                      />
+                              <div>
+                                   <h3 className="text-lg font-semibold mb-6">
+                                        Quick Links
+                                   </h3>
+                                   <ul className="space-y-3">
+                                        <li>
+                                             <Link
+                                                  href="/courses"
+                                                  className="text-gray-400 hover:text-white transition-colors"
+                                             >
+                                                  All Training Programs
+                                             </Link>
+                                        </li>
+                                        <li>
+                                             <Link
+                                                  href="/about"
+                                                  className="text-gray-400 hover:text-white transition-colors"
+                                             >
+                                                  About Us
+                                             </Link>
+                                        </li>
+                                        <li>
+                                             <Link
+                                                  href="/events"
+                                                  className="text-gray-400 hover:text-white transition-colors"
+                                             >
+                                                  Events
+                                             </Link>
+                                        </li>
+                                        <li>
+                                             <Link
+                                                  href="/contact"
+                                                  className="text-gray-400 hover:text-white transition-colors"
+                                             >
+                                                  Contact
+                                             </Link>
+                                        </li>
+                                   </ul>
+                              </div>
+
+                              <div>
+                                   <h3 className="text-lg font-semibold mb-6">
+                                        Training Programs
+                                   </h3>
+                                   <ul className="space-y-3">
+                                        <li>
+                                             <Link
+                                                  href="/courses?category=Python"
+                                                  className="text-gray-400 hover:text-white transition-colors"
+                                             >
+                                                  Python & Data Science
+                                             </Link>
+                                        </li>
+                                        <li>
+                                             <Link
+                                                  href="/courses?category=AI"
+                                                  className="text-gray-400 hover:text-white transition-colors"
+                                             >
+                                                  AI & Machine Learning
+                                             </Link>
+                                        </li>
+                                        <li>
+                                             <Link
+                                                  href="/courses?category=Cloud"
+                                                  className="text-gray-400 hover:text-white transition-colors"
+                                             >
+                                                  Cloud & DevOps
+                                             </Link>
+                                        </li>
+                                        <li>
+                                             <Link
+                                                  href="/courses?category=Cybersecurity"
+                                                  className="text-gray-400 hover:text-white transition-colors"
+                                             >
+                                                  Cybersecurity
+                                             </Link>
+                                        </li>
+                                        <li>
+                                             <Link
+                                                  href="/courses?category=Web"
+                                                  className="text-gray-400 hover:text-white transition-colors"
+                                             >
+                                                  Web Development
+                                             </Link>
+                                        </li>
+                                   </ul>
+                              </div>
+
+                              <div>
+                                   <h3 className="text-lg font-semibold mb-6">
+                                        Contact Info
+                                   </h3>
+                                   <div className="space-y-3 text-gray-400">
+                                        <p>
+                                             📍 123 Education Street
+                                             <br />
+                                             Tech City, TC 12345
+                                        </p>
+                                        <p>📞 (555) 123-4567</p>
+                                        <p>✉️ training@bingoacademy.com</p>
+                                        <p>
+                                             🕒 Mon-Fri: 9AM-6PM
+                                             <br />
+                                             Sat: 10AM-4PM
+                                        </p>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                              <p>
+                                   &copy; 2024 Bingo Academy. All rights
+                                   reserved. | Privacy Policy | Terms of Service
+                              </p>
+                         </div>
                     </div>
-                    <div>
-                      <Label htmlFor="age">Age</Label>
-                      <Input
-                        id="age"
-                        type="number"
-                        value={enrollmentData.age}
-                        onChange={(e) => handleInputChange("age", e.target.value)}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="parentName">Parent/Guardian Name</Label>
-                    <Input
-                      id="parentName"
-                      value={enrollmentData.parentName}
-                      onChange={(e) => handleInputChange("parentName", e.target.value)}
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={enrollmentData.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="phone">Phone</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      value={enrollmentData.phone}
-                      onChange={(e) => handleInputChange("phone", e.target.value)}
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="classType">Class Type</Label>
-                    <Select
-                      value={enrollmentData.classType}
-                      onValueChange={(value) => handleInputChange("classType", value)}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select class type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="online">Online Classes</SelectItem>
-                        <SelectItem value="physical">Physical Classes</SelectItem>
-                        <SelectItem value="hybrid">Hybrid (Online + Physical)</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="experience">Programming Experience</Label>
-                    <Select
-                      value={enrollmentData.experience}
-                      onValueChange={(value) => handleInputChange("experience", value)}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select experience level" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="none">No Experience</SelectItem>
-                        <SelectItem value="basic">Basic (Some exposure)</SelectItem>
-                        <SelectItem value="intermediate">Intermediate</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="startDate">Preferred Start Date</Label>
-                    <Input
-                      id="startDate"
-                      type="date"
-                      value={enrollmentData.startDate}
-                      onChange={(e) => handleInputChange("startDate", e.target.value)}
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="specialRequests">Special Requests (Optional)</Label>
-                    <Textarea
-                      id="specialRequests"
-                      value={enrollmentData.specialRequests}
-                      onChange={(e) => handleInputChange("specialRequests", e.target.value)}
-                      placeholder="Any special requirements or questions..."
-                      rows={3}
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600"
-                  >
-                    Submit Enrollment
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+               </footer>
           </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16 mt-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div>
-              <Link href="/" className="flex items-center space-x-2 mb-6">
-                <div className="w-10 h-10 bg-gradient-to-r from-orange-600 to-orange-500 rounded-lg flex items-center justify-center">
-                  <Code className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-2xl font-bold">Bingo Academy</span>
-              </Link>
-              <p className="text-gray-400 mb-6">
-                Empowering the next generation of programmers and innovators through quality coding education.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
-              <ul className="space-y-3">
-                <li>
-                  <Link href="/courses" className="text-gray-400 hover:text-white transition-colors">
-                    All Courses
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/events" className="text-gray-400 hover:text-white transition-colors">
-                    Events
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold mb-6">Categories</h3>
-              <ul className="space-y-3">
-                <li>
-                  <Link href="/courses?category=Scratch" className="text-gray-400 hover:text-white transition-colors">
-                    Scratch Programming
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/courses?category=Python" className="text-gray-400 hover:text-white transition-colors">
-                    Python
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/courses?category=Web Development"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Web Development
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/courses?category=Robotics" className="text-gray-400 hover:text-white transition-colors">
-                    Robotics
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/courses?category=AI" className="text-gray-400 hover:text-white transition-colors">
-                    AI & Machine Learning
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold mb-6">Contact Info</h3>
-              <div className="space-y-3 text-gray-400">
-                <p>
-                  📍 123 Education Street
-                  <br />
-                  Tech City, TC 12345
-                </p>
-                <p>📞 (555) 123-4567</p>
-                <p>✉️ info@bingoacademy.com</p>
-                <p>
-                  🕒 Mon-Fri: 9AM-6PM
-                  <br />
-                  Sat: 10AM-4PM
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Bingo Academy. All rights reserved. | Privacy Policy | Terms of Service</p>
-          </div>
-        </div>
-      </footer>
-    </div>
-  )
+     );
 }

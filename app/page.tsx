@@ -31,6 +31,10 @@ import {
      CheckCircle,
      Sparkles,
      Rocket,
+     Building,
+     GraduationCap,
+     Briefcase,
+     Globe,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -38,115 +42,123 @@ import { useRouter } from "next/navigation";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
-const courses = [
+const trainingPrograms = [
      {
           id: 1,
-          title: "Scratch Programming for Kids",
+          title: "Web Development Bootcamp",
           description:
-               "Visual programming language perfect for beginners aged 8-12. Create games, animations, and interactive stories.",
-          duration: "8 weeks",
-          level: "Beginner",
-          price: "$199",
-          originalPrice: "$249",
-          image: "https://plus.unsplash.com/premium_photo-1663100142323-01690ffa273b?auto=format&fit=crop&w=600&q=80",
-          category: "Scratch",
-          students: 150,
-          rating: 4.9,
+               "Comprehensive training program covering HTML, CSS, JavaScript, React, and modern web development practices for your organization.",
+          duration: "12 weeks",
+          level: "Beginner to Intermediate",
+          price: "Custom Pricing",
+          participants: "10-50",
+          image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
+          category: "Web Development",
+          format: "In-Person/Online",
+          features: [
+               "Modern Frameworks",
+               "Real Projects",
+               "Industry Best Practices",
+          ],
      },
      {
           id: 2,
-          title: "Python Fundamentals",
+          title: "Python Programming & Data Science",
           description:
-               "Learn the basics of Python programming with hands-on projects. Build real applications and games.",
-          duration: "12 weeks",
-          level: "Beginner",
-          price: "$299",
-          originalPrice: "$399",
+               "Complete Python programming course with data analysis, machine learning, and automation skills for your team.",
+          duration: "16 weeks",
+          level: "All Levels",
+          price: "Custom Pricing",
+          participants: "10-50",
           image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
-          category: "Python",
-          students: 200,
-          rating: 4.8,
+          category: "Python & Data Science",
+          format: "In-Person/Online",
+          features: ["Data Analysis", "ML Fundamentals", "Automation"],
      },
      {
           id: 3,
-          title: "Web Development Bootcamp",
+          title: "Mobile App Development",
           description:
-               "HTML, CSS, JavaScript, and React - build real websites and web applications from scratch.",
-          duration: "16 weeks",
+               "Cross-platform mobile app development using React Native and modern mobile development techniques.",
+          duration: "14 weeks",
           level: "Intermediate",
-          price: "$499",
-          originalPrice: "$649",
-          image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
-          category: "Web Development",
-          students: 180,
-          rating: 4.7,
+          price: "Custom Pricing",
+          participants: "10-50",
+          image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+          category: "Mobile Development",
+          format: "In-Person/Online",
+          features: ["React Native", "App Store Deployment", "UI/UX Design"],
      },
      {
           id: 4,
-          title: "Robotics & Arduino",
+          title: "AI & Machine Learning Fundamentals",
           description:
-               "Build and program robots using Arduino microcontrollers. Learn electronics and automation.",
+               "Introduction to artificial intelligence and machine learning with practical applications and real-world projects.",
           duration: "10 weeks",
-          level: "Intermediate",
-          price: "$399",
-          originalPrice: "$499",
-          image: "https://images.unsplash.com/photo-1631378297854-185cff6b0986?auto=format&fit=crop&w=600&q=80",
-          category: "Robotics",
-          students: 90,
-          rating: 4.8,
+          level: "Intermediate to Advanced",
+          price: "Custom Pricing",
+          participants: "10-50",
+          image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80",
+          category: "AI & Machine Learning",
+          format: "In-Person/Online",
+          features: [
+               "ML Algorithms",
+               "Neural Networks",
+               "Practical Applications",
+          ],
      },
 ];
 
 const testimonials = [
      {
-          name: "Sarah Johnson",
-          role: "Parent of Emma, Age 12",
-          content: "My daughter absolutely loves the Python course! The instructors are incredibly patient and make complex concepts easy to understand. Emma has built her first game and can't stop talking about coding!",
+          name: "Dr. Sarah Johnson",
+          role: "Dean of Computer Science, Tech University",
+          content: "Bingo Academy's training program transformed our curriculum. Our students are now industry-ready with practical skills that employers value. The instructors are exceptional and the program is perfectly tailored for academic institutions.",
           rating: 5,
           image: "https://randomuser.me/api/portraits/women/44.jpg",
-          course: "Python Fundamentals",
+          organization: "Tech University",
      },
      {
-          name: "Mike Chen",
-          role: "Student, Age 14",
-          content: "The web development bootcamp changed my life! I went from knowing nothing about coding to building my own websites. The teachers are amazing and the projects are so cool. I'm already planning my next app!",
+          name: "Michael Chen",
+          role: "CTO, InnovateCorp",
+          content: "We partnered with Bingo Academy to upskill our development team. The results exceeded our expectations. Our team's productivity increased by 40% and we're now implementing modern development practices across all projects.",
           rating: 5,
           image: "https://randomuser.me/api/portraits/men/32.jpg",
-          course: "Web Development",
+          organization: "InnovateCorp",
      },
      {
           name: "Lisa Rodriguez",
-          role: "Parent of Alex, Age 10",
-          content: "Bingo Academy has the perfect balance of fun and learning. Alex started with Scratch and now he's creating his own animated stories. The progress in just 2 months has been incredible!",
+          role: "Principal, Future High School",
+          content: "Bingo Academy's bootcamp program has been a game-changer for our students. The hands-on approach and industry-relevant curriculum have prepared our graduates for successful careers in technology.",
           rating: 5,
           image: "https://randomuser.me/api/portraits/women/65.jpg",
-          course: "Scratch Programming",
+          organization: "Future High School",
      },
 ];
 
 const stats = [
      {
-          icon: Users,
-          label: "Happy Students",
-          value: "500+",
+          icon: Building,
+          label: "Organizations Served",
+          value: "200+",
           color: "text-blue-600",
      },
      {
-          icon: Award,
-          label: "Certificates Issued",
-          value: "300+",
+          icon: Users,
+          label: "Professionals Trained",
+          value: "5,000+",
           color: "text-green-600",
      },
      {
-          icon: BookOpen,
-          label: "Courses Available",
-          value: "12+",
+          icon: Award,
+          label: "Training Programs",
+          value: "15+",
           color: "text-purple-600",
      },
      {
           icon: Trophy,
           label: "Success Rate",
-          value: "95%",
+          value: "98%",
           color: "text-orange-600",
      },
 ];
@@ -154,28 +166,58 @@ const stats = [
 const features = [
      {
           icon: Target,
-          title: "Expert Instructors",
+          title: "Customized Curriculum",
           description:
-               "Industry professionals with years of teaching experience",
+               "Tailored training programs designed specifically for your organization's needs and goals",
           color: "bg-blue-100 text-blue-600",
      },
      {
           icon: Zap,
-          title: "Hands-on Learning",
-          description: "Project-based curriculum with real-world applications",
+          title: "Industry Experts",
+          description:
+               "Experienced professionals with real-world expertise in their fields",
           color: "bg-green-100 text-green-600",
      },
      {
           icon: Heart,
-          title: "Supportive Community",
-          description: "Encouraging environment where every student thrives",
+          title: "Flexible Delivery",
+          description:
+               "In-person, online, or hybrid training options to suit your schedule",
           color: "bg-pink-100 text-pink-600",
      },
      {
           icon: Award,
-          title: "Certified Programs",
-          description: "Industry-recognized certificates upon completion",
+          title: "Certification Programs",
+          description:
+               "Industry-recognized certificates and continuing education credits",
           color: "bg-orange-100 text-orange-600",
+     },
+];
+
+const organizationTypes = [
+     {
+          icon: GraduationCap,
+          title: "Universities & Colleges",
+          description:
+               "Enhance your computer science curriculum with industry-relevant training programs",
+     },
+     {
+          icon: Building,
+          title: "Schools & Academies",
+          description:
+               "Prepare students for future careers with modern technology education",
+     },
+     {
+          icon: Briefcase,
+          title: "Corporations",
+          description:
+               "Upskill your workforce with cutting-edge technology training",
+     },
+     {
+          icon: Globe,
+          title: "Government Agencies",
+          description:
+               "Modernize your teams with specialized technology training programs",
      },
 ];
 
@@ -209,7 +251,9 @@ export default function HomePage() {
           e.preventDefault();
           console.log("Newsletter signup:", email);
           setEmail("");
-          alert("Thank you for subscribing! 🎉");
+          alert(
+               "Thank you for subscribing! We'll keep you updated on our latest training programs. 🎉"
+          );
      };
 
      return (
@@ -236,35 +280,35 @@ export default function HomePage() {
                               >
                                    <div className="space-y-6">
                                         <Badge className="bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 hover:from-orange-200 hover:to-orange-300 transition-all duration-300 px-4 py-2 animate-pulse-glow">
-                                             🎉 New AI & Machine Learning Course
-                                             Available!
+                                             🚀 New AI & Machine Learning
+                                             Training Program Available!
                                         </Badge>
 
                                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                                             Learn to Code,{" "}
+                                             Transform Your Organization with{" "}
                                              <span className="gradient-text animate-gradient">
-                                                  Shape the Future
+                                                  Expert Training
                                              </span>
                                         </h1>
 
                                         <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
-                                             Join thousands of students learning
-                                             programming, web development,
-                                             robotics, and AI at Bingo Academy.
-                                             From Scratch to Python, we make
-                                             coding fun and accessible for all
-                                             ages.
+                                             Bingo Academy provides
+                                             comprehensive training programs and
+                                             bootcamps for schools, colleges,
+                                             universities, and corporations.
+                                             Empower your team with cutting-edge
+                                             technology skills.
                                         </p>
                                    </div>
 
                                    <div className="flex flex-col sm:flex-row gap-4">
-                                        <Link href="/trial">
+                                        <Link href="/contact">
                                              <Button
                                                   size="lg"
                                                   className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-lg px-8 py-6 shadow-lg hover:shadow-orange-200 transition-all duration-300 hover:scale-105 hover-glow focus-ring"
                                              >
                                                   <Play className="w-5 h-5 mr-2" />
-                                                  Start Learning Today
+                                                  Request Custom Quote
                                              </Button>
                                         </Link>
                                         <Link href="/courses">
@@ -273,7 +317,7 @@ export default function HomePage() {
                                                   variant="outline"
                                                   className="border-2 border-orange-600 text-orange-600 hover:bg-orange-50 text-lg px-8 py-6 bg-transparent transition-all duration-300 hover:scale-105 focus-ring"
                                              >
-                                                  Explore Courses
+                                                  View Training Programs
                                                   <ArrowRight className="w-5 h-5 ml-2" />
                                              </Button>
                                         </Link>
@@ -312,8 +356,8 @@ export default function HomePage() {
                               >
                                    <div className="relative z-10">
                                         <Image
-                                             src="https://plus.unsplash.com/premium_photo-1685086785636-2a1a0e5b591f?auto=format&fit=crop&w=600&q=80"
-                                             alt="Students learning to code at Bingo Academy"
+                                             src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+                                             alt="Professional training session at Bingo Academy"
                                              width={600}
                                              height={500}
                                              className="rounded-3xl shadow-2xl hover-lift"
@@ -327,27 +371,71 @@ export default function HomePage() {
                     </div>
                </section>
 
-               {/* Enhanced Featured Courses */}
+               {/* Organization Types Section */}
                <section className="py-20 lg:py-24 bg-white">
                     <div className="container mx-auto px-4 sm:px-6">
                          <div className="text-center mb-16 animate-fade-in">
                               <Badge className="bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 hover:from-orange-200 hover:to-orange-300 mb-6 px-4 py-2">
-                                   Popular Courses
+                                   Who We Serve
                               </Badge>
                               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                                   Start Your Coding Journey
+                                   Training Solutions for Every Organization
                               </h2>
                               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                                   Choose from our carefully designed courses
-                                   that make learning programming fun, engaging,
-                                   and effective for students of all ages.
+                                   We provide customized training programs
+                                   designed specifically for different types of
+                                   organizations and their unique needs.
                               </p>
                          </div>
 
                          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                              {courses.map((course, index) => (
+                              {organizationTypes.map((org, index) => (
                                    <Card
-                                        key={course.id}
+                                        key={index}
+                                        className={`group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white hover-lift animate-scale-in animate-delay-${
+                                             (index + 1) * 100
+                                        }`}
+                                   >
+                                        <CardHeader className="text-center pb-4">
+                                             <div className="w-16 h-16 bg-gradient-to-r from-orange-600 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                                                  <org.icon className="w-8 h-8 text-white" />
+                                             </div>
+                                             <CardTitle className="text-xl group-hover:text-orange-600 transition-colors duration-300">
+                                                  {org.title}
+                                             </CardTitle>
+                                        </CardHeader>
+                                        <CardContent className="text-center">
+                                             <CardDescription className="text-gray-600 leading-relaxed">
+                                                  {org.description}
+                                             </CardDescription>
+                                        </CardContent>
+                                   </Card>
+                              ))}
+                         </div>
+                    </div>
+               </section>
+
+               {/* Enhanced Featured Training Programs */}
+               <section className="py-20 lg:py-24 bg-gradient-to-r from-orange-50/50 to-orange-100/30">
+                    <div className="container mx-auto px-4 sm:px-6">
+                         <div className="text-center mb-16 animate-fade-in">
+                              <Badge className="bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 hover:from-orange-200 hover:to-orange-300 mb-6 px-4 py-2">
+                                   Popular Training Programs
+                              </Badge>
+                              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                                   Comprehensive Training Solutions
+                              </h2>
+                              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                                   Choose from our proven training programs or
+                                   request a customized solution tailored to
+                                   your organization's specific needs.
+                              </p>
+                         </div>
+
+                         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                              {trainingPrograms.map((program, index) => (
+                                   <Card
+                                        key={program.id}
                                         className={`group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white hover-lift animate-scale-in animate-delay-${
                                              (index + 1) * 100
                                         }`}
@@ -355,19 +443,20 @@ export default function HomePage() {
                                         <div className="relative overflow-hidden rounded-t-xl">
                                              <Image
                                                   src={
-                                                       course.image ||
+                                                       program.image ||
                                                        "/placeholder.svg"
                                                   }
-                                                  alt={course.title}
+                                                  alt={program.title}
                                                   width={300}
                                                   height={200}
                                                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                                              />
                                              <Badge className="absolute top-4 left-4 bg-white/90 text-gray-800 shadow-sm">
-                                                  {course.category}
+                                                  {program.category}
                                              </Badge>
                                              <div className="absolute top-4 right-4 bg-gradient-to-r from-orange-600 to-orange-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                                                  {course.students}+ students
+                                                  {program.participants}{" "}
+                                                  participants
                                              </div>
                                         </div>
 
@@ -377,24 +466,22 @@ export default function HomePage() {
                                                        variant="secondary"
                                                        className="text-xs bg-gray-100"
                                                   >
-                                                       {course.level}
+                                                       {program.level}
                                                   </Badge>
                                                   <div className="text-right">
-                                                       <div className="text-2xl font-bold text-orange-600">
-                                                            {course.price}
+                                                       <div className="text-lg font-bold text-orange-600">
+                                                            {program.price}
                                                        </div>
-                                                       <div className="text-sm text-gray-500 line-through">
-                                                            {
-                                                                 course.originalPrice
-                                                            }
+                                                       <div className="text-sm text-gray-500">
+                                                            {program.format}
                                                        </div>
                                                   </div>
                                              </div>
                                              <CardTitle className="text-xl group-hover:text-orange-600 transition-colors duration-300 leading-tight">
-                                                  {course.title}
+                                                  {program.title}
                                              </CardTitle>
                                              <CardDescription className="text-gray-600 leading-relaxed">
-                                                  {course.description}
+                                                  {program.description}
                                              </CardDescription>
                                         </CardHeader>
 
@@ -402,7 +489,7 @@ export default function HomePage() {
                                              <div className="flex items-center justify-between mb-4">
                                                   <div className="flex items-center text-sm text-gray-500">
                                                        <Clock className="w-4 h-4 mr-2" />
-                                                       {course.duration}
+                                                       {program.duration}
                                                   </div>
                                                   <div className="flex items-center">
                                                        <div className="flex items-center mr-2">
@@ -414,9 +501,7 @@ export default function HomePage() {
                                                                            }
                                                                            className={`w-3 h-3 ${
                                                                                 i <
-                                                                                Math.floor(
-                                                                                     course.rating
-                                                                                )
+                                                                                4
                                                                                      ? "text-yellow-400 fill-current"
                                                                                      : "text-gray-300"
                                                                            }`}
@@ -425,13 +510,34 @@ export default function HomePage() {
                                                             )}
                                                        </div>
                                                        <span className="text-sm text-gray-600">
-                                                            ({course.rating})
+                                                            (4.9)
                                                        </span>
                                                   </div>
                                              </div>
 
+                                             <div className="mb-4">
+                                                  <div className="flex flex-wrap gap-2">
+                                                       {program.features.map(
+                                                            (
+                                                                 feature,
+                                                                 index
+                                                            ) => (
+                                                                 <Badge
+                                                                      key={
+                                                                           index
+                                                                      }
+                                                                      variant="outline"
+                                                                      className="text-xs border-orange-200 text-orange-700"
+                                                                 >
+                                                                      {feature}
+                                                                 </Badge>
+                                                            )
+                                                       )}
+                                                  </div>
+                                             </div>
+
                                              <Link
-                                                  href={`/courses/${course.id}`}
+                                                  href={`/courses/${program.id}`}
                                              >
                                                   <Button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all duration-300 hover:scale-105 shadow-md focus-ring">
                                                        Learn More
@@ -450,7 +556,7 @@ export default function HomePage() {
                                         variant="outline"
                                         className="border-2 border-orange-600 text-orange-600 hover:bg-orange-50 bg-transparent px-8 py-6 transition-all duration-300 hover:scale-105 focus-ring"
                                    >
-                                        View All Courses
+                                        View All Programs
                                         <ArrowRight className="w-5 h-5 ml-2" />
                                    </Button>
                               </Link>
@@ -459,7 +565,7 @@ export default function HomePage() {
                </section>
 
                {/* Enhanced About Section */}
-               <section className="py-20 lg:py-24 bg-gradient-to-r from-orange-50/50 to-orange-100/30">
+               <section className="py-20 lg:py-24 bg-white">
                     <div className="container mx-auto px-4 sm:px-6">
                          <div className="grid lg:grid-cols-2 gap-16 items-center">
                               <div className="animate-slide-in-left">
@@ -473,7 +579,7 @@ export default function HomePage() {
                                         />
                                         <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-orange-600 to-orange-500 rounded-2xl p-6 text-white shadow-xl">
                                              <div className="text-3xl font-bold">
-                                                  95%
+                                                  98%
                                              </div>
                                              <div className="text-sm opacity-90">
                                                   Success Rate
@@ -487,18 +593,19 @@ export default function HomePage() {
                                         About Bingo Academy
                                    </Badge>
                                    <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                                        Empowering the Next Generation of{" "}
+                                        Empowering Organizations Through{" "}
                                         <span className="gradient-text">
-                                             Innovators
+                                             Expert Training
                                         </span>
                                    </h2>
                                    <p className="text-lg text-gray-600 leading-relaxed">
-                                        At Bingo Academy, we believe every child
-                                        has the potential to become a creator,
-                                        not just a consumer of technology. Our
-                                        mission is to make coding education
-                                        accessible, engaging, and fun for
-                                        students of all ages and skill levels.
+                                        At Bingo Academy, we specialize in
+                                        providing comprehensive training
+                                        solutions for organizations. Our
+                                        industry experts deliver cutting-edge
+                                        technology education that drives real
+                                        results and empowers teams to succeed in
+                                        the digital age.
                                    </p>
 
                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -543,19 +650,19 @@ export default function HomePage() {
                </section>
 
                {/* Enhanced Testimonials */}
-               <section className="py-20 lg:py-32 bg-white">
+               <section className="py-20 lg:py-32 bg-gradient-to-r from-orange-50/50 to-orange-100/30">
                     <div className="container mx-auto px-4 sm:px-6">
                          <div className="text-center mb-16 animate-fade-in">
                               <Badge className="bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-800 hover:from-yellow-200 hover:to-yellow-300 mb-6 px-4 py-2">
-                                   Student Success Stories
+                                   Client Success Stories
                               </Badge>
                               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                                   What Our Students Say
+                                   What Our Clients Say
                               </h2>
                               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                                    Don't just take our word for it. Hear from
-                                   our students and parents about their learning
-                                   experience at Bingo Academy.
+                                   organizations that have transformed their
+                                   teams with our training programs.
                               </p>
                          </div>
 
@@ -631,7 +738,7 @@ export default function HomePage() {
                                                        {
                                                             testimonials[
                                                                  currentTestimonial
-                                                            ].course
+                                                            ].organization
                                                        }
                                                   </Badge>
                                              </div>
@@ -691,9 +798,9 @@ export default function HomePage() {
                                    Stay Updated with Bingo Academy
                               </h2>
                               <p className="text-xl mb-12 opacity-90 leading-relaxed">
-                                   Get the latest updates on new courses, coding
-                                   tips, and special offers delivered straight
-                                   to your inbox.
+                                   Get the latest updates on new training
+                                   programs, industry insights, and special
+                                   offers for organizations.
                               </p>
 
                               <form
@@ -702,7 +809,7 @@ export default function HomePage() {
                               >
                                    <Input
                                         type="email"
-                                        placeholder="Enter your email"
+                                        placeholder="Enter your organization email"
                                         value={email}
                                         onChange={(e) =>
                                              setEmail(e.target.value)
