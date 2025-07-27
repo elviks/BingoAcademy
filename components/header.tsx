@@ -26,7 +26,7 @@ export default function Header() {
                               {[
                                    { name: "Home", href: "/" },
                                    {
-                                        name: "Training Programs",
+                                        name: "Programs",
                                         href: "/courses",
                                    },
                                    { name: "About", href: "/about" },
