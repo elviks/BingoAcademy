@@ -41,73 +41,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { getFeaturedTrainingPrograms } from "@/lib/training-programs-data";
 
-const trainingPrograms = [
-     {
-          id: 1,
-          title: "Web Development Bootcamp",
-          description:
-               "Comprehensive training program covering HTML, CSS, JavaScript, React, and modern web development practices for your organization.",
-          duration: "12 weeks",
-          level: "Beginner to Intermediate",
-          price: "Custom Pricing",
-          participants: "10-50",
-          image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
-          category: "Web Development",
-          format: "In-Person/Online",
-          features: [
-               "Modern Frameworks",
-               "Real Projects",
-               "Industry Best Practices",
-          ],
-     },
-     {
-          id: 2,
-          title: "Python Programming & Data Science",
-          description:
-               "Complete Python programming course with data analysis, machine learning, and automation skills for your team.",
-          duration: "16 weeks",
-          level: "All Levels",
-          price: "Custom Pricing",
-          participants: "10-50",
-          image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
-          category: "Python & Data Science",
-          format: "In-Person/Online",
-          features: ["Data Analysis", "ML Fundamentals", "Automation"],
-     },
-     {
-          id: 3,
-          title: "Mobile App Development",
-          description:
-               "Cross-platform mobile app development using React Native and modern mobile development techniques.",
-          duration: "14 weeks",
-          level: "Intermediate",
-          price: "Custom Pricing",
-          participants: "10-50",
-          image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
-          category: "Mobile Development",
-          format: "In-Person/Online",
-          features: ["React Native", "App Store Deployment", "UI/UX Design"],
-     },
-     {
-          id: 4,
-          title: "AI & Machine Learning Fundamentals",
-          description:
-               "Introduction to artificial intelligence and machine learning with practical applications and real-world projects.",
-          duration: "10 weeks",
-          level: "Intermediate to Advanced",
-          price: "Custom Pricing",
-          participants: "10-50",
-          image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80",
-          category: "AI & Machine Learning",
-          format: "In-Person/Online",
-          features: [
-               "ML Algorithms",
-               "Neural Networks",
-               "Practical Applications",
-          ],
-     },
-];
+const trainingPrograms = getFeaturedTrainingPrograms();
 
 const testimonials = [
      {
@@ -454,10 +390,6 @@ export default function HomePage() {
                                              <Badge className="absolute top-4 left-4 bg-white/90 text-gray-800 shadow-sm">
                                                   {program.category}
                                              </Badge>
-                                             <div className="absolute top-4 right-4 bg-gradient-to-r from-orange-600 to-orange-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                                                  {program.participants}{" "}
-                                                  participants
-                                             </div>
                                         </div>
 
                                         <CardHeader className="pb-4">
@@ -536,9 +468,7 @@ export default function HomePage() {
                                                   </div>
                                              </div>
 
-                                             <Link
-                                                  href={`/courses/${program.id}`}
-                                             >
+                                             <Link href={`/courses`}>
                                                   <Button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all duration-300 hover:scale-105 shadow-md focus-ring">
                                                        Learn More
                                                        <ArrowRight className="w-4 h-4 ml-2" />

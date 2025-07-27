@@ -39,134 +39,9 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { getAllTrainingPrograms } from "@/lib/training-programs-data";
 
-const allTrainingPrograms = [
-     {
-          id: 1,
-          slug: "web-development",
-          title: "Modern Web Development & Full-Stack Engineering",
-          description:
-               "Comprehensive training program for organizations to build modern, scalable web applications using cutting-edge technologies and best practices.",
-          duration: "10 weeks",
-          level: "Beginner to Advanced",
-          price: "Custom Pricing",
-          originalPrice: null,
-          rating: 4.6,
-          participants: "15-25",
-          image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
-          category: "Web Development",
-          organizationType: "All Organizations",
-          features: [
-               "Full-Stack Development",
-               "Modern Frameworks",
-               "Real Projects",
-               "Industry Best Practices",
-          ],
-          instructor: "David Kim",
-          nextStart: "Flexible Scheduling",
-          format: "In-Person/Online/Hybrid",
-     },
-     {
-          id: 2,
-          slug: "python-data-science",
-          title: "Python & Data Science Bootcamp",
-          description:
-               "Comprehensive training program for organizations to develop Python programming and data science capabilities. Perfect for teams looking to build data-driven solutions.",
-          duration: "8 weeks",
-          level: "Beginner to Intermediate",
-          price: "Custom Pricing",
-          originalPrice: null,
-          rating: 4.9,
-          participants: "15-25",
-          image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
-          category: "Python & Data Science",
-          organizationType: "All Organizations",
-          features: [
-               "Data Analysis",
-               "Machine Learning",
-               "Automation",
-               "Business Intelligence",
-          ],
-          instructor: "Dr. Sarah Johnson",
-          nextStart: "Flexible Scheduling",
-          format: "In-Person/Online/Hybrid",
-     },
-     {
-          id: 3,
-          slug: "ai-machine-learning",
-          title: "AI & Machine Learning Masterclass",
-          description:
-               "Advanced training program for organizations to implement cutting-edge AI and machine learning solutions. Transform your business with intelligent automation and predictive analytics.",
-          duration: "10 weeks",
-          level: "Intermediate to Advanced",
-          price: "Custom Pricing",
-          originalPrice: null,
-          rating: 4.8,
-          participants: "10-20",
-          image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80",
-          category: "AI & Machine Learning",
-          organizationType: "Corporations & Universities",
-          features: [
-               "ML Algorithms",
-               "Neural Networks",
-               "Practical Applications",
-               "AI Strategy",
-          ],
-          instructor: "Dr. Michael Chen",
-          nextStart: "Flexible Scheduling",
-          format: "In-Person/Online/Hybrid",
-     },
-     {
-          id: 4,
-          slug: "cloud-devops",
-          title: "Cloud Computing & DevOps Bootcamp",
-          description:
-               "Comprehensive training program for organizations to master cloud platforms and DevOps practices. Build scalable, reliable, and efficient infrastructure.",
-          duration: "6 weeks",
-          level: "Intermediate",
-          price: "Custom Pricing",
-          originalPrice: null,
-          rating: 4.7,
-          participants: "12-20",
-          image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
-          category: "Cloud & DevOps",
-          organizationType: "All Organizations",
-          features: [
-               "AWS/Azure/GCP",
-               "CI/CD Pipelines",
-               "Infrastructure as Code",
-               "Monitoring & Security",
-          ],
-          instructor: "Emma Davis",
-          nextStart: "Flexible Scheduling",
-          format: "In-Person/Online/Hybrid",
-     },
-     {
-          id: 5,
-          slug: "cybersecurity",
-          title: "Cybersecurity & Information Security",
-          description:
-               "Comprehensive cybersecurity training program for organizations to protect against evolving threats and ensure data security compliance.",
-          duration: "8 weeks",
-          level: "Intermediate",
-          price: "Custom Pricing",
-          originalPrice: null,
-          rating: 4.9,
-          participants: "10-15",
-          image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=600&q=80",
-          category: "Cybersecurity",
-          organizationType: "All Organizations",
-          features: [
-               "Threat Detection",
-               "Security Best Practices",
-               "Incident Response",
-               "Compliance Training",
-          ],
-          instructor: "Alex Thompson",
-          nextStart: "Flexible Scheduling",
-          format: "In-Person/Online/Hybrid",
-     },
-];
+const allTrainingPrograms = getAllTrainingPrograms();
 
 const categories = [
      "All",
@@ -387,13 +262,16 @@ export default function CoursesPage() {
                               {filteredPrograms.map((program, index) => (
                                    <Card
                                         key={program.id}
-                                        className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white rounded-2xl overflow-hidden"
+                                        className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-xl bg-white rounded-3xl overflow-hidden relative"
                                         style={{
                                              animationDelay: `${index * 100}ms`,
                                              animation:
                                                   "fadeInUp 0.6s ease-out forwards",
                                         }}
                                    >
+                                        {/* Gradient overlay for better visual appeal */}
+                                        <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 via-transparent to-blue-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
                                         <div className="relative overflow-hidden">
                                              <Image
                                                   src={
@@ -403,63 +281,75 @@ export default function CoursesPage() {
                                                   alt={program.title}
                                                   width={300}
                                                   height={200}
-                                                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                                                  className="w-full h-52 object-cover group-hover:scale-110 transition-transform duration-700"
                                              />
-                                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                             <Badge className="absolute top-4 left-4 bg-white/90 text-gray-800 shadow-sm backdrop-blur-sm">
+                                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                                             {/* Category badge with improved styling */}
+                                             <Badge className="absolute top-4 left-4 bg-white/95 text-gray-800 shadow-lg backdrop-blur-sm border border-white/20 font-semibold px-3 py-1">
                                                   {program.category}
                                              </Badge>
-                                             <Badge className="absolute top-4 right-4 bg-orange-600 text-white shadow-sm">
-                                                  {program.participants}{" "}
-                                                  participants
-                                             </Badge>
-                                        </div>
 
-                                        <CardHeader className="pb-4">
-                                             <div className="flex justify-between items-start mb-3">
-                                                  <Badge
-                                                       variant="secondary"
-                                                       className={`text-xs ${
-                                                            program.level ===
-                                                            "All Levels"
-                                                                 ? "bg-green-100 text-green-800"
-                                                                 : program.level ===
-                                                                   "Beginner to Intermediate"
-                                                                 ? "bg-yellow-100 text-yellow-800"
-                                                                 : "bg-red-100 text-red-800"
-                                                       }`}
-                                                  >
-                                                       {program.level}
-                                                  </Badge>
+                                             {/* Price badge overlay */}
+                                             <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl px-3 py-2 shadow-lg border border-white/20">
                                                   <div className="text-right">
                                                        <span className="text-lg font-bold text-orange-600">
                                                             {program.price}
                                                        </span>
-                                                       <div className="text-sm text-gray-500">
+                                                       <div className="text-xs text-gray-600 font-medium">
                                                             {program.format}
                                                        </div>
                                                   </div>
                                              </div>
-                                             <CardTitle className="text-xl group-hover:text-orange-600 transition-colors duration-300 line-clamp-2 leading-tight">
+                                        </div>
+
+                                        <CardHeader className="pb-4 relative">
+                                             {/* Level badge with improved colors */}
+                                             <div className="flex justify-between items-start mb-4">
+                                                  <Badge
+                                                       variant="secondary"
+                                                       className={`text-xs font-semibold px-3 py-1 ${
+                                                            program.level ===
+                                                            "All Levels"
+                                                                 ? "bg-emerald-100 text-emerald-800 border-emerald-200"
+                                                                 : program.level ===
+                                                                   "Beginner to Intermediate"
+                                                                 ? "bg-amber-100 text-amber-800 border-amber-200"
+                                                                 : "bg-rose-100 text-rose-800 border-rose-200"
+                                                       }`}
+                                                  >
+                                                       {program.level}
+                                                  </Badge>
+                                             </div>
+
+                                             <CardTitle className="text-xl group-hover:text-orange-600 transition-colors duration-300 line-clamp-2 leading-tight font-bold mb-3">
                                                   {program.title}
                                              </CardTitle>
-                                             <CardDescription className="text-gray-600 line-clamp-3 leading-relaxed">
+                                             <CardDescription className="text-gray-600 line-clamp-3 leading-relaxed text-sm">
                                                   {program.description}
                                              </CardDescription>
                                         </CardHeader>
 
                                         <CardContent className="pt-0">
-                                             <div className="flex items-center justify-between mb-4 text-sm text-gray-500">
+                                             {/* Duration and participants with icons */}
+                                             <div className="flex items-center justify-between mb-4 text-sm text-gray-600 bg-gray-50/50 rounded-xl p-3">
                                                   <div className="flex items-center">
-                                                       <Clock className="w-4 h-4 mr-2" />
-                                                       {program.duration}
+                                                       <Clock className="w-4 h-4 mr-2 text-orange-500" />
+                                                       <span className="font-medium">
+                                                            {program.duration}
+                                                       </span>
                                                   </div>
                                                   <div className="flex items-center">
-                                                       <Users className="w-4 h-4 mr-2" />
-                                                       {program.participants}
+                                                       <Users className="w-4 h-4 mr-2 text-blue-500" />
+                                                       <span className="font-medium">
+                                                            {
+                                                                 program.participants
+                                                            }
+                                                       </span>
                                                   </div>
                                              </div>
 
+                                             {/* Rating with improved stars */}
                                              <div className="flex items-center mb-4">
                                                   <div className="flex items-center mr-3">
                                                        {[...Array(5)].map(
@@ -471,34 +361,40 @@ export default function CoursesPage() {
                                                                            Math.floor(
                                                                                 program.rating
                                                                            )
-                                                                                ? "text-yellow-400 fill-current"
+                                                                                ? "text-yellow-400 fill-current drop-shadow-sm"
                                                                                 : "text-gray-300"
                                                                       }`}
                                                                  />
                                                             )
                                                        )}
                                                   </div>
-                                                  <span className="text-sm text-gray-600 font-medium">
-                                                       ({program.rating})
+                                                  <span className="text-sm text-gray-700 font-semibold">
+                                                       {program.rating}
                                                   </span>
                                              </div>
 
-                                             <div className="mb-4">
-                                                  <div className="flex items-center text-sm text-gray-600 mb-2">
-                                                       <User className="w-4 h-4 mr-2" />
-                                                       <span>
-                                                            {program.instructor}
+                                             {/* Instructor and organization info */}
+                                             <div className="mb-4 space-y-2">
+                                                  <div className="flex items-center text-sm text-gray-600 bg-white/50 rounded-lg p-2">
+                                                       <User className="w-4 h-4 mr-2 text-purple-500" />
+                                                       <span className="font-medium">
+                                                            {typeof program.instructor ===
+                                                            "string"
+                                                                 ? program.instructor
+                                                                 : program
+                                                                        .instructor
+                                                                        .name}
                                                        </span>
                                                   </div>
-                                                  <div className="flex items-center text-sm text-gray-600">
-                                                       <Calendar className="w-4 h-4 mr-2" />
-                                                       <span>
-                                                            {program.nextStart}
+                                                  <div className="flex items-center text-sm text-gray-600 bg-white/50 rounded-lg p-2">
+                                                       <Calendar className="w-4 h-4 mr-2 text-green-500" />
+                                                       <span className="font-medium">
+                                                            Flexible Scheduling
                                                        </span>
                                                   </div>
-                                                  <div className="flex items-center text-sm text-gray-600 mt-1">
-                                                       <Building className="w-4 h-4 mr-2" />
-                                                       <span>
+                                                  <div className="flex items-center text-sm text-gray-600 bg-white/50 rounded-lg p-2">
+                                                       <Building className="w-4 h-4 mr-2 text-indigo-500" />
+                                                       <span className="font-medium">
                                                             {
                                                                  program.organizationType
                                                             }
@@ -506,6 +402,7 @@ export default function CoursesPage() {
                                                   </div>
                                              </div>
 
+                                             {/* Features with improved badges */}
                                              <div className="mb-6">
                                                   <div className="flex flex-wrap gap-2">
                                                        {program.features
@@ -520,7 +417,7 @@ export default function CoursesPage() {
                                                                                 index
                                                                            }
                                                                            variant="outline"
-                                                                           className="text-xs border-orange-200 text-orange-700"
+                                                                           className="text-xs border-orange-200 text-orange-700 bg-orange-50/50 font-medium px-2 py-1"
                                                                       >
                                                                            {
                                                                                 feature
@@ -532,7 +429,7 @@ export default function CoursesPage() {
                                                             .length > 2 && (
                                                             <Badge
                                                                  variant="outline"
-                                                                 className="text-xs border-orange-200 text-orange-700"
+                                                                 className="text-xs border-orange-200 text-orange-700 bg-orange-50/50 font-medium px-2 py-1"
                                                             >
                                                                  +
                                                                  {program
@@ -545,11 +442,12 @@ export default function CoursesPage() {
                                                   </div>
                                              </div>
 
-                                             <div className="space-y-3">
+                                             {/* Action buttons with improved styling */}
+                                             <div className="flex flex-col gap-2">
                                                   <Link
                                                        href={`/courses/${program.slug}`}
                                                   >
-                                                       <Button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all duration-300 hover:scale-105 shadow-md rounded-xl">
+                                                       <Button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all duration-300 hover:scale-105 shadow-lg rounded-xl font-semibold py-3">
                                                             <BookOpen className="w-4 h-4 mr-2" />
                                                             View Details
                                                        </Button>
@@ -557,7 +455,7 @@ export default function CoursesPage() {
                                                   <Link href="/contact">
                                                        <Button
                                                             variant="outline"
-                                                            className="w-full bg-transparent hover:bg-orange-50 transition-all duration-300 border-orange-200 text-orange-700 hover:text-orange-800 rounded-xl"
+                                                            className="w-full bg-white/80 hover:bg-orange-50 transition-all duration-300 border-orange-200 text-orange-700 hover:text-orange-800 hover:border-orange-300 rounded-xl font-semibold py-3 shadow-sm"
                                                        >
                                                             <Play className="w-4 h-4 mr-2" />
                                                             Request Quote

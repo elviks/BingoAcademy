@@ -39,10 +39,10 @@ const teamMembers = [
           bio: "Software Engineer with 6+ years of experience in web, cloud and mobile app development. Expert in designing corporate training programs.",
           image: "/images/roshan.jpeg",
           specialties: [
-               "Corporate Training",
                "AWS",
                "AI/ML",
                "Web Development",
+               "Mobile Development",
           ],
      },
      {
@@ -50,19 +50,14 @@ const teamMembers = [
           role: "Senior Trainer",
           bio: "Full-stack developer with 4+ years of experience in web development and mobile app development. Specializes in organizational training delivery.",
           image: "/images/vashkar.jpeg",
-          specialties: ["React", "Next.js", "Node.js", "Training Delivery"],
+          specialties: ["React", "Next.js", "Node.js", "React Native"],
      },
      {
           name: "Elvik Sharma",
           role: "Senior Trainer",
           bio: "Software Developer with 3+ years of experience in web development and mobile app development. Focuses on curriculum development and program management.",
           image: "/images/elvik.png",
-          specialties: [
-               "Next.js",
-               "Express.js",
-               "Curriculum Design",
-               "Program Management",
-          ],
+          specialties: ["Next.js", "Express.js", "React Native", "Flutter"],
      },
 ];
 
