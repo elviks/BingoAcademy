@@ -37,6 +37,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Header from "@/components/header";
 
 const trainingDemos = [
      {
@@ -239,34 +240,7 @@ export default function TrainingDemoPage() {
 
      return (
           <div className="min-h-screen bg-gradient-to-br from-orange-50/30 via-white to-orange-50/30">
-               {/* Header */}
-               <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-orange-100/50">
-                    <div className="container mx-auto px-6 py-4">
-                         <nav className="flex items-center justify-between">
-                              <Link
-                                   href="/"
-                                   className="flex items-center space-x-3 group"
-                              >
-                                   <div className="w-10 h-10 bg-gradient-to-r from-orange-600 to-orange-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-orange-200 transition-all duration-300 group-hover:scale-105">
-                                        <Code className="w-5 h-5 text-white" />
-                                   </div>
-                                   <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">
-                                        Bingo Academy
-                                   </span>
-                              </Link>
-
-                              <Link href="/">
-                                   <Button
-                                        variant="outline"
-                                        className="bg-transparent"
-                                   >
-                                        <ArrowLeft className="w-4 h-4 mr-2" />
-                                        Back to Home
-                                   </Button>
-                              </Link>
-                         </nav>
-                    </div>
-               </header>
+               <Header />
 
                {/* Hero Section */}
                <section className="py-16 bg-gradient-to-r from-orange-600 to-orange-500 text-white">
