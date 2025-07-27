@@ -536,11 +536,9 @@ export default function ContactPage() {
                                                        Address
                                                   </h3>
                                                   <p className="text-gray-600">
-                                                       123 Education Street
+                                                       Bhalam, Pokhara
                                                        <br />
-                                                       Tech City, TC 12345
-                                                       <br />
-                                                       United States
+                                                       Nepal
                                                   </p>
                                              </div>
                                         </div>
@@ -554,9 +552,9 @@ export default function ContactPage() {
                                                        Phone
                                                   </h3>
                                                   <p className="text-gray-600">
-                                                       Main: (555) 123-4567
+                                                       Main: 9827153243
                                                        <br />
-                                                       WhatsApp: (555) 123-4568
+                                                       WhatsApp: +977-9827153243
                                                   </p>
                                              </div>
                                         </div>
@@ -572,9 +570,6 @@ export default function ContactPage() {
                                                   <p className="text-gray-600">
                                                        General:
                                                        info@bingoacademy.com
-                                                       <br />
-                                                       Training:
-                                                       training@bingoacademy.com
                                                   </p>
                                              </div>
                                         </div>
@@ -588,13 +583,13 @@ export default function ContactPage() {
                                                        Office Hours
                                                   </h3>
                                                   <p className="text-gray-600">
-                                                       Monday - Friday: 9:00 AM
+                                                       Monday - Friday: 10:00 AM
                                                        - 6:00 PM
                                                        <br />
-                                                       Saturday: 10:00 AM - 4:00
+                                                       Friday: 10:00 AM - 5:00
                                                        PM
                                                        <br />
-                                                       Sunday: Closed
+                                                       Saturday: Closed
                                                   </p>
                                              </div>
                                         </div>
@@ -611,7 +606,7 @@ export default function ContactPage() {
                                              Common requests and quick links
                                         </CardDescription>
                                    </CardHeader>
-                                   <CardContent className="space-y-4">
+                                   <CardContent className="flex flex-col gap-4">
                                         <Button
                                              className="w-full justify-start bg-transparent"
                                              variant="outline"
