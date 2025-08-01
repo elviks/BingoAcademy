@@ -77,25 +77,25 @@ const stats = [
           icon: Building,
           label: "Organizations Served",
           value: "200+",
-          color: "text-blue-600",
+          color: "text-white",
      },
      {
           icon: Users,
           label: "Professionals Trained",
           value: "5,000+",
-          color: "text-green-600",
+          color: "text-white",
      },
      {
           icon: Award,
           label: "Training Programs",
           value: "15+",
-          color: "text-purple-600",
+          color: "text-white",
      },
      {
           icon: Trophy,
           label: "Success Rate",
           value: "98%",
-          color: "text-orange-600",
+          color: "text-white",
      },
 ];
 
@@ -105,28 +105,28 @@ const features = [
           title: "Customized Curriculum",
           description:
                "Tailored training programs designed specifically for your organization's needs and goals",
-          color: "bg-blue-100 text-blue-600",
+          color: "bg-orange-500 text-white",
      },
      {
           icon: Zap,
           title: "Industry Experts",
           description:
                "Experienced professionals with real-world expertise in their fields",
-          color: "bg-green-100 text-green-600",
+          color: "bg-orange-500 text-white",
      },
      {
           icon: Heart,
           title: "Flexible Delivery",
           description:
                "In-person, online, or hybrid training options to suit your schedule",
-          color: "bg-pink-100 text-pink-600",
+          color: "bg-orange-500 text-white",
      },
      {
           icon: Award,
           title: "Certification Programs",
           description:
                "Industry-recognized certificates and continuing education credits",
-          color: "bg-orange-100 text-orange-600",
+          color: "bg-orange-500 text-white",
      },
 ];
 
@@ -208,18 +208,12 @@ export default function HomePage() {
                     <div className="container mx-auto px-4 sm:px-6 relative z-10">
                          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                               <div
-                                   className={`space-y-8 ${
-                                        isVisible
-                                             ? "animate-slide-in-left"
-                                             : "opacity-0"
-                                   }`}
+                                   className={`space-y-8 ${isVisible
+                                        ? "animate-slide-in-left"
+                                        : "opacity-0"
+                                        }`}
                               >
                                    <div className="space-y-6">
-                                        <Badge className="bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 hover:from-orange-200 hover:to-orange-300 transition-all duration-300 px-4 py-2 animate-pulse-glow">
-                                             🚀 New AI & Machine Learning
-                                             Training Program Available!
-                                        </Badge>
-
                                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                                              Transform Your Organization with{" "}
                                              <span className="gradient-text animate-gradient">
@@ -263,11 +257,10 @@ export default function HomePage() {
                                         {stats.map((stat, index) => (
                                              <div
                                                   key={index}
-                                                  className={`text-center group animate-slide-in-up animate-delay-${
-                                                       (index + 1) * 100
-                                                  }`}
+                                                  className={`text-center group animate-slide-in-up animate-delay-${(index + 1) * 100
+                                                       }`}
                                              >
-                                                  <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-orange-100 to-orange-200 rounded-xl flex items-center justify-center group-hover:from-orange-200 group-hover:to-orange-300 transition-all duration-300 hover-lift">
+                                                  <div className="w-12 h-12 mx-auto mb-3 bg-orange-500 rounded-xl flex items-center justify-center group-hover:from-orange-200 group-hover:to-orange-300 transition-all duration-300 hover-lift">
                                                        <stat.icon
                                                             className={`w-6 h-6 ${stat.color}`}
                                                        />
@@ -284,11 +277,10 @@ export default function HomePage() {
                               </div>
 
                               <div
-                                   className={`relative ${
-                                        isVisible
-                                             ? "animate-slide-in-right"
-                                             : "opacity-0"
-                                   }`}
+                                   className={`relative ${isVisible
+                                        ? "animate-slide-in-right"
+                                        : "opacity-0"
+                                        }`}
                               >
                                    <div className="relative z-10">
                                         <Image
@@ -311,7 +303,7 @@ export default function HomePage() {
                <section className="py-20 lg:py-24 bg-white">
                     <div className="container mx-auto px-4 sm:px-6">
                          <div className="text-center mb-16 animate-fade-in">
-                              <Badge className="bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 hover:from-orange-200 hover:to-orange-300 mb-6 px-4 py-2">
+                              <Badge className="bg-orange-500 text-white mb-6 px-4 py-2">
                                    Who We Serve
                               </Badge>
                               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -328,12 +320,11 @@ export default function HomePage() {
                               {organizationTypes.map((org, index) => (
                                    <Card
                                         key={index}
-                                        className={`group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white hover-lift animate-scale-in animate-delay-${
-                                             (index + 1) * 100
-                                        }`}
+                                        className={`group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white hover-lift animate-scale-in animate-delay-${(index + 1) * 100
+                                             }`}
                                    >
                                         <CardHeader className="text-center pb-4">
-                                             <div className="w-16 h-16 bg-gradient-to-r from-orange-600 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                                             <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                                                   <org.icon className="w-8 h-8 text-white" />
                                              </div>
                                              <CardTitle className="text-xl group-hover:text-orange-600 transition-colors duration-300">
@@ -355,7 +346,7 @@ export default function HomePage() {
                <section className="py-20 lg:py-24 bg-gradient-to-r from-orange-50/50 to-orange-100/30">
                     <div className="container mx-auto px-4 sm:px-6">
                          <div className="text-center mb-16 animate-fade-in">
-                              <Badge className="bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 hover:from-orange-200 hover:to-orange-300 mb-6 px-4 py-2">
+                              <Badge className="bg-orange-500 text-white hover:from-orange-200 hover:to-orange-300 mb-6 px-4 py-2">
                                    Popular Training Programs
                               </Badge>
                               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -372,9 +363,8 @@ export default function HomePage() {
                               {trainingPrograms.map((program, index) => (
                                    <Card
                                         key={program.id}
-                                        className={`group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white hover-lift animate-scale-in animate-delay-${
-                                             (index + 1) * 100
-                                        }`}
+                                        className={`group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white hover-lift animate-scale-in animate-delay-${(index + 1) * 100
+                                             }`}
                                    >
                                         <div className="relative overflow-hidden rounded-t-xl">
                                              <Image
@@ -431,12 +421,11 @@ export default function HomePage() {
                                                                            key={
                                                                                 i
                                                                            }
-                                                                           className={`w-3 h-3 ${
-                                                                                i <
+                                                                           className={`w-3 h-3 ${i <
                                                                                 4
-                                                                                     ? "text-yellow-400 fill-current"
-                                                                                     : "text-gray-300"
-                                                                           }`}
+                                                                                ? "text-yellow-400 fill-current"
+                                                                                : "text-gray-300"
+                                                                                }`}
                                                                       />
                                                                  )
                                                             )}
@@ -542,9 +531,8 @@ export default function HomePage() {
                                         {features.map((feature, index) => (
                                              <div
                                                   key={index}
-                                                  className={`flex items-start space-x-4 group animate-slide-in-up animate-delay-${
-                                                       (index + 1) * 100
-                                                  }`}
+                                                  className={`flex items-start space-x-4 group animate-slide-in-up animate-delay-${(index + 1) * 100
+                                                       }`}
                                              >
                                                   <div
                                                        className={`w-12 h-12 ${feature.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 flex-shrink-0`}
@@ -697,11 +685,10 @@ export default function HomePage() {
                                    {testimonials.map((_, index) => (
                                         <button
                                              key={index}
-                                             className={`w-3 h-3 rounded-full transition-all duration-300 focus-ring ${
-                                                  index === currentTestimonial
-                                                       ? "bg-gradient-to-r from-orange-600 to-orange-500 scale-125"
-                                                       : "bg-gray-300 hover:bg-gray-400"
-                                             }`}
+                                             className={`w-3 h-3 rounded-full transition-all duration-300 focus-ring ${index === currentTestimonial
+                                                  ? "bg-gradient-to-r from-orange-600 to-orange-500 scale-125"
+                                                  : "bg-gray-300 hover:bg-gray-400"
+                                                  }`}
                                              onClick={() =>
                                                   setCurrentTestimonial(index)
                                              }
