@@ -107,7 +107,7 @@ export default function CoursesPage() {
                <Header />
 
                {/* Enhanced Hero Section */}
-               <section className="py-20 lg:py-32 bg-gradient-to-r from-orange-600 to-orange-500 text-white relative overflow-hidden">
+               <section className="py-20 lg:py-16 bg-gradient-to-r from-orange-600 to-orange-500 text-white relative overflow-hidden">
                     <div className="absolute inset-0 bg-black/5"></div>
                     <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full animate-pulse"></div>
                     <div
@@ -242,7 +242,7 @@ export default function CoursesPage() {
                </section>
 
                {/* Training Programs Grid */}
-               <section className="py-20">
+               <section className="py-16">
                     <div className="container mx-auto px-4 sm:px-6">
                          <div className="mb-12 text-center">
                               <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -308,15 +308,14 @@ export default function CoursesPage() {
                                              <div className="flex justify-between items-start mb-4">
                                                   <Badge
                                                        variant="secondary"
-                                                       className={`text-xs font-semibold px-3 py-1 ${
-                                                            program.level ===
+                                                       className={`text-xs font-semibold px-3 py-1 ${program.level ===
                                                             "All Levels"
-                                                                 ? "bg-emerald-100 text-emerald-800 border-emerald-200"
-                                                                 : program.level ===
-                                                                   "Beginner to Intermediate"
-                                                                 ? "bg-amber-100 text-amber-800 border-amber-200"
-                                                                 : "bg-rose-100 text-rose-800 border-rose-200"
-                                                       }`}
+                                                            ? "bg-orange-100 text-emerald-800 border-orange-200"
+                                                            : program.level ===
+                                                                 "Beginner to Intermediate"
+                                                                 ? "bg-orange-100 text-orange-800 border-orange-200"
+                                                                 : "bg-orange-100 text-orange-800 border-orange-200"
+                                                            }`}
                                                   >
                                                        {program.level}
                                                   </Badge>
@@ -325,75 +324,72 @@ export default function CoursesPage() {
                                              <CardTitle className="text-xl group-hover:text-orange-600 transition-colors duration-300 line-clamp-2 leading-tight font-bold mb-3">
                                                   {program.title}
                                              </CardTitle>
-                                             <CardDescription className="text-gray-600 line-clamp-3 leading-relaxed text-sm">
+                                             {/* <CardDescription className="text-gray-600 line-clamp-3 leading-relaxed text-sm">
                                                   {program.description}
-                                             </CardDescription>
+                                             </CardDescription> */}
                                         </CardHeader>
 
                                         <CardContent className="pt-0">
                                              {/* Duration and participants with icons */}
-                                             <div className="flex items-center justify-between mb-4 text-sm text-gray-600 bg-gray-50/50 rounded-xl p-3">
+                                             <div className="flex items-center justify-between text-sm text-gray-600 bg-gray-50/50 rounded-xl ">
                                                   <div className="flex items-center">
                                                        <Clock className="w-4 h-4 mr-2 text-orange-500" />
                                                        <span className="font-medium">
                                                             {program.duration}
                                                        </span>
                                                   </div>
-                                                  <div className="flex items-center">
-                                                       <Users className="w-4 h-4 mr-2 text-blue-500" />
+                                                  {/* <div className="flex items-center">
+                                                       <Users className="w-4 h-4 mr-2 text-orange-500" />
                                                        <span className="font-medium">
                                                             {
                                                                  program.participants
                                                             }
                                                        </span>
-                                                  </div>
-                                             </div>
-
-                                             {/* Rating with improved stars */}
-                                             <div className="flex items-center mb-4">
-                                                  <div className="flex items-center mr-3">
-                                                       {[...Array(5)].map(
-                                                            (_, i) => (
-                                                                 <Star
-                                                                      key={i}
-                                                                      className={`w-4 h-4 ${
-                                                                           i <
-                                                                           Math.floor(
-                                                                                program.rating
-                                                                           )
+                                                  </div> */}
+                                                  <div className="flex items-center">
+                                                       <div className="flex items-center mr-2">
+                                                            {[...Array(5)].map(
+                                                                 (_, i) => (
+                                                                      <Star
+                                                                           key={i}
+                                                                           className={`w-4 h-4 ${i <
+                                                                                Math.floor(
+                                                                                     program.rating
+                                                                                )
                                                                                 ? "text-yellow-400 fill-current drop-shadow-sm"
                                                                                 : "text-gray-300"
-                                                                      }`}
-                                                                 />
-                                                            )
-                                                       )}
+                                                                                }`}
+                                                                      />
+                                                                 )
+                                                            )}
+                                                       </div>
+                                                       <span className="text-sm text-gray-700 font-semibold">
+                                                            {program.rating}
+                                                       </span>
                                                   </div>
-                                                  <span className="text-sm text-gray-700 font-semibold">
-                                                       {program.rating}
-                                                  </span>
                                              </div>
 
                                              {/* Instructor and organization info */}
-                                             <div className="mb-4 space-y-2">
-                                                  <div className="flex items-center text-sm text-gray-600 bg-white/50 rounded-lg p-2">
-                                                       <User className="w-4 h-4 mr-2 text-purple-500" />
+                                             <div className="mb-4 ">
+                                                  <div className="flex items-center text-sm text-gray-600 bg-white/50 rounded-lg pt-4">
+                                                       <User className="w-4 h-4 mr-2 text-orange-500" />
                                                        <span className="font-medium">
                                                             {typeof program.instructor ===
-                                                            "string"
+                                                                 "string"
                                                                  ? program.instructor
                                                                  : program
-                                                                        .instructor
-                                                                        .name}
+                                                                      .instructor
+                                                                      .name}
                                                        </span>
                                                   </div>
-                                                  <div className="flex items-center text-sm text-gray-600 bg-white/50 rounded-lg p-2">
-                                                       <Calendar className="w-4 h-4 mr-2 text-green-500" />
+                                                  <div className="flex items-center text-sm text-gray-600 bg-white/50 rounded-lg pt-2">
+                                                       <Calendar className="w-4 h-4 mr-2 text-orange-500" />
                                                        <span className="font-medium">
                                                             Flexible Scheduling
                                                        </span>
                                                   </div>
-                                                  <div className="flex items-center text-sm text-gray-600 bg-white/50 rounded-lg p-2">
-                                                       <Building className="w-4 h-4 mr-2 text-indigo-500" />
+                                                  <div className="flex items-center text-sm text-gray-600 bg-white/50 rounded-lg pt-2">
+                                                       <Building className="w-4 h-4 mr-2 text-orange-500" />
                                                        <span className="font-medium">
                                                             {
                                                                  program.organizationType
@@ -402,52 +398,12 @@ export default function CoursesPage() {
                                                   </div>
                                              </div>
 
-                                             {/* Features with improved badges */}
-                                             <div className="mb-6">
-                                                  <div className="flex flex-wrap gap-2">
-                                                       {program.features
-                                                            .slice(0, 2)
-                                                            .map(
-                                                                 (
-                                                                      feature,
-                                                                      index
-                                                                 ) => (
-                                                                      <Badge
-                                                                           key={
-                                                                                index
-                                                                           }
-                                                                           variant="outline"
-                                                                           className="text-xs border-orange-200 text-orange-700 bg-orange-50/50 font-medium px-2 py-1"
-                                                                      >
-                                                                           {
-                                                                                feature
-                                                                           }
-                                                                      </Badge>
-                                                                 )
-                                                            )}
-                                                       {program.features
-                                                            .length > 2 && (
-                                                            <Badge
-                                                                 variant="outline"
-                                                                 className="text-xs border-orange-200 text-orange-700 bg-orange-50/50 font-medium px-2 py-1"
-                                                            >
-                                                                 +
-                                                                 {program
-                                                                      .features
-                                                                      .length -
-                                                                      2}{" "}
-                                                                 more
-                                                            </Badge>
-                                                       )}
-                                                  </div>
-                                             </div>
-
                                              {/* Action buttons with improved styling */}
                                              <div className="flex flex-col gap-2">
                                                   <Link
                                                        href={`/courses/${program.slug}`}
                                                   >
-                                                       <Button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all duration-300 hover:scale-105 shadow-lg rounded-xl font-semibold py-3">
+                                                       <Button className="w-full bg-orange-500 hover:bg-orange-600  transition-all duration-300 shadow-lg rounded-xl font-semibold py-3">
                                                             <BookOpen className="w-4 h-4 mr-2" />
                                                             View Details
                                                        </Button>

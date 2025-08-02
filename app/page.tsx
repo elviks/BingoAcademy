@@ -197,7 +197,7 @@ export default function HomePage() {
                <Header />
 
                {/* Enhanced Hero Section */}
-               <section className="relative py-20 lg:py-32 overflow-hidden">
+               <section className="relative py-20 lg:py-16 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-orange-600/5 to-orange-500/5"></div>
                     <div className="absolute top-20 left-10 w-20 h-20 bg-orange-200/30 rounded-full animate-float"></div>
                     <div
@@ -284,7 +284,7 @@ export default function HomePage() {
                               >
                                    <div className="relative z-10">
                                         <Image
-                                             src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+                                             src="https://plus.unsplash.com/premium_photo-1685086785636-2a1a0e5b591f?auto=format&fit=crop&w=600&q=80"
                                              alt="Professional training session at Bingo Academy"
                                              width={600}
                                              height={500}
@@ -300,10 +300,10 @@ export default function HomePage() {
                </section>
 
                {/* Organization Types Section */}
-               <section className="py-20 lg:py-24 bg-white">
+               <section className="py-20 lg:py-16 bg-white">
                     <div className="container mx-auto px-4 sm:px-6">
                          <div className="text-center mb-16 animate-fade-in">
-                              <Badge className="bg-orange-500 text-white mb-6 px-4 py-2">
+                              <Badge className="bg-orange-200 text-yellow-800 hover:bg-orange-400 hover:text-white mb-6 px-4 py-2">
                                    Who We Serve
                               </Badge>
                               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -343,10 +343,10 @@ export default function HomePage() {
                </section>
 
                {/* Enhanced Featured Training Programs */}
-               <section className="py-20 lg:py-24 bg-gradient-to-r from-orange-50/50 to-orange-100/30">
+               <section className="py-20 lg:py-16 bg-gradient-to-r from-orange-50/50 to-orange-100/30">
                     <div className="container mx-auto px-4 sm:px-6">
                          <div className="text-center mb-16 animate-fade-in">
-                              <Badge className="bg-orange-500 text-white hover:from-orange-200 hover:to-orange-300 mb-6 px-4 py-2">
+                              <Badge className="bg-orange-200 text-yellow-800 hover:bg-orange-400 hover:text-white mb-6 px-4 py-2">
                                    Popular Training Programs
                               </Badge>
                               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -359,7 +359,7 @@ export default function HomePage() {
                               </p>
                          </div>
 
-                         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                               {trainingPrograms.map((program, index) => (
                                    <Card
                                         key={program.id}
@@ -436,7 +436,7 @@ export default function HomePage() {
                                                   </div>
                                              </div>
 
-                                             <div className="mb-4">
+                                             {/* <div className="mb-4">
                                                   <div className="flex flex-wrap gap-2">
                                                        {program.features.map(
                                                             (
@@ -455,7 +455,7 @@ export default function HomePage() {
                                                             )
                                                        )}
                                                   </div>
-                                             </div>
+                                             </div> */}
 
                                              <Link href={`/courses`}>
                                                   <Button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all duration-300 hover:scale-105 shadow-md focus-ring">
@@ -484,7 +484,7 @@ export default function HomePage() {
                </section>
 
                {/* Enhanced About Section */}
-               <section className="py-20 lg:py-24 bg-white">
+               <section className="py-20 lg:py-16 bg-white">
                     <div className="container mx-auto px-4 sm:px-6">
                          <div className="grid lg:grid-cols-2 gap-16 items-center">
                               <div className="animate-slide-in-left">
@@ -508,7 +508,7 @@ export default function HomePage() {
                               </div>
 
                               <div className="space-y-8 animate-slide-in-right">
-                                   <Badge className="bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 px-4 py-2">
+                                   <Badge className="bg-orange-200 text-yellow-800 hover:bg-orange-400 hover:text-white px-4 py-2">
                                         About Bingo Academy
                                    </Badge>
                                    <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
@@ -556,7 +556,7 @@ export default function HomePage() {
                                    <Link href="/about">
                                         <Button
                                              size="lg"
-                                             className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 px-8 py-6 transition-all duration-300 hover:scale-105 shadow-lg focus-ring"
+                                             className="bg-orange-500 hover:bg-orange-600 px-8 py-6 transition-all duration-300 hover:scale-105 shadow-lg focus-ring mt-12"
                                         >
                                              Learn More About Us
                                              <ArrowRight className="w-5 h-5 ml-2" />
@@ -568,10 +568,10 @@ export default function HomePage() {
                </section>
 
                {/* Enhanced Testimonials */}
-               <section className="py-20 lg:py-32 bg-gradient-to-r from-orange-50/50 to-orange-100/30">
+               <section className="py-20 lg:py-16 bg-gradient-to-r from-orange-50/50 to-orange-100/30">
                     <div className="container mx-auto px-4 sm:px-6">
                          <div className="text-center mb-16 animate-fade-in">
-                              <Badge className="bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-800 hover:from-yellow-200 hover:to-yellow-300 mb-6 px-4 py-2">
+                              <Badge className="bg-orange-200 text-yellow-800 hover:bg-orange-400 hover:text-white mb-6 px-4 py-2">
                                    Client Success Stories
                               </Badge>
                               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -700,7 +700,7 @@ export default function HomePage() {
                </section>
 
                {/* Enhanced Newsletter */}
-               <section className="py-20 lg:py-32 bg-gradient-to-r from-orange-600 to-orange-500 relative overflow-hidden">
+               <section className="py-20 lg:py-16 bg-gradient-to-r from-orange-600 to-orange-500 relative overflow-hidden">
                     <div className="absolute inset-0 bg-black/5"></div>
                     <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full animate-float"></div>
                     <div

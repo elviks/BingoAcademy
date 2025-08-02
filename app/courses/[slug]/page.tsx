@@ -44,6 +44,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/header";
 import { getTrainingProgramBySlug } from "@/lib/training-programs-data";
+import Footer from "@/components/footer";
 
 export default function TrainingProgramDetailPage({
      params,
@@ -169,14 +170,13 @@ export default function TrainingProgramDetailPage({
                                                   {[...Array(5)].map((_, i) => (
                                                        <Star
                                                             key={i}
-                                                            className={`w-5 h-5 ${
-                                                                 i <
-                                                                 Math.floor(
-                                                                      trainingProgramData.rating
-                                                                 )
+                                                            className={`w-5 h-5 ${i <
+                                                                      Math.floor(
+                                                                           trainingProgramData.rating
+                                                                      )
                                                                       ? "text-yellow-400 fill-current"
                                                                       : "text-gray-300"
-                                                            }`}
+                                                                 }`}
                                                        />
                                                   ))}
                                              </div>
@@ -553,12 +553,11 @@ export default function TrainingProgramDetailPage({
                                                                                                key={
                                                                                                     i
                                                                                                }
-                                                                                               className={`w-4 h-4 ${
-                                                                                                    i <
-                                                                                                    review.rating
+                                                                                               className={`w-4 h-4 ${i <
+                                                                                                         review.rating
                                                                                                          ? "text-yellow-400 fill-current"
                                                                                                          : "text-gray-300"
-                                                                                               }`}
+                                                                                                    }`}
                                                                                           />
                                                                                      )
                                                                                 )}
@@ -639,146 +638,7 @@ export default function TrainingProgramDetailPage({
                     </div>
                </div>
 
-               {/* Footer */}
-               <footer className="bg-gray-900 text-white py-16 mt-16">
-                    <div className="container mx-auto px-4">
-                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                              <div>
-                                   <Link
-                                        href="/"
-                                        className="flex items-center space-x-2 mb-6"
-                                   >
-                                        <div className="w-10 h-10 bg-gradient-to-r from-orange-600 to-orange-500 rounded-lg flex items-center justify-center">
-                                             <Code className="w-6 h-6 text-white" />
-                                        </div>
-                                        <span className="text-2xl font-bold">
-                                             Bingo Academy
-                                        </span>
-                                   </Link>
-                                   <p className="text-gray-400 mb-6">
-                                        Empowering organizations through expert
-                                        training and professional development in
-                                        cutting-edge technologies.
-                                   </p>
-                              </div>
-
-                              <div>
-                                   <h3 className="text-lg font-semibold mb-6">
-                                        Quick Links
-                                   </h3>
-                                   <ul className="space-y-3">
-                                        <li>
-                                             <Link
-                                                  href="/courses"
-                                                  className="text-gray-400 hover:text-white transition-colors"
-                                             >
-                                                  All Training Programs
-                                             </Link>
-                                        </li>
-                                        <li>
-                                             <Link
-                                                  href="/about"
-                                                  className="text-gray-400 hover:text-white transition-colors"
-                                             >
-                                                  About Us
-                                             </Link>
-                                        </li>
-                                        <li>
-                                             <Link
-                                                  href="/events"
-                                                  className="text-gray-400 hover:text-white transition-colors"
-                                             >
-                                                  Events
-                                             </Link>
-                                        </li>
-                                        <li>
-                                             <Link
-                                                  href="/contact"
-                                                  className="text-gray-400 hover:text-white transition-colors"
-                                             >
-                                                  Contact
-                                             </Link>
-                                        </li>
-                                   </ul>
-                              </div>
-
-                              <div>
-                                   <h3 className="text-lg font-semibold mb-6">
-                                        Training Programs
-                                   </h3>
-                                   <ul className="space-y-3">
-                                        <li>
-                                             <Link
-                                                  href="/courses?category=Python"
-                                                  className="text-gray-400 hover:text-white transition-colors"
-                                             >
-                                                  Python & Data Science
-                                             </Link>
-                                        </li>
-                                        <li>
-                                             <Link
-                                                  href="/courses?category=AI"
-                                                  className="text-gray-400 hover:text-white transition-colors"
-                                             >
-                                                  AI & Machine Learning
-                                             </Link>
-                                        </li>
-                                        <li>
-                                             <Link
-                                                  href="/courses?category=Cloud"
-                                                  className="text-gray-400 hover:text-white transition-colors"
-                                             >
-                                                  Cloud & DevOps
-                                             </Link>
-                                        </li>
-                                        <li>
-                                             <Link
-                                                  href="/courses?category=Cybersecurity"
-                                                  className="text-gray-400 hover:text-white transition-colors"
-                                             >
-                                                  Cybersecurity
-                                             </Link>
-                                        </li>
-                                        <li>
-                                             <Link
-                                                  href="/courses?category=Web"
-                                                  className="text-gray-400 hover:text-white transition-colors"
-                                             >
-                                                  Web Development
-                                             </Link>
-                                        </li>
-                                   </ul>
-                              </div>
-
-                              <div>
-                                   <h3 className="text-lg font-semibold mb-6">
-                                        Contact Info
-                                   </h3>
-                                   <div className="space-y-3 text-gray-400">
-                                        <p>
-                                             📍 123 Education Street
-                                             <br />
-                                             Tech City, TC 12345
-                                        </p>
-                                        <p>📞 (555) 123-4567</p>
-                                        <p>✉️ training@bingoacademy.com</p>
-                                        <p>
-                                             🕒 Mon-Fri: 9AM-6PM
-                                             <br />
-                                             Sat: 10AM-4PM
-                                        </p>
-                                   </div>
-                              </div>
-                         </div>
-
-                         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-                              <p>
-                                   &copy; 2024 Bingo Academy. All rights
-                                   reserved. | Privacy Policy | Terms of Service
-                              </p>
-                         </div>
-                    </div>
-               </footer>
+               <Footer />
           </div>
      );
 }
